@@ -24,7 +24,11 @@ This user persona is designed using [Xtensio](https://xtensio.com/).
 
 This is the mock-up design of each section of the page, visualising the user experience through the app's funcionality.
 
-![Alt text](<Assets/Sketches/Screenshot 2024-02-06 at 08.29.08.png>)
+![Quick prototyping](Assets/Sketches/IMG_2303.jpg)
+
+![Wireframe](<Assets/Sketches/Screenshot 2024-02-06 at 08.29.08.png>)
+
+Designed on [mockup](https://getmockup.app/) app.
 
 
 ## Technologies behind this app
