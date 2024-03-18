@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mqtt_client/mqtt_client.dart';
+import 'package:mqtt_client/mqtt_server_client.dart';
 
 void main() {
   runApp(MyApp());
@@ -27,6 +29,13 @@ class ListViewState extends State<MyListView> {
   void initState() {
     super.initState();
     feeds = [];
+  }
+
+  // This is where you insert the updateList method
+  void updateList(String s) {
+    setState(() {
+      feeds.add(s);
+    });
   }
 
   @override
