@@ -1,17 +1,17 @@
-name: app
+name: weatherly
 description: "A new Flutter project."
+
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
 version: 1.0.0+1
 
 environment:
   sdk: '>=3.3.0 <4.0.0'
 
-
-#-----packages-------#
 dependencies:
   flutter:
     sdk: flutter
-  mqtt_client:
+
 
 
   cupertino_icons: ^1.0.6
@@ -21,20 +21,10 @@ dev_dependencies:
     sdk: flutter
 
 
-  flutter_lints: ^3.0.0
-
-
 flutter:
 
 
   uses-material-design: true
 
-
-  #--- local assets ---#
   assets:
-    - assets/logos/
-    - assets/icons/
     - assets/images/
-
-  
-

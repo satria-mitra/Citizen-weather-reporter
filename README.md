@@ -1,4 +1,4 @@
-# app
+# weatherly
 
 A new Flutter project.
 
