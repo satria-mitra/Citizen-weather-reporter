@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:weatherly/splash/onboard.dart';
 import 'package:weatherly/splash/splash_screen.dart';
 import 'package:weatherly/screens/homescreen.dart';
+import 'package:weatherly/utils/theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,9 +15,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        useMaterial3: true,
-      ),
+      theme: TAppTheme.lightTheme,
+      darkTheme: TAppTheme.darkTheme,
+      themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
       home: const OnBoard(),
     );
