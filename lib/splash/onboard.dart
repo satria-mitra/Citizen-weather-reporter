@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:weatherly/screens/homescreen.dart';
+import 'package:weathershare/screens/homescreen.dart';
 
 class OnBoard extends StatefulWidget {
   const OnBoard({super.key});
