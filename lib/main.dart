@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:weatherly/splash/onboard.dart';
-import 'package:weatherly/splash/splash_screen.dart';
-import 'package:weatherly/screens/homescreen.dart';
-import 'package:weatherly/utils/theme.dart';
+import 'package:weathershare/splash/onboard.dart';
+import 'package:weathershare/splash/splash_screen.dart';
+import 'package:weathershare/screens/homescreen.dart';
+import 'package:weathershare/utils/theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +19,16 @@ class MyApp extends StatelessWidget {
       darkTheme: TAppTheme.darkTheme,
       themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
-      home: const OnBoard(),
+      home: const AppHome(),
     );
+  }
+}
+
+class AppHome extends StatelessWidget {
+  const AppHome({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
   }
 }
