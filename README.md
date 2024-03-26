@@ -1,4 +1,4 @@
-# weatherly
+# weathershare
 
 A new Flutter project.
 

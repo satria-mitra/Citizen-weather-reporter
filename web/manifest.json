@@ -1,6 +1,6 @@
 {
-    "name": "weatherly",
-    "short_name": "weatherly",
+    "name": "weathershare",
+    "short_name": "weathershare",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
