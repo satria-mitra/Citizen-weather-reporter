@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:weathershare/splash/onboard.dart';
-import 'package:weathershare/splash/splash_screen.dart';
-import 'package:weathershare/screens/homescreen.dart';
+// import 'package:weathershare/splash/onboard.dart';
+// import 'package:weathershare/splash/splash_screen.dart';
+//import 'package:weathershare/screens/homescreen.dart';
 import 'package:weathershare/utils/theme.dart';
 
 void main() {

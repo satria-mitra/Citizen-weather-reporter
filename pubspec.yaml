@@ -20,6 +20,20 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+flutter_native_splash:
+  color: "#f7f6f1"
+  color_dark: "#272727"
+  image: assets/icons/splash.png
+  image_dark: assets/icons/splash.png
+  
+  android_12:
+    image: assets/icons/splash.png
+    icon_background_color: "#ffffff"
+    image_dark: assets/icons/splash.png
+    icon_background_color_dark: "#121212"
+  web: false
+
+
 flutter:
 
   uses-material-design: true
