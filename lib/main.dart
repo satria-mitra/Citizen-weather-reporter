@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 // import 'package:weathershare/splash/onboard.dart';
-// import 'package:weathershare/splash/splash_screen.dart';
+import 'package:weathershare/splash/splash_screen.dart';
 //import 'package:weathershare/screens/homescreen.dart';
 import 'package:weathershare/utils/theme.dart';
+//import 'package:weathershare/constants/text_string.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,11 +16,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        theme: TAppTheme.lightTheme,
-        darkTheme: TAppTheme.darkTheme,
-        themeMode: ThemeMode.system,
-        debugShowCheckedModeBanner: false,
-        home: SplashScreen());
+      theme: TAppTheme.lightTheme,
+      darkTheme: TAppTheme.darkTheme,
+      themeMode: ThemeMode.light,
+      debugShowCheckedModeBanner: false,
+      home: const SplashScreen(),
+    );
   }
 }
 

@@ -1,16 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-class TAppTheme {
-  TAppTheme._();
+class TTextTheme {
+  static TextTheme lightTextTheme = TextTheme(
+    headlineMedium: GoogleFonts.montserrat(
+      color: Colors.black87,
+    ),
+    titleSmall: GoogleFonts.poppins(
+      color: Colors.black54,
+      fontSize: 24,
+    ),
+  );
 
-  static ThemeData lightTheme = ThemeData(
-      brightness: Brightness.light,
-      textTheme: TTextTheme.lightTextTheme,
-      elevatedButtonTheme:
-          ElevatedButtonThemeData(style: ElevatedButton.styleFrom()));
-
-  static ThemeData darkTheme = ThemeData(
-    brightness: Brightness.dark,
-    textTheme: TTextTheme.darkTheme,
+  static TextTheme darkTextTheme = TextTheme(
+    headlineMedium: GoogleFonts.montserrat(
+      color: Colors.white70,
+    ),
+    titleSmall: GoogleFonts.poppins(
+      color: Colors.white60,
+      fontSize: 24,
+    ),
   );
 }
