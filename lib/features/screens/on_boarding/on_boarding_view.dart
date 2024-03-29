@@ -33,14 +33,19 @@ class _OnBoardingViewState extends State<OnBoardingView> {
             SmoothPageIndicator(
               controller: pageController,
               count: controller.items.length,
+              onDotClicked: (index) => pageController.animateToPage(index,
+                  duration: const Duration(milliseconds: 500),
+                  curve: Curves.easeIn),
               effect: const WormEffect(
+                dotHeight: 12,
+                dotWidth: 12,
                 activeDotColor: Colors.grey,
               ),
             ),
             //next button
             TextButton(
                 onPressed: () => pageController.nextPage(
-                    duration: Duration(milliseconds: 500),
+                    duration: const Duration(milliseconds: 500),
                     curve: Curves.easeIn),
                 child: const Text("Next")),
           ],
