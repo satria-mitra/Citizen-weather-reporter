@@ -11,7 +11,7 @@ class SplashScreen extends StatelessWidget {
       body: Stack(
         fit: StackFit.expand, // Ensure the Stack fills the whole screen
         children: [
-          Image.asset(tSplashImage, fit: BoxFit.cover),
+          Image.asset(tOnBoardingImages1, fit: BoxFit.cover),
           const Positioned(
             bottom: 80, // Adjust if necessary to ensure visibility
             left: 0,
