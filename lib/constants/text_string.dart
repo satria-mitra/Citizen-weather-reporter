@@ -16,3 +16,5 @@ const String tOnBoardingSubTitle2 = "Create a heatmap based on your IoT data";
 const String tOnBoardingCounter1 = "1/3";
 const String tOnBoardingCounter2 = "2/3";
 const String tOnBoardingCounter3 = "3/3";
+
+const String tGetStarted = "Get Started";
