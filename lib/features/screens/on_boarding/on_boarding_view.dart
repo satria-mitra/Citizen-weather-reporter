@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 //import 'package:flutter/widgets.dart';
 import 'package:weathershare/features/screens/on_boarding/on_boarding_item.dart';
 //import 'package:weathershare/utils/text_theme.dart';
@@ -17,14 +18,33 @@ class _OnBoardingViewState extends State<OnBoardingView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomSheet: Row(
-        children: [
-          //skip button
-          TextButton(onPressed: () {}, child: const Text("Skip")),
-
-          //next button
-          TextButton(onPressed: () {}, child: const Text("Next")),
-        ],
+      bottomSheet: Container(
+        color: Colors.white,
+        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            //skip button
+            TextButton(
+                onPressed: () =>
+                    pageController.jumpToPage(controller.items.length - 1),
+                child: const Text("Skip")),
+            //indicator
+            SmoothPageIndicator(
+              controller: pageController,
+              count: controller.items.length,
+              effect: const WormEffect(
+                activeDotColor: Colors.grey,
+              ),
+            ),
+            //next button
+            TextButton(
+                onPressed: () => pageController.nextPage(
+                    duration: Duration(milliseconds: 500),
+                    curve: Curves.easeIn),
+                child: const Text("Next")),
+          ],
+        ),
       ),
       body: Container(
         margin: const EdgeInsets.symmetric(horizontal: 15),
