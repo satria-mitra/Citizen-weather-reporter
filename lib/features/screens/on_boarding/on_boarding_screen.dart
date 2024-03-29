@@ -22,13 +22,13 @@ class OnBoardingScreen extends StatelessWidget {
   }
 }
 
-class OnBoardingPage extends StatelessWidget {
-  const OnBoardingPage({
+class OnBoardingPageWidget extends StatelessWidget {
+  const OnBoardingPageWidget({
     super.key,
-    required this.size,
-  });
+    required this.model,
+  }) : super(key: key);
 
-  final Size size;
+  final OnBoardingModel model;
 
   @override
   Widget build(BuildContext context) {
@@ -39,17 +39,17 @@ class OnBoardingPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Image(
-            image: AssetImage(tOnBoardingImages1),
-            height: size.height * 0.5,
+            image: AssetImage(model.image),
+            height: model.height * 0.5,
           ),
           Column(
             children: [
               Text(
-                tOnBoardingTitle1,
+                model.title,
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
               Text(
-                tOnBoardingSubTitle1,
+                model.subTitle,
                 style: Theme.of(context).textTheme.headlineSmall,
               ),
             ],
