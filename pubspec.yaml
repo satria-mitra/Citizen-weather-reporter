@@ -14,6 +14,7 @@ dependencies:
     sdk: flutter
   flutter_native_splash: ^2.4.0
   google_fonts: ^6.2.0
+  liquid_swipe: ^3.1.0
 
 dev_dependencies:
   flutter_lints: ^3.0.0
@@ -25,14 +26,13 @@ flutter_native_splash:
   color_dark: "#272727"
   image: assets/icons/splash.png
   image_dark: assets/icons/splash.png
-  
+
   android_12:
     image: assets/icons/splash.png
     icon_background_color: "#ffffff"
     image_dark: assets/icons/splash.png
     icon_background_color_dark: "#121212"
   web: false
-
 
 flutter:
 
