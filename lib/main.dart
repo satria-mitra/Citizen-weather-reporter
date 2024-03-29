@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 // import 'package:weathershare/splash/onboard.dart';
-import 'package:weathershare/splash/splash_screen.dart';
+//import 'package:weathershare/splash/splash_screen.dart';
 //import 'package:weathershare/screens/homescreen.dart';
 import 'package:weathershare/utils/theme.dart';
 //import 'package:weathershare/constants/text_string.dart';
+import 'package:weathershare/features/screens/on_boarding/on_boarding_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       darkTheme: TAppTheme.darkTheme,
       themeMode: ThemeMode.light,
       debugShowCheckedModeBanner: false,
-      home: const SplashScreen(),
+      home: const OnBoardingScreen(),
     );
   }
 }
