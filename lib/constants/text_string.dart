@@ -18,3 +18,10 @@ const String onBoardingCounter2 = "2/3";
 const String onBoardingCounter3 = "3/3";
 
 const String getStart = "Get Started";
+
+//login text
+const String loginTitle = "Welcome Back";
+const String loginSubTitle = "Share it";
+const String rememberMe = "Remember Me?";
+const String haveAccount = "Already Have an Account?";
+const String loginTitle = "Welcome Back";
