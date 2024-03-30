@@ -3,9 +3,6 @@ import 'package:flutter/material.dart';
 //import 'package:weathershare/splash/splash_screen.dart';
 //import 'package:weathershare/screens/homescreen.dart';
 import 'package:weathershare/utils/theme.dart';
-//import 'package:weathershare/utils/text_theme.dart';
-
-//import 'package:weathershare/constants/text_string.dart';
 import 'package:weathershare/features/screens/on_boarding/on_boarding_view.dart';
 
 void main() {
@@ -21,7 +18,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: TAppTheme.lightTheme,
       darkTheme: TAppTheme.darkTheme,
-      themeMode: ThemeMode.light,
+      themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
       home: const OnBoardingView(),
     );
