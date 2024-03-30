@@ -1,5 +1,9 @@
 /* App Text String */
 
+//generic text
+const String login = "Login";
+const String signUp = "Sign Up";
+
 const String appName = ".appable/";
 const String appTagLine = "Coba";
 
