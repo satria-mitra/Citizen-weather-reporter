@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:weathershare/utils/text_theme.dart';
+import 'package:weathershare/utils/outlined_button_theme.dart';
+import 'package:weathershare/utils/elevated_button_theme.dart';
 
 class TAppTheme {
   TAppTheme._();
@@ -8,11 +10,13 @@ class TAppTheme {
       brightness: Brightness.light,
       textTheme: TTextTheme.lightTextTheme,
       primaryColor: Colors.lightBlue,
-      elevatedButtonTheme:
-          ElevatedButtonThemeData(style: ElevatedButton.styleFrom()));
+      outlinedButtonTheme: TOutlinedButtonTheme.lightOutlinedButtonTheme,
+      elevatedButtonTheme: TElevatedButtonTheme.lightElevatedButtonTheme);
 
   static ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
     textTheme: TTextTheme.darkTextTheme,
+    outlinedButtonTheme: TOutlinedButtonTheme.darkOutlinedButtonTheme,
+    elevatedButtonTheme: TElevatedButtonTheme.darkElevatedButtonTheme,
   );
 }
