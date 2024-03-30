@@ -14,7 +14,7 @@ class LoginScreen extends StatelessWidget {
           padding: const EdgeInsets.all(defaultSize),
           child: Column(
             children: [
-              Image(image: AssetImage(welcomeScreenImage)),
+              const Image(image: AssetImage(welcomeScreenImage)),
               Text(
                 loginTitle,
                 style: Theme.of(context).textTheme.headlineMedium,
