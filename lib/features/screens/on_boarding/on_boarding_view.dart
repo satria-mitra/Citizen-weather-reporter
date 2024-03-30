@@ -103,7 +103,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
       child: TextButton(
         onPressed: () {},
         child: const Text(
-          tGetStarted,
+          getStart,
           style: TextStyle(color: Colors.white),
         ),
       ),

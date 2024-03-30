@@ -11,7 +11,7 @@ class OnBoardingScreen extends StatelessWidget {
       body: Stack(
         fit: StackFit.expand, // Ensure the Stack fills the whole screen
         children: [
-          Image.asset(tOnBoardingImages1, fit: BoxFit.cover),
+          Image.asset(onBoardingImages1, fit: BoxFit.cover),
           const Positioned(
             bottom: 80, // Adjust if necessary to ensure visibility
             left: 0,
@@ -21,7 +21,7 @@ class OnBoardingScreen extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  tAppName,
+                  appName,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 24, // Example size, adjust as needed
@@ -38,7 +38,7 @@ class OnBoardingScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 8),
                 Text(
-                  tAppTagLine,
+                  appTagLine,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 18, // Example size, adjust as needed

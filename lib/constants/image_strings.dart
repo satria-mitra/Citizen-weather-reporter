@@ -1,9 +1,9 @@
 /* App images strings */
 
 //onboarding images
-const String tOnBoardingImages1 =
-    "assets/images/onboarding_images/splash_1.png";
-const String tOnBoardingImages2 =
-    "assets/images/onboarding_images/splash_2.png";
-const String tOnBoardingImages3 =
-    "assets/images/onboarding_images/splash_3.png";
+const String onBoardingImages1 = "assets/images/onboarding_images/splash_1.png";
+const String onBoardingImages2 = "assets/images/onboarding_images/splash_2.png";
+const String onBoardingImages3 = "assets/images/onboarding_images/splash_3.png";
+
+//welcome screen images
+const String welcomeScreenImage = "assets/images/weclome_images/welcome.png";
