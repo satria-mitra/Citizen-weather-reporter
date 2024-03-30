@@ -3,6 +3,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:weathershare/constants/text_string.dart';
 //import 'package:flutter/widgets.dart';
 import 'package:weathershare/features/screens/on_boarding/on_boarding_item.dart';
+import 'package:weathershare/features/screens/welcome/welcome_screen.dart';
 //import 'package:weathershare/utils/text_theme.dart';
 //import 'package:weathershare/utils/theme.dart';
 
@@ -95,13 +96,17 @@ class _OnBoardingViewState extends State<OnBoardingView> {
   Widget getStarted() {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(9),
+        borderRadius: BorderRadius.circular(10),
         color: Theme.of(context).primaryColor,
       ),
       width: MediaQuery.of(context).size.width * .9,
       height: 60,
       child: TextButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => const WelcomeScreen()),
+          );
+        },
         child: const Text(
           getStart,
           style: TextStyle(color: Colors.white),
