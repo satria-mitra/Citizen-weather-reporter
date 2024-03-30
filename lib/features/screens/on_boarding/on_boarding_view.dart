@@ -25,7 +25,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
     return Scaffold(
         bottomSheet: SafeArea(
           child: Container(
-            color: Colors.white,
+            color: Theme.of(context).scaffoldBackgroundColor,
             child: Padding(
               padding:
                   const EdgeInsets.symmetric(vertical: 90.0, horizontal: 10),
@@ -101,7 +101,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
       ),
       width: MediaQuery.of(context).size.width * .9,
       height: 60,
-      child: TextButton(
+      child: ElevatedButton(
         onPressed: () {
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (context) => const WelcomeScreen()),
