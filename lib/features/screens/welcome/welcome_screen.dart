@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weathershare/constants/colors.dart';
 import 'package:weathershare/constants/image_strings.dart';
 import 'package:weathershare/constants/sizes.dart';
 import 'package:weathershare/constants/text_string.dart';
@@ -13,11 +14,12 @@ class WelcomeScreen extends StatelessWidget {
       body: Container(
         padding: const EdgeInsets.all(defaultSize),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.center,
+          //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Image(
-                image: const AssetImage(welcomeScreenImage),
-                height: height * 0.6),
+              image: const AssetImage(welcomeScreenImage),
+            ),
             Column(
               children: [
                 Text(
@@ -35,10 +37,9 @@ class WelcomeScreen extends StatelessWidget {
               children: [
                 Expanded(
                   child: OutlinedButton(
-                      onPressed: () {}, 
+                      onPressed: () {},
                       style: OutlinedButton.styleFrom(
-                        shape: RoundedRectangleBorder(),
-                        foregroundColor: 
+                        foregroundColor: secondaryColor,
                       ),
                       child: Text(login.toUpperCase())),
                 ),
