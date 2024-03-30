@@ -7,6 +7,7 @@ class TAppTheme {
   static ThemeData lightTheme = ThemeData(
       brightness: Brightness.light,
       textTheme: TTextTheme.lightTextTheme,
+      primaryColor: Colors.lightBlue,
       elevatedButtonTheme:
           ElevatedButtonThemeData(style: ElevatedButton.styleFrom()));
 
