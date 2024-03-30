@@ -5,6 +5,7 @@ import 'package:weathershare/constants/colors.dart';
 import 'package:weathershare/constants/image_strings.dart';
 import 'package:weathershare/constants/sizes.dart';
 import 'package:weathershare/constants/text_string.dart';
+import 'package:weathershare/utils/theme.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -38,7 +39,7 @@ class WelcomeScreen extends StatelessWidget {
       ),
       bottomSheet: SafeArea(
         child: Container(
-          color: Colors.white,
+          color: Theme.of(context).scaffoldBackgroundColor,
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 90.0, horizontal: 20),
             child: Row(
@@ -47,12 +48,6 @@ class WelcomeScreen extends StatelessWidget {
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      minimumSize: const Size(100, 50),
-                      foregroundColor: whiteColor,
-                      backgroundColor: secondaryColor,
-                      side: const BorderSide(color: secondaryColor),
-                    ),
                     child: Text(login.toUpperCase()),
                   ),
                 ),
@@ -60,11 +55,6 @@ class WelcomeScreen extends StatelessWidget {
                 Expanded(
                   child: OutlinedButton(
                     onPressed: () {},
-                    style: OutlinedButton.styleFrom(
-                      minimumSize: const Size(150, 50),
-                      foregroundColor: secondaryColor,
-                      side: const BorderSide(color: secondaryColor),
-                    ),
                     child: Text(signUp.toUpperCase()),
                   ),
                 ),
