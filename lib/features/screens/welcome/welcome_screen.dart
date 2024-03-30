@@ -9,52 +9,54 @@ class WelcomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var height = MediaQuery.of(context).size.height;
     return Scaffold(
-      body: Container(
-        padding: const EdgeInsets.all(defaultSize),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Image(
-              image: const AssetImage(welcomeScreenImage),
-            ),
-            Column(
+      bottomSheet: SafeArea(
+        child: Container(
+          color: Colors.white,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 90.0, horizontal: 30),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  welcomeTitle,
-                  style: Theme.of(context).textTheme.headlineMedium,
+                // Skip button
+                ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(150, 50),
+                  ),
+                  child: const Text(login),
                 ),
-                Text(
-                  welcomeSubTitle,
-                  style: Theme.of(context).textTheme.titleMedium,
-                  textAlign: TextAlign.center,
+                const SizedBox(width: 20),
+                // Next button
+                OutlinedButton(
+                  onPressed: () {},
+                  style: OutlinedButton.styleFrom(
+                    minimumSize: const Size(150, 50),
+                  ),
+                  child: const Text(signUp),
                 ),
               ],
             ),
-            Row(
-              children: [
-                Expanded(
-                  child: OutlinedButton(
-                      onPressed: () {},
-                      style: OutlinedButton.styleFrom(
-                        foregroundColor: secondaryColor,
-                      ),
-                      child: Text(login.toUpperCase())),
-                ),
-                const SizedBox(
-                  width: 10.0,
-                ),
-                Expanded(
-                  child: ElevatedButton(
-                      onPressed: () {}, child: Text(signUp.toUpperCase())),
-                ),
-              ],
-            )
-          ],
+          ),
         ),
       ),
+      body: Container(
+          margin: const EdgeInsets.symmetric(horizontal: 40),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(welcomeScreenImage),
+              const SizedBox(height: 15),
+              Text(loginTitle,
+                  style: Theme.of(context).textTheme.headlineMedium),
+              const SizedBox(height: 15),
+              Text(
+                loginSubTitle,
+                style: Theme.of(context).textTheme.titleSmall,
+                textAlign: TextAlign.center,
+              ),
+            ],
+          )),
     );
   }
 }
