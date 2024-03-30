@@ -19,6 +19,10 @@ const String onBoardingCounter3 = "3/3";
 
 const String getStart = "Get Started";
 
+//welcome text
+const String welcomeTitle = "Share it to the world";
+const String welcomeSubTitle = "Test";
+
 //login text
 const String loginTitle = "Welcome Back";
 const String loginSubTitle = "Share it";
