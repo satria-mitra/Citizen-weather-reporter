@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:weathershare/constants/image_strings.dart';
 import 'package:weathershare/constants/text_string.dart';
 
@@ -8,14 +7,21 @@ class WelcomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Container(
         child: Column(
-          Image(image: AssetImage(welcomeScreenImage)),
-          Text(welcomeTitle),
-          Text(welcomeSubTitle),
-        )
-      ),
+          children: [
+            Image(image: AssetImage(welcomeScreenImage)),
+            Text(welcomeTitle),
+            Text(welcomeSubTitle),
+            Row(
+              children: [
+                OutlinedButton(onPressed: () {}, child: const Text(login)),
+                ElevatedButton(onPressed: () {}, child: const Text(signUp))
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
