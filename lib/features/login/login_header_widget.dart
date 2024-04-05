@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weathershare/constants/sizes.dart';
 import 'package:weathershare/constants/text_string.dart';
 import 'package:weathershare/constants/image_strings.dart';
 
@@ -15,18 +16,22 @@ class LoginHeaderWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Image(
-          image: const AssetImage(logInImage),
-          height: size.height * 0.3,
+        const SizedBox(height: 50),
+        Center(
+          child: Image(
+            image: const AssetImage(logInImage),
+            height: size.height * 0.3,
+          ),
         ),
         Text(
           loginTitle,
           style: Theme.of(context).textTheme.headlineMedium,
         ),
-        Text(
-          loginSubTitle,
-          style: Theme.of(context).textTheme.headlineSmall,
-        ),
+        const SizedBox(height: formHeight - 16),
+        // Text(
+        //   loginSubTitle,
+        //   style: Theme.of(context).textTheme.headlineSmall,
+        // ),
       ],
     );
   }
