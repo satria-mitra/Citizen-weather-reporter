@@ -94,11 +94,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
   }
 
   Widget getStarted() {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: Theme.of(context).primaryColor,
-      ),
+    return SizedBox(
       width: MediaQuery.of(context).size.width * .9,
       height: 60,
       child: ElevatedButton(
