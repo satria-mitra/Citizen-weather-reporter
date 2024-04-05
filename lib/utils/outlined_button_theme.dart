@@ -14,9 +14,9 @@ class TOutlinedButtonTheme {
 
   static final darkOutlinedButtonTheme = OutlinedButtonThemeData(
     style: OutlinedButton.styleFrom(
-      minimumSize: const Size(100, 50),
+      minimumSize: const Size(150, 50),
       foregroundColor: whiteColor,
-      side: const BorderSide(color: secondaryColor),
+      side: const BorderSide(color: whiteColor),
     ),
   );
 }

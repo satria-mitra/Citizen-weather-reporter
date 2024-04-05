@@ -15,7 +15,7 @@ class TElevatedButtonTheme {
 
   static final darkElevatedButtonTheme = ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-      minimumSize: const Size(100, 50),
+      minimumSize: const Size(150, 50),
       foregroundColor: whiteColor,
       backgroundColor: secondaryColor,
       side: const BorderSide(color: secondaryColor),
