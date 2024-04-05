@@ -1,11 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:weathershare/constants/colors.dart';
 import 'package:weathershare/constants/image_strings.dart';
-import 'package:weathershare/constants/sizes.dart';
 import 'package:weathershare/constants/text_string.dart';
-import 'package:weathershare/utils/theme.dart';
+import 'package:weathershare/features/login/login_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -54,7 +52,7 @@ class WelcomeScreen extends StatelessWidget {
               children: [
                 Expanded(
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () => Get.to(() => const LoginScreen()),
                     child: Text(login.toUpperCase()),
                   ),
                 ),
