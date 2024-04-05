@@ -20,7 +20,7 @@ class LoginForm extends StatelessWidget {
               hintText: email,
               border: OutlineInputBorder()),
         ),
-        const SizedBox(height: formHeight - 20),
+        const SizedBox(height: formHeight - 10),
         TextFormField(
           decoration: const InputDecoration(
             prefixIcon: Icon(Icons.fingerprint),
@@ -33,7 +33,7 @@ class LoginForm extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(height: formHeight - 20),
+        const SizedBox(height: formHeight - 16),
         Align(
           alignment: Alignment.centerRight,
           child: TextButton(
@@ -47,7 +47,8 @@ class LoginForm extends StatelessWidget {
             onPressed: () {},
             child: Text(login.toUpperCase()),
           ),
-        )
+        ),
+        const SizedBox(height: formHeight - 16),
       ],
     ));
   }
