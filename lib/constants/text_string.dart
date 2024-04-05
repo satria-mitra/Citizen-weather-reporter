@@ -38,3 +38,7 @@ const String email = "Email";
 const String password = "Password";
 const String forgetPassword = "Forget Password ?";
 const String dontHaveAccount = "Don't Have an Account ? ";
+
+//signup text
+const String signUpTitle = "Get On Board!";
+const String fullName = "Full Name";
