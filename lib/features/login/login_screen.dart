@@ -60,10 +60,13 @@ class LoginScreen extends StatelessWidget {
                       child: const Text(forgetPassword),
                     ),
                   ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: Text(login.toUpperCase()),
-                  ),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      child: Text(login.toUpperCase()),
+                    ),
+                  )
                 ],
               ))
             ],
