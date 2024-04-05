@@ -3,6 +3,8 @@
 //generic text
 const String login = "Login";
 const String signUp = "Sign Up";
+const String email = "Email";
+const String password = "Password";
 
 const String appName = ".appable/";
 const String appTagLine = "Coba";
