@@ -3,8 +3,6 @@
 //generic text
 const String login = "Login";
 const String signUp = "Sign Up";
-const String email = "Email";
-const String password = "Password";
 
 const String appName = ".appable/";
 const String appTagLine = "Coba";
@@ -34,3 +32,8 @@ const String loginTitle = "Welcome Back";
 const String loginSubTitle = "Share it";
 const String rememberMe = "Remember Me?";
 const String haveAccount = "Already Have an Account?";
+const String signInWithGoogle = "Sign In with Google";
+const String alreadyHaveAnAccount = "Already have an Account ?";
+const String email = "Email";
+const String password = "Password";
+const String forgetPassword = "Forget Password ?";
