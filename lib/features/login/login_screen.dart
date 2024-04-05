@@ -33,12 +33,37 @@ class LoginScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   TextFormField(
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                         prefixIcon: Icon(Icons.person_outline_outlined),
                         labelText: email,
                         hintText: email,
                         border: OutlineInputBorder()),
-                  )
+                  ),
+                  const SizedBox(height: formHeight - 20),
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      prefixIcon: Icon(Icons.fingerprint),
+                      labelText: password,
+                      hintText: password,
+                      border: OutlineInputBorder(),
+                      suffixIcon: IconButton(
+                        onPressed: null,
+                        icon: Icon(Icons.remove_red_eye_sharp),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: formHeight - 20),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: TextButton(
+                      onPressed: () {},
+                      child: const Text(forgetPassword),
+                    ),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {},
+                    child: Text(login.toUpperCase()),
+                  ),
                 ],
               ))
             ],
