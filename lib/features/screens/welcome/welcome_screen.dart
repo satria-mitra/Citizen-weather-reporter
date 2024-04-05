@@ -3,7 +3,8 @@ import 'package:get/get.dart';
 import 'package:weathershare/constants/colors.dart';
 import 'package:weathershare/constants/image_strings.dart';
 import 'package:weathershare/constants/text_string.dart';
-import 'package:weathershare/features/login/login_screen.dart';
+import 'package:weathershare/features/screens/login/login_screen.dart';
+import 'package:weathershare/features/screens/signup/signup_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -59,7 +60,7 @@ class WelcomeScreen extends StatelessWidget {
                 const SizedBox(width: 16),
                 Expanded(
                   child: OutlinedButton(
-                    onPressed: () {},
+                    onPressed: () => Get.to(() => const SignUpScreen()),
                     child: Text(signUp.toUpperCase()),
                   ),
                 ),
