@@ -8,5 +8,8 @@ const String onBoardingImages3 = "assets/images/onboarding_images/splash_3.png";
 //welcome screen images
 const String welcomeScreenImage = "assets/images/welcome_images/welcome.png";
 
+//login images
+const String logInImage = "assets/images/login_images/login.png";
+
 //logo images
 const String googleLogo = "assets/logo/google.png";
