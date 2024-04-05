@@ -12,8 +12,13 @@ class WelcomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var height = MediaQuery.of(context).size.height;
+    var mediaQuery = MediaQuery.of(context);
+    var height = mediaQuery.size.height;
+    var brightness = mediaQuery.platformBrightness;
+    final isDarkMode = brightness == Brightness.dark;
+
     return Scaffold(
+      backgroundColor: isDarkMode ? secondaryColor : primaryColor,
       body: Container(
         margin: const EdgeInsets.symmetric(horizontal: 40),
         child: Column(
@@ -39,7 +44,9 @@ class WelcomeScreen extends StatelessWidget {
       ),
       bottomSheet: SafeArea(
         child: Container(
-          color: Theme.of(context).scaffoldBackgroundColor,
+          color: isDarkMode
+              ? secondaryColor
+              : primaryColor, // Adjusted based on isDarkMode
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 90.0, horizontal: 20),
             child: Row(
