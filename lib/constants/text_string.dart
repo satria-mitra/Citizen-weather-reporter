@@ -37,3 +37,4 @@ const String alreadyHaveAnAccount = "Already have an Account ?";
 const String email = "Email";
 const String password = "Password";
 const String forgetPassword = "Forget Password ?";
+const String dontHaveAccount = "Don't Have an Account ? ";
