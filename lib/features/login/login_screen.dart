@@ -8,13 +8,18 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.all(defaultSize),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Image(image: AssetImage(welcomeScreenImage)),
+              Image(
+                image: const AssetImage(logInImage),
+                height: size.height * 0.3,
+              ),
               Text(
                 loginTitle,
                 style: Theme.of(context).textTheme.headlineMedium,
@@ -23,6 +28,19 @@ class LoginScreen extends StatelessWidget {
                 loginSubTitle,
                 style: Theme.of(context).textTheme.headlineSmall,
               ),
+              Form(
+                  child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TextFormField(
+                    decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.person_outline_outlined),
+                        labelText: email,
+                        hintText: email,
+                        border: OutlineInputBorder()),
+                  )
+                ],
+              ))
             ],
           ),
         ),
