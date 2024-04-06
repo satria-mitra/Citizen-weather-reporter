@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:weathershare/common_widgets/form_header_widget.dart';
-import 'package:weathershare/constants/colors.dart';
 import 'package:weathershare/constants/sizes.dart';
 import 'package:weathershare/constants/text_string.dart';
 import 'package:weathershare/constants/image_strings.dart';
@@ -10,12 +9,7 @@ class SignUpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var mediaQuery = MediaQuery.of(context);
-    var brightness = mediaQuery.platformBrightness;
-    final isDarkMode = brightness == Brightness.dark;
-
     return Scaffold(
-      backgroundColor: isDarkMode ? secondaryColor : primaryColor,
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.all(defaultSize),
@@ -35,25 +29,43 @@ class SignUpScreen extends StatelessWidget {
                     children: [
                       TextFormField(
                         decoration: InputDecoration(
-                          label: const Text(
-                            fullName,
-                          ),
-                          border: const OutlineInputBorder(),
-                          prefixIcon: const Icon(
-                            Icons.person_outline_rounded,
-                            color: accentColor,
-                          ),
-                          labelStyle: TextStyle(
-                            color: isDarkMode ? primaryColor : secondaryColor,
-                          ),
-                          focusedBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(
-                              width: 2.0,
-                              color: accentColor,
-                            ),
-                          ),
+                          label: Text(fullName),
+                          prefixIcon: Icon(Icons.person_outline_rounded),
                         ),
                         // Add more FormFields or widgets here as needed
+                      ),
+                      const SizedBox(height: formHeight - 16),
+                      TextFormField(
+                        decoration: const InputDecoration(
+                          label: Text(userName),
+                          prefixIcon:
+                              Icon(Icons.supervised_user_circle_outlined),
+                        ),
+                        // Add more FormFields or widgets here as needed
+                      ),
+                      const SizedBox(height: formHeight - 16),
+                      TextFormField(
+                        decoration: const InputDecoration(
+                          label: Text(email),
+                          prefixIcon: Icon(Icons.email_outlined),
+                        ),
+                        // Add more FormFields or widgets here as needed
+                      ),
+                      const SizedBox(height: formHeight - 16),
+                      TextFormField(
+                        decoration: const InputDecoration(
+                          label: Text(password),
+                          prefixIcon: Icon(Icons.fingerprint),
+                        ),
+                        // Add more FormFields or widgets here as needed
+                      ),
+                      const SizedBox(height: formHeight - 8),
+                      SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          child: Text(signUp.toUpperCase()),
+                        ),
                       )
                     ],
                   ),
