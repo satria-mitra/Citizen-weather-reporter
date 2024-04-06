@@ -42,3 +42,6 @@ const String dontHaveAccount = "Don't Have an Account ? ";
 //signup text
 const String signUpTitle = "Get On Board!";
 const String fullName = "Full Name";
+const String firstName = "First Name";
+const String lastName = "Last Name";
+const String userName = "User Name";
