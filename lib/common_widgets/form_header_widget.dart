@@ -1,40 +1,44 @@
 import 'package:flutter/material.dart';
-import 'package:weathershare/constants/image_strings.dart';
-import 'package:weathershare/constants/text_string.dart';
 
 class FormHeaderWidget extends StatelessWidget {
   const FormHeaderWidget({
     super.key,
     required this.image,
     required this.title,
+    required this.subTitle,
+    this.imageHeight = 0.3,
+    this.textAlign,
+    this.crossAxisAlignment = CrossAxisAlignment.start,
   });
 
-  final String image, title;
+  final double imageHeight;
+  final String image, title, subTitle;
+  final CrossAxisAlignment crossAxisAlignment;
+  final TextAlign? textAlign;
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: crossAxisAlignment,
       children: [
-        const SizedBox(height: 40),
+        const SizedBox(height: 32),
         Image(
-          image: const AssetImage(signUpImage),
-          height: size.height * 0.2,
+          image: AssetImage(image),
+          height: size.height * imageHeight,
         ),
-        const SizedBox(height: 16),
-
+        const SizedBox(height: 8),
         Text(
-          signUpTitle,
+          title,
           style: Theme.of(context).textTheme.headlineMedium,
-          textAlign: TextAlign.center,
+          textAlign: textAlign,
         ),
-        // const SizedBox(height: formHeight - 16),
-        // Text(
-        //   loginSubTitle,
-        //   style: Theme.of(context).textTheme.headlineSmall,
-        // ),
+        const SizedBox(height: 8),
+        Text(
+          subTitle,
+          style: Theme.of(context).textTheme.titleSmall,
+          textAlign: textAlign,
+        ),
       ],
     );
   }
