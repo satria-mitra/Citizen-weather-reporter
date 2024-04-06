@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:weathershare/common_widgets/form_header_widget.dart';
 import 'package:weathershare/constants/sizes.dart';
-import 'package:weathershare/constants/text_string.dart';
 import 'package:weathershare/constants/image_strings.dart';
+import 'package:weathershare/features/screens/signup/signup_form_widget.dart';
+import 'package:weathershare/constants/text_string.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
@@ -21,56 +22,31 @@ class SignUpScreen extends StatelessWidget {
                 title:
                     signUpTitle, // Ensure this is the correct variable for the title
               ),
-              Container(
-                padding: const EdgeInsets.symmetric(vertical: formHeight - 8),
-                child: Form(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      TextFormField(
-                        decoration: InputDecoration(
-                          label: Text(fullName),
-                          prefixIcon: Icon(Icons.person_outline_rounded),
+              const SignUpFormWidget(),
+              Column(
+                children: [
+                  const Text("OR"),
+                  const SizedBox(height: formHeight - 16),
+                  SizedBox(
+                    width: double.infinity,
+                    child: OutlinedButton.icon(
+                        onPressed: () {},
+                        icon: const Image(
+                          image: AssetImage(googleLogo),
+                          width: 16,
                         ),
-                        // Add more FormFields or widgets here as needed
-                      ),
-                      const SizedBox(height: formHeight - 16),
-                      TextFormField(
-                        decoration: const InputDecoration(
-                          label: Text(userName),
-                          prefixIcon:
-                              Icon(Icons.supervised_user_circle_outlined),
-                        ),
-                        // Add more FormFields or widgets here as needed
-                      ),
-                      const SizedBox(height: formHeight - 16),
-                      TextFormField(
-                        decoration: const InputDecoration(
-                          label: Text(email),
-                          prefixIcon: Icon(Icons.email_outlined),
-                        ),
-                        // Add more FormFields or widgets here as needed
-                      ),
-                      const SizedBox(height: formHeight - 16),
-                      TextFormField(
-                        decoration: const InputDecoration(
-                          label: Text(password),
-                          prefixIcon: Icon(Icons.fingerprint),
-                        ),
-                        // Add more FormFields or widgets here as needed
-                      ),
-                      const SizedBox(height: formHeight - 8),
-                      SizedBox(
-                        width: double.infinity,
-                        child: ElevatedButton(
-                          onPressed: () {},
-                          child: Text(signUp.toUpperCase()),
-                        ),
-                      )
-                    ],
+                        label: const Text(signInWithGoogle)),
                   ),
-                ),
-              ),
+                  TextButton(
+                      onPressed: () {},
+                      child: Text.rich(TextSpan(children: [
+                        TextSpan(
+                            text: alreadyHaveAnAccount,
+                            style: Theme.of(context).textTheme.bodyMedium),
+                        const TextSpan(text: login),
+                      ])))
+                ],
+              )
             ],
           ),
         ),
