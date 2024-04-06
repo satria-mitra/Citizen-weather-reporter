@@ -17,10 +17,12 @@ class SignUpScreen extends StatelessWidget {
           child: Column(
             children: [
               const FormHeaderWidget(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 image:
                     signUpImage, // Ensure this is the correct variable for the image path
-                title:
-                    signUpTitle, // Ensure this is the correct variable for the title
+                title: signUpTitle,
+                subTitle:
+                    welcomeTitle, // Ensure this is the correct variable for the title
               ),
               const SignUpFormWidget(),
               Column(
