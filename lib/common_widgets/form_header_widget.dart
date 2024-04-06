@@ -18,15 +18,17 @@ class FormHeaderWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        const SizedBox(height: 40),
         Image(
           image: const AssetImage(signUpImage),
           height: size.height * 0.2,
         ),
-        // const SizedBox(height: formHeight - 16),
+        const SizedBox(height: 16),
 
         Text(
           signUpTitle,
           style: Theme.of(context).textTheme.headlineMedium,
+          textAlign: TextAlign.center,
         ),
         // const SizedBox(height: formHeight - 16),
         // Text(
