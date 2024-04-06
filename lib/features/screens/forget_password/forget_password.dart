@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:weathershare/common_widgets/form_header_widget.dart';
 import 'package:weathershare/constants/image_strings.dart';
 import 'package:weathershare/constants/sizes.dart';
 import 'package:weathershare/constants/text_string.dart';
+import 'package:weathershare/features/screens/forget_password/otp_screen.dart';
 
 class ForgetPasswordMail extends StatelessWidget {
   const ForgetPasswordMail({super.key});
@@ -42,7 +44,7 @@ class ForgetPasswordMail extends StatelessWidget {
                     SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () => Get.to(() => const OTPScreen()),
                           child: const Text("Next"),
                         ))
                   ],
