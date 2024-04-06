@@ -17,7 +17,7 @@ class SignUpFormWidget extends StatelessWidget {
           children: [
             TextFormField(
               decoration: const InputDecoration(
-                label: Text(fullName),
+                label: Text(firstName),
                 prefixIcon: Icon(Icons.person_outline_rounded),
               ),
               // Add more FormFields or widgets here as needed
@@ -25,8 +25,8 @@ class SignUpFormWidget extends StatelessWidget {
             const SizedBox(height: formHeight - 16),
             TextFormField(
               decoration: const InputDecoration(
-                label: Text(userName),
-                prefixIcon: Icon(Icons.supervised_user_circle_outlined),
+                label: Text(lastName),
+                prefixIcon: Icon(Icons.person_2_outlined),
               ),
               // Add more FormFields or widgets here as needed
             ),
