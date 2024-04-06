@@ -11,10 +11,27 @@ class OTPScreen extends StatelessWidget {
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.all(defaultSize),
-        child: const Column(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          //crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(otpTitle),
-            Text(otpSubTitle),
+            Text(
+              otpTitle.toUpperCase(),
+            ),
+            const SizedBox(
+              height: 40,
+            ),
+            Text(
+              otpSubTitle,
+              style: Theme.of(context).textTheme.labelSmall,
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            OtpTextField(
+              fillColor: Colors.black.withOpacity(0.1),
+              filled: true,
+            )
           ],
         ),
       ),
