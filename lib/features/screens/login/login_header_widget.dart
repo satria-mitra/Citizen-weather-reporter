@@ -11,9 +11,9 @@ class LoginHeaderWidget extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const SizedBox(height: 50),
+        const SizedBox(height: 40),
         Center(
           child: Image(
             image: const AssetImage(logInImage),
@@ -27,6 +27,7 @@ class LoginHeaderWidget extends StatelessWidget {
           style: Theme.of(context).textTheme.headlineMedium,
         ),
         const SizedBox(height: formHeight - 16),
+
         // Text(
         //   loginSubTitle,
         //   style: Theme.of(context).textTheme.headlineSmall,
