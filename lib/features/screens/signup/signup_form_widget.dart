@@ -10,7 +10,7 @@ class SignUpFormWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: formHeight - 8),
+      padding: const EdgeInsets.symmetric(vertical: formHeight - 16),
       child: Form(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -22,7 +22,7 @@ class SignUpFormWidget extends StatelessWidget {
               ),
               // Add more FormFields or widgets here as needed
             ),
-            const SizedBox(height: formHeight - 16),
+            const SizedBox(height: formHeight - 24),
             TextFormField(
               decoration: const InputDecoration(
                 label: Text(lastName),
@@ -30,7 +30,7 @@ class SignUpFormWidget extends StatelessWidget {
               ),
               // Add more FormFields or widgets here as needed
             ),
-            const SizedBox(height: formHeight - 16),
+            const SizedBox(height: formHeight - 24),
             TextFormField(
               decoration: const InputDecoration(
                 label: Text(email),
@@ -38,7 +38,7 @@ class SignUpFormWidget extends StatelessWidget {
               ),
               // Add more FormFields or widgets here as needed
             ),
-            const SizedBox(height: formHeight - 16),
+            const SizedBox(height: formHeight - 24),
             TextFormField(
               decoration: const InputDecoration(
                 label: Text(password),
@@ -46,7 +46,7 @@ class SignUpFormWidget extends StatelessWidget {
               ),
               // Add more FormFields or widgets here as needed
             ),
-            const SizedBox(height: formHeight - 8),
+            const SizedBox(height: formHeight - 16),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
