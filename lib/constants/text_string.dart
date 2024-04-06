@@ -36,7 +36,6 @@ const String signInWithGoogle = "Sign In with Google";
 const String alreadyHaveAnAccount = "Already have an Account ? ";
 const String email = "Email";
 const String password = "Password";
-const String forgetPassword = "Forget Password ?";
 const String dontHaveAccount = "Don't Have an Account ? ";
 
 //signup text
@@ -45,3 +44,8 @@ const String fullName = "Full Name";
 const String firstName = "First Name";
 const String lastName = "Last Name";
 const String userName = "User Name";
+
+//forget password
+const String forgetPassword = "Forget Password ? ";
+const String forgetPasswordSubTitle =
+    "Please enter your email address. You will receive a link to reset your password";
