@@ -10,14 +10,46 @@ class ForgetPasswordMail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        padding: const EdgeInsets.all(defaultSize),
-        child: const Column(
-          children: [
-            SizedBox(
-              height: defaultSize * 4,
-            ),
-          ],
+      body: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.all(defaultSize),
+          child: Column(
+            children: [
+              const SizedBox(
+                height: defaultSize,
+              ),
+              const FormHeaderWidget(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                image: logInImage,
+                title: forgetPassword,
+                subTitle: forgetPasswordSubTitle,
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: formHeight - 16),
+              Form(
+                child: Column(
+                  children: [
+                    TextFormField(
+                      decoration: const InputDecoration(
+                        label: Text(email),
+                        hintText: email,
+                        prefixIcon: Icon(Icons.mail_outline_rounded),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: formHeight - 8,
+                    ),
+                    SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          child: const Text("Next"),
+                        ))
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
