@@ -48,8 +48,9 @@ const String userName = "User Name";
 //forget password
 const String forgetPassword = "Forget Password ? ";
 const String forgetPasswordSubTitle =
-    "Please enter your email address. You will receive a link to reset your password";
+    "Please enter your email address. You will receive a code to reset your password";
 
 //otp screen
 const String otpTitle = "Code Verification";
 const String otpSubTitle = "Enter the verification code sent to your mail ";
+const String next = "Next ";
