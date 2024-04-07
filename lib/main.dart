@@ -5,6 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:weathershare/utils/themes/theme.dart';
 import 'package:weathershare/features/screens/on_boarding/on_boarding_view.dart';
 import 'package:get/get.dart';
+import 'package:firebase_ui_auth/firebase_ui_auth.dart'; // new
+import 'package:go_router/go_router.dart'; // new
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart'; // new
+
+import 'app_state.dart'; // new
+import 'home_page.dart';
 
 void main() {
   runApp(const MyApp());
