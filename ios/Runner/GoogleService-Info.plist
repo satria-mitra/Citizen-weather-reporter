@@ -2,18 +2,24 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CLIENT_ID</key>
+	<string>987829177165-gdtpc6t4svr4dcvdbdh3f4924uhncnl7.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.987829177165-gdtpc6t4svr4dcvdbdh3f4924uhncnl7</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>987829177165-e4ge8q1mstn2nk5gsldcbk8rvt7srlom.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCUmvNAm4O7JNKN8jsqAJ8yAP4GAZhd5Bc</string>
+	<string>AIzaSyBYTH5K8AJCTivhi1p7WUNkKGLGdPCpmeQ</string>
 	<key>GCM_SENDER_ID</key>
-	<string>205985847642</string>
+	<string>987829177165</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.example.weathershare</string>
 	<key>PROJECT_ID</key>
-	<string>weathershare-d2b77</string>
+	<string>weathershare-a93a0</string>
 	<key>STORAGE_BUCKET</key>
-	<string>weathershare-d2b77.appspot.com</string>
+	<string>weathershare-a93a0.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -25,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:205985847642:ios:4aaec989b11d9a70c73b63</string>
+	<string>1:987829177165:ios:4a79c0d8e652266f46c504</string>
 </dict>
 </plist>
