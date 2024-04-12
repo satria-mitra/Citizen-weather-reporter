@@ -1,23 +1,32 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:get_storage/get_storage.dart';
+import 'firebase_options.dart';
 import 'package:flutter/material.dart';
-import 'package:weathershare/firebase_options.dart';
+//import 'package:weathershare/firebase_options.dart';
+import 'package:weathershare/repository/auth_repo.dart';
 // import 'package:weathershare/splash/onboard.dart';
 //import 'package:weathershare/splash/splash_screen.dart';
 //import 'package:weathershare/screens/homescreen.dart';
 import 'package:weathershare/utils/themes/theme.dart';
 import 'package:weathershare/features/screens/on_boarding/on_boarding_view.dart';
 import 'package:get/get.dart';
-import 'package:firebase_ui_auth/firebase_ui_auth.dart'; // new
-import 'package:go_router/go_router.dart'; // new
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart'; // new
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
-import 'app_state.dart'; // new
-import 'home_page.dart';
+void main() async {
+  final WidgetsBinding widgetsBinding =
+      WidgetsFlutterBinding.ensureInitialized();
 
-void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  // local storage
+  await GetStorage.init();
+
+  // display splash screen
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)
+      .then(
+    (FirebaseApp value) => Get.put(Authentication()),
+  );
+
   runApp(const MyApp());
 }
 
@@ -33,22 +42,6 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
       home: const OnBoardingView(),
-    );
-  }
-}
-
-class AppHome extends StatelessWidget {
-  const AppHome({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("weathershare/"),
-      ),
-      body: const Center(
-        child: Text("Home Page"),
-      ),
     );
   }
 }
