@@ -1,11 +1,10 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:weathershare/constants/text_string.dart';
-//import 'package:flutter/widgets.dart';
 import 'package:weathershare/features/screens/on_boarding/on_boarding_item.dart';
 import 'package:weathershare/features/screens/welcome/welcome_screen.dart';
-//import 'package:weathershare/utils/text_theme.dart';
-//import 'package:weathershare/utils/theme.dart';
+import 'package:get_storage/get_storage.dart';
 
 class OnBoardingView extends StatefulWidget {
   const OnBoardingView({super.key});
@@ -98,7 +97,17 @@ class _OnBoardingViewState extends State<OnBoardingView> {
       width: MediaQuery.of(context).size.width * .9,
       height: 60,
       child: ElevatedButton(
-        onPressed: () {
+        onPressed: () async {
+          final storage = GetStorage();
+
+          if (kDebugMode) {
+            print("-- get storage --");
+            print(storage.read('IsFirstTime'));
+          }
+          storage.write('IsFirstTime', false);
+          //print("Setting onboarding to true"); // Debug line
+
+          if (!mounted) return;
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (context) => const WelcomeScreen()),
           );
