@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:weathershare/constants/sizes.dart';
 import 'package:weathershare/features/controllers/login_controller.dart';
 import 'package:weathershare/features/screens/login/login_footer_widget.dart';
@@ -81,17 +82,19 @@ class LoginForm extends StatelessWidget {
               border: OutlineInputBorder()),
         ),
         const SizedBox(height: formHeight - 10),
-        TextFormField(
-          obscureText: controller.hidePassword.value,
-          controller: controller.password,
-          decoration: const InputDecoration(
-            prefixIcon: Icon(Icons.fingerprint),
-            labelText: password,
-            hintText: password,
-            border: OutlineInputBorder(),
-            suffixIcon: IconButton(
-              onPressed: null,
-              icon: Icon(Icons.remove_red_eye_sharp),
+        Obx(
+          () => TextFormField(
+            obscureText: controller.hidePassword.value,
+            controller: controller.password,
+            decoration: const InputDecoration(
+              prefixIcon: Icon(Icons.fingerprint),
+              labelText: password,
+              hintText: password,
+              border: OutlineInputBorder(),
+              suffixIcon: IconButton(
+                onPressed: null,
+                icon: Icon(Icons.remove_red_eye_sharp),
+              ),
             ),
           ),
         ),
