@@ -86,14 +86,15 @@ class LoginForm extends StatelessWidget {
           () => TextFormField(
             obscureText: controller.hidePassword.value,
             controller: controller.password,
-            decoration: const InputDecoration(
-              prefixIcon: Icon(Icons.fingerprint),
+            decoration: InputDecoration(
+              prefixIcon: const Icon(Icons.fingerprint),
               labelText: password,
               hintText: password,
-              border: OutlineInputBorder(),
+              border: const OutlineInputBorder(),
               suffixIcon: IconButton(
-                onPressed: null,
-                icon: Icon(Icons.remove_red_eye_sharp),
+                onPressed: () => controller.hidePassword.value =
+                    !controller.hidePassword.value,
+                icon: const Icon(Icons.remove_red_eye_sharp),
               ),
             ),
           ),
@@ -109,7 +110,7 @@ class LoginForm extends StatelessWidget {
         SizedBox(
           width: double.infinity,
           child: ElevatedButton(
-            onPressed: () {},
+            onPressed: () => controller.emailAndPasswordSignIn(),
             child: Text(login.toUpperCase()),
           ),
         ),
