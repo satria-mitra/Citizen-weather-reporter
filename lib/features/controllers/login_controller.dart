@@ -13,6 +13,7 @@ class LoginController extends GetxController {
   final localStorage = GetStorage();
   final email = TextEditingController();
   final password = TextEditingController();
+  final userController = Get.put(UserController());
   GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
 
   @override
@@ -27,7 +28,7 @@ class LoginController extends GetxController {
     final userCredentials = await AuthenticationRepo.instance
         .loginWithEmailAndPassword(email.text.trim(), password.text.trim());
 
-    await UserController.instance.fetchUserRecord();
+    await userController.fetchUserRecord();
     await AuthenticationRepo.instance.screenRedirect(userCredentials.user);
   }
 }
