@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weathershare/constants/sizes.dart';
+import 'package:weathershare/features/controllers/login_controller.dart';
 import 'package:weathershare/features/screens/login/login_footer_widget.dart';
 import 'package:weathershare/constants/text_string.dart';
 import 'package:weathershare/constants/image_strings.dart';
@@ -66,11 +67,13 @@ class LoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(LoginController());
     return Form(
         child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         TextFormField(
+          controller: controller.email,
           decoration: const InputDecoration(
               prefixIcon: Icon(Icons.person_outline_outlined),
               labelText: email,
@@ -79,6 +82,8 @@ class LoginForm extends StatelessWidget {
         ),
         const SizedBox(height: formHeight - 10),
         TextFormField(
+          obscureText: controller.hidePassword.value,
+          controller: controller.password,
           decoration: const InputDecoration(
             prefixIcon: Icon(Icons.fingerprint),
             labelText: password,
