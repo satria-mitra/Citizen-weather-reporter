@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:weathershare/features/screens/login/login_screen.dart';
 import 'package:weathershare/features/screens/on_boarding/on_boarding_view.dart';
 import 'package:weathershare/features/screens/welcome/welcome_screen.dart';
@@ -92,6 +93,36 @@ class AuthenticationRepo extends GetxController {
       return await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       // Assuming you want to navigate to the HomeScreen upon successful login
+    } on FirebaseAuthException catch (e) {
+      throw 'Something wrong with Authentication. Please try again';
+    } on FirebaseException catch (e) {
+      throw 'An unknown Firebase error occurred. Please try again';
+    } on FormatException catch (_) {
+      throw 'The email address format is invalid. Please enter a valid email.';
+    } on PlatformException catch (e) {
+      throw 'An unexpected platform error occurred. Please try again.';
+    } catch (e) {
+      throw 'Something went wrong. Please try again';
+    }
+  }
+
+//Sign in with google
+  Future<UserCredential?> signInWithGoogle() async {
+    try {
+      // Trigger the authentication flow
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+      // Obtain the auth details from the request
+      final GoogleSignInAuthentication? googleAuth =
+          await googleUser?.authentication;
+
+      // Create a new credential
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken,
+        idToken: googleAuth?.idToken,
+      );
+      // Once signed in, return the UserCredential
+      return await FirebaseAuth.instance.signInWithCredential(credential);
     } on FirebaseAuthException catch (e) {
       throw 'Something wrong with Authentication. Please try again';
     } on FirebaseException catch (e) {
