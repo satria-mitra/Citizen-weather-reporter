@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:weathershare/features/screens/login/login_screen.dart';
 import 'package:weathershare/features/screens/on_boarding/on_boarding_view.dart';
+import 'package:weathershare/features/screens/welcome/welcome_screen.dart';
 import 'package:weathershare/screens/homescreen.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:weathershare/utils/storage/storage.dart';
@@ -32,33 +32,38 @@ class AuthenticationRepo extends GetxController {
     _firebaseUser = Rx<User?>(_auth.currentUser);
     _firebaseUser.bindStream(_auth.userChanges());
     FlutterNativeSplash.remove();
+    deviceStorage.writeIfNull('IsFirstTime', true);
+    var isFirstTime = deviceStorage.read('IsFirstTime');
+    print(
+        'is it first time ? $isFirstTime'); // Optional: for debugging purposes
+
+    if (deviceStorage.read('isFirstTime') != true) {
+      Get.offAll(() => const LoginScreen());
+    } else {
+      Get.offAll(() => const OnBoardingView());
+    }
     screenRedirect(_firebaseUser.value);
   }
 
   screenRedirect(User? user) async {
-    if (kDebugMode) {
-      print("-- get storage --");
-      var isFirstTime = deviceStorage.read('IsFirstTime');
-      print(isFirstTime);
-    }
-
     if (user != null) {
       // User is logged in
-      if (user.emailVerified) {
-        await LocalStorage.init(user.uid);
-        Get.offAll(() => const HomeScreen());
-      }
+      await LocalStorage.init(user.uid);
+      Get.offAll(() => const HomeScreen());
     } else {
-      // User is not logged in or doesn't exist
-      deviceStorage.writeIfNull('IsFirstTime', true);
-      var isFirstTime = deviceStorage.read('IsFirstTime');
-      print(isFirstTime); // Optional: for debugging purposes
-
-      // Check if it's not the first time and redirect accordingly
-      deviceStorage.read('isFirstTime') != true
-          ? Get.offAll(() => const LoginScreen())
-          : Get.offAll(() => const OnBoardingView());
+      Get.offAll(() => const WelcomeScreen());
     }
+
+    // User is not logged in or doesn't exist
+    // deviceStorage.writeIfNull('IsFirstTime', true);
+    // var isFirstTime = deviceStorage.read('IsFirstTime');
+    // print(isFirstTime); // Optional: for debugging purposes
+
+    // Check if it's not the first time and redirect accordingly
+    //   deviceStorage.read('isFirstTime') != true
+    //       ? Get.offAll(() => const LoginScreen())
+    //       : Get.offAll(() => const OnBoardingView());
+    // }
   }
 
   //Sign up
