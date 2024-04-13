@@ -5,7 +5,6 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:weathershare/features/screens/login/login_screen.dart';
 import 'package:weathershare/features/screens/on_boarding/on_boarding_view.dart';
-import 'package:weathershare/features/screens/welcome/welcome_screen.dart';
 import 'package:weathershare/screens/homescreen.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:weathershare/utils/storage/storage.dart';
