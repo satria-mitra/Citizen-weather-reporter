@@ -1,10 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:weathershare/features/screens/on_boarding/on_boarding_view.dart';
+import 'package:weathershare/repository/auth_repo.dart';
 import 'firebase_options.dart';
 import 'package:flutter/material.dart';
 //import 'package:weathershare/firebase_options.dart';
-import 'package:weathershare/repository/auth_repo.dart';
 // import 'package:weathershare/splash/onboard.dart';
 //import 'package:weathershare/splash/splash_screen.dart';
 //import 'package:weathershare/screens/homescreen.dart';
@@ -23,7 +23,7 @@ void main() async {
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)
       .then(
-    (FirebaseApp value) => Get.put(Authentication()),
+    (FirebaseApp value) => Get.put(AuthenticationRepo()),
   );
 
   runApp(const MyApp());
