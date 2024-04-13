@@ -17,12 +17,6 @@ class LoginController extends GetxController {
   GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
 
   @override
-  void onInit() {
-    email.text = localStorage.read('REMEMBER_ME_EMAIL') ?? '';
-    password.text = localStorage.read('REMEMBER_ME_PASSWORD') ?? '';
-    super.onInit();
-  }
-
   //Sign in with email and password
   Future<void> emailAndPasswordSignIn() async {
     final userCredentials = await AuthenticationRepo.instance
@@ -30,5 +24,18 @@ class LoginController extends GetxController {
 
     await userController.fetchUserRecord();
     await AuthenticationRepo.instance.screenRedirect(userCredentials.user);
+  }
+
+  // Google SignIn Authentication
+  Future<void> googleSignIn() async {
+    // Google Authentication
+    final userCredentials =
+        await AuthenticationRepo.instance.signInWithGoogle();
+
+    // Save Authenticated user data in the Firebase Firestore
+    await userController.saveUserRecord(userCredentials: userCredentials);
+
+    // Redirect
+    await AuthenticationRepo.instance.screenRedirect(userCredentials?.user);
   }
 }
