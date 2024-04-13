@@ -1,73 +1,103 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
+import 'package:weathershare/features/screens/login/login_screen.dart';
 import 'package:weathershare/features/screens/on_boarding/on_boarding_view.dart';
 import 'package:weathershare/features/screens/welcome/welcome_screen.dart';
-import 'package:weathershare/repository/exceptions/signup_email_password_failure.dart';
 import 'package:weathershare/screens/homescreen.dart';
-import 'package:logger/logger.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:weathershare/utils/storage/storage.dart';
+//import 'package:weathershare/utils/storage/storage.dart';
 
-class Authentication extends GetxController {
-  static Authentication get instance => Get.find();
+class AuthenticationRepo extends GetxController {
+  static AuthenticationRepo get instance => Get.find();
 
   final deviceStorage = GetStorage();
 
   final _auth = FirebaseAuth.instance;
-  late final Rx<User?> firebaseUser;
-  final _logger = Logger(); // Create a Logger instance
+  late final Rx<User?> _firebaseUser;
+
+  /// Getters
+  User? get firebaseUser => _firebaseUser.value;
+
+  String get getUserID => _firebaseUser.value?.uid ?? "";
+
+  String get getUserEmail => _firebaseUser.value?.email ?? "";
+
+  String get getDisplayName => _firebaseUser.value?.displayName ?? "";
 
   @override
   void onReady() {
+    _firebaseUser = Rx<User?>(_auth.currentUser);
+    _firebaseUser.bindStream(_auth.userChanges());
     FlutterNativeSplash.remove();
-    screenRedirect();
+    screenRedirect(_firebaseUser.value);
   }
 
-  screenRedirect() async {
+  screenRedirect(User? user) async {
     if (kDebugMode) {
       print("-- get storage --");
-      print(deviceStorage.read('IsFirstTime'));
+      var isFirstTime = deviceStorage.read('IsFirstTime');
+      print(isFirstTime);
     }
-    deviceStorage.writeIfNull('IsFirstTime', true);
-    deviceStorage.read('IsFirstTime') != true
-        ? Get.offAll(() => const WelcomeScreen())
-        : Get.offAll(const OnBoardingView());
+
+    if (user != null) {
+      // User is logged in
+      if (user.emailVerified) {
+        await LocalStorage.init(user.uid);
+        Get.offAll(() => const HomeScreen());
+      }
+    } else {
+      // User is not logged in or doesn't exist
+      deviceStorage.writeIfNull('IsFirstTime', true);
+      var isFirstTime = deviceStorage.read('IsFirstTime');
+      print(isFirstTime); // Optional: for debugging purposes
+
+      // Check if it's not the first time and redirect accordingly
+      deviceStorage.read('isFirstTime') != true
+          ? Get.offAll(() => const LoginScreen())
+          : Get.offAll(() => const OnBoardingView());
+    }
   }
 
-  Future<void> createUserWithEmailAndPassword(
+  //Sign up
+  Future<UserCredential> createUserWithEmailAndPassword(
       String email, String password) async {
     try {
-      await _auth.createUserWithEmailAndPassword(
+      return await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
-      firebaseUser.value != null
-          ? Get.offAll(() => const HomeScreen())
-          : Get.to(() => const WelcomeScreen());
     } on FirebaseAuthException catch (e) {
-      final ex = SignUpWithEmailAndPasswordFailure.code(e.code);
-      _logger.e('Firebase Auth Exception - ${ex.message}');
-      throw ex;
-    } catch (_) {
-      const ex = SignUpWithEmailAndPasswordFailure();
-      _logger.e('Exception - ${ex.message}');
-      throw ex;
+      throw 'Something wrong with Authentication. Please try again';
+    } on FirebaseException catch (e) {
+      throw 'An unknown Firebase error occurred. Please try again';
+    } on FormatException catch (_) {
+      throw 'The email address format is invalid. Please enter a valid email.';
+    } on PlatformException catch (e) {
+      throw 'An unexpected platform error occurred. Please try again.';
+    } catch (e) {
+      throw 'Something went wrong. Please try again';
     }
   }
 
-  Future<void> loginWithEmailAndPassword(String email, String password) async {
+  //Login
+  Future<UserCredential> loginWithEmailAndPassword(
+      String email, String password) async {
     try {
-      await _auth.signInWithEmailAndPassword(email: email, password: password);
+      return await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
       // Assuming you want to navigate to the HomeScreen upon successful login
-      Get.offAll(() => const HomeScreen());
     } on FirebaseAuthException catch (e) {
-      // Handle the FirebaseAuthException e, e.g., by showing an error message
-      final errorMessage = e.message ?? "An unknown error occurred.";
-      Get.snackbar("Login Error",
-          errorMessage); // Example: Displaying an error message using a snackbar
-    } catch (_) {
-      // Handle any other exceptions
-      Get.snackbar("Login Error",
-          "An unexpected error occurred."); // Example: Displaying a generic error message
+      throw 'Something wrong with Authentication. Please try again';
+    } on FirebaseException catch (e) {
+      throw 'An unknown Firebase error occurred. Please try again';
+    } on FormatException catch (_) {
+      throw 'The email address format is invalid. Please enter a valid email.';
+    } on PlatformException catch (e) {
+      throw 'An unexpected platform error occurred. Please try again.';
+    } catch (e) {
+      throw 'Something went wrong. Please try again';
     }
   }
 
