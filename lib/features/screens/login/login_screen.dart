@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:weathershare/constants/sizes.dart';
 import 'package:weathershare/features/controllers/login_controller.dart';
-import 'package:weathershare/features/screens/login/login_footer_widget.dart';
 import 'package:weathershare/constants/text_string.dart';
 import 'package:weathershare/constants/image_strings.dart';
 import 'package:get/get.dart';
