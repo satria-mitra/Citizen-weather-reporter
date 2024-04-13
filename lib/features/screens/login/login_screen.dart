@@ -5,6 +5,7 @@ import 'package:weathershare/constants/text_string.dart';
 import 'package:weathershare/constants/image_strings.dart';
 import 'package:get/get.dart';
 import 'package:weathershare/features/screens/forget_password/forget_password.dart';
+import 'package:weathershare/features/screens/signup/signup_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -143,7 +144,7 @@ class LoginFooterWidget extends StatelessWidget {
         ),
         const SizedBox(height: formHeight - 16),
         TextButton(
-          onPressed: () {},
+          onPressed: () => Get.to(() => const SignUpScreen()),
           child: Text.rich(
             TextSpan(
                 text: dontHaveAccount,
