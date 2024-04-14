@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:weathershare/constants/text_string.dart';
 import 'package:weathershare/features/screens/login/login_screen.dart';
 import 'package:weathershare/features/screens/on_boarding/on_boarding_view.dart';
 import 'package:weathershare/features/screens/welcome/welcome_screen.dart';
@@ -138,7 +137,7 @@ class AuthenticationRepo extends GetxController {
   }
 
   //forget password
-  Future<void> sendPasswordResetEmail() async {
+  Future<void> sendPasswordResetEmail(email) async {
     try {
       await _auth.sendPasswordResetEmail(email: email);
     } on FirebaseAuthException catch (e) {
