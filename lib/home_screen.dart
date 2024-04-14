@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class HomeMenu extends StatelessWidget {
   const HomeMenu({super.key});
@@ -8,19 +7,16 @@ class HomeMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         bottomNavigationBar: NavigationBar(
-      destinations: [
-        Container(
-          color: Colors.green,
-        ),
-        Container(
-          color: Colors.black,
-        ),
-        Container(
-          color: Colors.blue,
-        ),
-        Container(
-          color: Colors.red,
-        ),
+      destinations: const [
+        NavigationDestination(icon: Icon(Icons.map_outlined), label: 'Home'),
+        NavigationDestination(
+            icon: Icon(Icons.analytics_outlined), label: 'Home'),
+        NavigationDestination(
+            icon: Icon(Icons.add_circle_outline), label: 'Home'),
+        NavigationDestination(
+            icon: Icon(Icons.add_chart_outlined), label: 'Home'),
+        NavigationDestination(
+            icon: Icon(Icons.account_circle_outlined), label: 'Home'),
       ],
     ));
   }
