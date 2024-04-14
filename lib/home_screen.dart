@@ -12,8 +12,10 @@ class HomeMenu extends StatelessWidget {
       bottomNavigationBar: Obx(
         () => BottomNavigationBar(
           type: BottomNavigationBarType.fixed, // Use fixed instead of shifting
-          iconSize: 30,
-
+          iconSize: 32,
+          showSelectedLabels:
+              false, // Do not show labels when an item is selected
+          showUnselectedLabels: false, // Do not show labels at other times
           elevation: 0,
           currentIndex: controller.selectedMenu.value,
           onTap: (index) => controller.selectedMenu.value = index,
