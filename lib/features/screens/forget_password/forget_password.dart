@@ -4,13 +4,15 @@ import 'package:weathershare/common_widgets/form_header_widget.dart';
 import 'package:weathershare/constants/image_strings.dart';
 import 'package:weathershare/constants/sizes.dart';
 import 'package:weathershare/constants/text_string.dart';
-import 'package:weathershare/features/screens/forget_password/otp_screen.dart';
+import 'package:weathershare/features/controllers/forget_password_controller.dart';
 
 class ForgetPasswordMail extends StatelessWidget {
   const ForgetPasswordMail({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(ForgetPasswordController());
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
@@ -29,6 +31,7 @@ class ForgetPasswordMail extends StatelessWidget {
               ),
               const SizedBox(height: formHeight - 16),
               Form(
+                key: controller.forgetPasswordFormKey,
                 child: Column(
                   children: [
                     TextFormField(
@@ -44,9 +47,12 @@ class ForgetPasswordMail extends StatelessWidget {
                     SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
-                          onPressed: () => Get.to(() => const OTPScreen()),
+                          onPressed: () => controller.sendPasswordResetEmail(),
                           child: const Text("Next"),
-                        ))
+                        )),
+                    const SizedBox(
+                      height: formHeight - 8,
+                    ),
                   ],
                 ),
               ),
