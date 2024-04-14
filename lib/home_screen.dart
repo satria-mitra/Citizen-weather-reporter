@@ -8,11 +8,14 @@ class HomeMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(NavigationController());
 
+    // Determine if the current theme is light or dark
+    bool isLightTheme = Theme.of(context).brightness == Brightness.light;
+
     return Scaffold(
       bottomNavigationBar: Obx(
         () => BottomNavigationBar(
           type: BottomNavigationBarType.fixed, // Use fixed instead of shifting
-          iconSize: 32,
+          iconSize: 30,
           showSelectedLabels:
               false, // Do not show labels when an item is selected
           showUnselectedLabels: false, // Do not show labels at other times
@@ -46,8 +49,12 @@ class HomeMenu extends StatelessWidget {
               label: '',
             ),
           ],
-          selectedItemColor:
-              Colors.white, // Customize the color of the selected item
+          selectedItemColor: isLightTheme
+              ? Colors.black
+              : Colors.white, // Black in light theme, white in dark
+          unselectedItemColor: isLightTheme
+              ? Colors.grey
+              : Colors.grey[300], // Adjusted for theme
         ),
       ),
       body: Obx(() => controller.screens[controller.selectedMenu.value]),
