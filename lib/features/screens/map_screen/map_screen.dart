@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class MapScreen extends StatefulWidget {
   const MapScreen({super.key});
@@ -22,23 +24,23 @@ class _MapScreenState extends State<MapScreen> {
               TabBar(
                 tabs: [
                   Tab(
-                    text: "Chats",
+                    text: "BLE Map",
                   ),
                   Tab(
-                    text: "Calls",
+                    text: "IoT Map",
                   ),
                 ],
               ),
             ],
           ),
         ),
-        body: const TabBarView(
+        body: TabBarView(
           children: [
             Center(
-              child: Text("Chats"),
+              child: Container(),
             ),
             Center(
-              child: Text("Calls"),
+              child: Container(),
             ),
           ],
         ),
