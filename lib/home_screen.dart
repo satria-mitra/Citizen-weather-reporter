@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:weathershare/features/screens/map_screen/map_screen.dart';
 
 class HomeMenu extends StatelessWidget {
   const HomeMenu({super.key});
@@ -65,7 +66,7 @@ class HomeMenu extends StatelessWidget {
 class NavigationController extends GetxController {
   final Rx<int> selectedMenu = 0.obs;
   final screens = [
-    Container(color: Colors.green),
+    const MapScreen(),
     Container(color: Colors.blue),
     Container(color: Colors.black),
     Container(color: Colors.red),
