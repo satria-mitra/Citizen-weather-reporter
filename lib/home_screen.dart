@@ -20,17 +20,17 @@ class HomeMenu extends StatelessWidget {
             NavigationDestination(
                 icon: Icon(Icons.map_outlined), label: 'Home'),
             NavigationDestination(
-                icon: Icon(Icons.analytics_outlined), label: 'Home'),
+                icon: Icon(Icons.analytics_outlined), label: 'Device'),
             NavigationDestination(
-                icon: Icon(Icons.add_circle_outline), label: 'Home'),
+                icon: Icon(Icons.add_circle_outline), label: 'Add'),
             NavigationDestination(
-                icon: Icon(Icons.add_chart_outlined), label: 'Home'),
+                icon: Icon(Icons.add_chart_outlined), label: 'Data'),
             NavigationDestination(
-                icon: Icon(Icons.account_circle_outlined), label: 'Home'),
+                icon: Icon(Icons.account_circle_outlined), label: 'Profile'),
           ],
         ),
       ),
-      body: Container(),
+      body: Obx(() => controller.screens[controller.selectedMenu.value]),
     );
   }
 }
