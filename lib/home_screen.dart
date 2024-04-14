@@ -10,24 +10,42 @@ class HomeMenu extends StatelessWidget {
 
     return Scaffold(
       bottomNavigationBar: Obx(
-        () => NavigationBar(
-          height: 80,
+        () => BottomNavigationBar(
+          type: BottomNavigationBarType.fixed, // Use fixed instead of shifting
+          iconSize: 30,
+
           elevation: 0,
-          selectedIndex: controller.selectedMenu.value,
-          onDestinationSelected: (index) =>
-              controller.selectedMenu.value = index,
-          destinations: const [
-            NavigationDestination(
-                icon: Icon(Icons.map_outlined), label: 'Home'),
-            NavigationDestination(
-                icon: Icon(Icons.analytics_outlined), label: 'Device'),
-            NavigationDestination(
-                icon: Icon(Icons.add_circle_outline), label: 'Add'),
-            NavigationDestination(
-                icon: Icon(Icons.add_chart_outlined), label: 'Data'),
-            NavigationDestination(
-                icon: Icon(Icons.account_circle_outlined), label: 'Profile'),
+          currentIndex: controller.selectedMenu.value,
+          onTap: (index) => controller.selectedMenu.value = index,
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.map_outlined),
+              activeIcon: Icon(Icons.map),
+              label: '',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.analytics_outlined),
+              activeIcon: Icon(Icons.analytics),
+              label: '',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.add_circle_outline),
+              activeIcon: Icon(Icons.add_circle),
+              label: '',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.add_chart_outlined),
+              activeIcon: Icon(Icons.add_chart),
+              label: '',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.account_circle_outlined),
+              activeIcon: Icon(Icons.account_circle),
+              label: '',
+            ),
           ],
+          selectedItemColor:
+              Colors.white, // Customize the color of the selected item
         ),
       ),
       body: Obx(() => controller.screens[controller.selectedMenu.value]),
@@ -38,20 +56,10 @@ class HomeMenu extends StatelessWidget {
 class NavigationController extends GetxController {
   final Rx<int> selectedMenu = 0.obs;
   final screens = [
-    Container(
-      color: Colors.green,
-    ),
-    Container(
-      color: Colors.blue,
-    ),
-    Container(
-      color: Colors.black,
-    ),
-    Container(
-      color: Colors.red,
-    ),
-    Container(
-      color: Colors.yellow,
-    )
+    Container(color: Colors.green),
+    Container(color: Colors.blue),
+    Container(color: Colors.black),
+    Container(color: Colors.red),
+    Container(color: Colors.yellow),
   ];
 }
