@@ -3,6 +3,7 @@ import 'package:weathershare/constants/colors.dart';
 import 'package:weathershare/constants/image_strings.dart';
 import 'package:weathershare/constants/sizes.dart';
 import 'package:weathershare/constants/text_string.dart';
+import 'package:weathershare/features/controllers/user_controller.dart';
 
 class UserProfileScreen extends StatefulWidget {
   const UserProfileScreen({super.key});
@@ -14,8 +15,10 @@ class UserProfileScreen extends StatefulWidget {
 class _UserProfileScreenState extends State<UserProfileScreen> {
   @override
   Widget build(BuildContext context) {
+    final controller = UserController.instance;
     var isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
     return Scaffold(
+      backgroundColor: isDark ? secondaryColor : primaryColor,
       appBar: AppBar(
         automaticallyImplyLeading: false, // No back button
 
@@ -62,7 +65,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
               SizedBox(
                 width: 200,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () => controller.logout(),
                   style: ElevatedButton.styleFrom(
                       backgroundColor: primaryColor,
                       side: BorderSide.none,
