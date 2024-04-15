@@ -24,10 +24,13 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
           style: Theme.of(context).textTheme.headlineMedium,
         ),
       ),
-      body: SingleChildScrollView(
+      body: Center(
         child: Container(
           padding: const EdgeInsets.all(defaultSize),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center, // Center vertically
+            crossAxisAlignment:
+                CrossAxisAlignment.center, // Center horizontally
             children: [
               SizedBox(
                 width: 120,
@@ -47,14 +50,14 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                 style: Theme.of(context).textTheme.bodyLarge,
               ),
               const SizedBox(
-                height: 16,
+                height: 32,
               ),
               Text(
                 "Manage xx IoT Devices",
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
               const SizedBox(
-                height: 32,
+                height: 80,
               ),
               SizedBox(
                 width: 200,
