@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:weathershare/features/screens/map_screen/map_screen.dart';
+import 'package:weathershare/features/screens/user_profile/user_screen.dart';
 
 class HomeMenu extends StatelessWidget {
   const HomeMenu({super.key});
@@ -70,6 +71,6 @@ class NavigationController extends GetxController {
     Container(color: Colors.blue),
     Container(color: Colors.black),
     Container(color: Colors.red),
-    Container(color: Colors.yellow),
+    UserProfileScreen(),
   ];
 }
