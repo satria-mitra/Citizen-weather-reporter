@@ -58,3 +58,4 @@ const String next = "Next ";
 
 //user profile screen
 const String userProfile = "Profile";
+const String logOutText = "Log Out";
