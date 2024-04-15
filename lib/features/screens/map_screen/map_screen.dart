@@ -1,6 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MapScreen extends StatefulWidget {
   const MapScreen({super.key});
@@ -10,6 +9,13 @@ class MapScreen extends StatefulWidget {
 }
 
 class _MapScreenState extends State<MapScreen> {
+  late GoogleMapController mapController;
+  final LatLng _center = const LatLng(51.540992, -0.015719); // Initial location
+
+  void _onMapCreated(GoogleMapController controller) {
+    mapController = controller;
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -17,18 +23,13 @@ class _MapScreenState extends State<MapScreen> {
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false, // No back button
-
           flexibleSpace: const Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               TabBar(
                 tabs: [
-                  Tab(
-                    text: "BLE Map",
-                  ),
-                  Tab(
-                    text: "IoT Map",
-                  ),
+                  Tab(text: "BLE Map"),
+                  Tab(text: "IoT Map"),
                 ],
               ),
             ],
@@ -37,11 +38,30 @@ class _MapScreenState extends State<MapScreen> {
         body: TabBarView(
           children: [
             Center(
-              child: Container(),
+              child: Text("Content for BLE Map"), // Placeholder for BLE Map tab
             ),
-            Center(
-              child: Container(),
-            ),
+            Column(
+              children: [
+                SizedBox(
+                  height: 300, // Define the height of the map area
+                  child: GoogleMap(
+                    onMapCreated: _onMapCreated,
+                    initialCameraPosition: CameraPosition(
+                      target: _center,
+                      zoom: 15.0,
+                    ),
+                    mapType: MapType.normal,
+                    zoomGesturesEnabled: true, // Enable zoom gestures
+                    scrollGesturesEnabled:
+                        true, // Enable scroll gestures (panning)
+                    rotateGesturesEnabled: true, // Optional: Allow map rotation
+                    tiltGesturesEnabled:
+                        true, // Enable scroll gestures (panning)
+                  ),
+                ),
+                // More widgets can be added here if needed
+              ],
+            )
           ],
         ),
       ),
