@@ -1,45 +1,37 @@
 {
   "project_info": {
-    "project_number": "987829177165",
-    "project_id": "weathershare-a93a0",
-    "storage_bucket": "weathershare-a93a0.appspot.com"
+    "project_number": "255760170840",
+    "project_id": "weathershare-57c93",
+    "storage_bucket": "weathershare-57c93.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:987829177165:android:ffb0feb38e8e00ef46c504",
+        "mobilesdk_app_id": "1:255760170840:android:93fa516e4f05e3b4ad2f2d",
         "android_client_info": {
           "package_name": "com.example.weathershare"
         }
       },
       "oauth_client": [
         {
-          "client_id": "987829177165-e4ge8q1mstn2nk5gsldcbk8rvt7srlom.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.weathershare",
-            "certificate_hash": "5eba08057934780e74ad174d67e6e7e04c0a3035"
-          }
-        },
-        {
-          "client_id": "987829177165-tobn8dqt8f5snic145b2pbfd1qdslc83.apps.googleusercontent.com",
+          "client_id": "255760170840-nj51ketk4m7obii5jear7cb0ifa9kio9.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBc48Vx71j2WFwHk9AUMED4Kms_FByEB0A"
+          "current_key": "AIzaSyChCajViq9GhmqkNrZYU0pnrok5gl2yyrQ"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "987829177165-tobn8dqt8f5snic145b2pbfd1qdslc83.apps.googleusercontent.com",
+              "client_id": "255760170840-nj51ketk4m7obii5jear7cb0ifa9kio9.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "987829177165-gdtpc6t4svr4dcvdbdh3f4924uhncnl7.apps.googleusercontent.com",
+              "client_id": "255760170840-730lhmfic5vfg0knj5pg1g3hfkrrr1kk.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
                 "bundle_id": "com.example.weathershare"
