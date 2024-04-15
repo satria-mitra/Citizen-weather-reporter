@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:weathershare/features/models/user_model.dart';
+import 'package:weathershare/repository/auth_repo.dart';
 import 'package:weathershare/repository/user_repo.dart';
 
 class UserController extends GetxController {
@@ -79,5 +80,10 @@ class UserController extends GetxController {
     } catch (e) {
       //print('Something went wrong while saving your information');
     }
+  }
+
+  //logout function
+  logout() {
+    AuthenticationRepo.instance.logout();
   }
 }
