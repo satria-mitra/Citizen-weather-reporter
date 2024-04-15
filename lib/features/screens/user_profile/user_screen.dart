@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weathershare/constants/colors.dart';
 import 'package:weathershare/constants/image_strings.dart';
 import 'package:weathershare/constants/sizes.dart';
 import 'package:weathershare/constants/text_string.dart';
@@ -27,7 +28,6 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
         child: Container(
           padding: const EdgeInsets.all(defaultSize),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
                 width: 120,
@@ -49,6 +49,27 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
               const SizedBox(
                 height: 16,
               ),
+              Text(
+                "Manage xx IoT Devices",
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
+              const SizedBox(
+                height: 32,
+              ),
+              SizedBox(
+                width: 200,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: primaryColor,
+                      side: BorderSide.none,
+                      shape: const StadiumBorder()),
+                  child: const Text(
+                    logOutText,
+                    style: TextStyle(color: darkColor),
+                  ),
+                ),
+              )
             ],
           ),
         ),
