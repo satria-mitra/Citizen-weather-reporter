@@ -41,53 +41,51 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyAUyoPTVDb_ylvEOVJ67PNjg3dS-PK5VqE',
-    appId: '1:987829177165:web:9326114a5b04052146c504',
-    messagingSenderId: '987829177165',
-    projectId: 'weathershare-a93a0',
-    authDomain: 'weathershare-a93a0.firebaseapp.com',
-    storageBucket: 'weathershare-a93a0.appspot.com',
-    measurementId: 'G-7J0RP9X4GM',
+    apiKey: 'AIzaSyA_UGI0LRHwNtuaai3cjOJvP0NIvmqbhik',
+    appId: '1:255760170840:web:52f00393c28aaf85ad2f2d',
+    messagingSenderId: '255760170840',
+    projectId: 'weathershare-57c93',
+    authDomain: 'weathershare-57c93.firebaseapp.com',
+    storageBucket: 'weathershare-57c93.appspot.com',
+    measurementId: 'G-RQ0EENDKSS',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBc48Vx71j2WFwHk9AUMED4Kms_FByEB0A',
-    appId: '1:987829177165:android:ffb0feb38e8e00ef46c504',
-    messagingSenderId: '987829177165',
-    projectId: 'weathershare-a93a0',
-    storageBucket: 'weathershare-a93a0.appspot.com',
+    apiKey: 'AIzaSyChCajViq9GhmqkNrZYU0pnrok5gl2yyrQ',
+    appId: '1:255760170840:android:93fa516e4f05e3b4ad2f2d',
+    messagingSenderId: '255760170840',
+    projectId: 'weathershare-57c93',
+    storageBucket: 'weathershare-57c93.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBYTH5K8AJCTivhi1p7WUNkKGLGdPCpmeQ',
-    appId: '1:987829177165:ios:4a79c0d8e652266f46c504',
-    messagingSenderId: '987829177165',
-    projectId: 'weathershare-a93a0',
-    storageBucket: 'weathershare-a93a0.appspot.com',
-    androidClientId: '987829177165-e4ge8q1mstn2nk5gsldcbk8rvt7srlom.apps.googleusercontent.com',
-    iosClientId: '987829177165-gdtpc6t4svr4dcvdbdh3f4924uhncnl7.apps.googleusercontent.com',
+    apiKey: 'AIzaSyBP5cPbipCkz7QPJN1yvmFMhmEQSCTP09U',
+    appId: '1:255760170840:ios:b1584960884b4faaad2f2d',
+    messagingSenderId: '255760170840',
+    projectId: 'weathershare-57c93',
+    storageBucket: 'weathershare-57c93.appspot.com',
+    iosClientId: '255760170840-730lhmfic5vfg0knj5pg1g3hfkrrr1kk.apps.googleusercontent.com',
     iosBundleId: 'com.example.weathershare',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyBYTH5K8AJCTivhi1p7WUNkKGLGdPCpmeQ',
-    appId: '1:987829177165:ios:4a79c0d8e652266f46c504',
-    messagingSenderId: '987829177165',
-    projectId: 'weathershare-a93a0',
-    storageBucket: 'weathershare-a93a0.appspot.com',
-    androidClientId: '987829177165-e4ge8q1mstn2nk5gsldcbk8rvt7srlom.apps.googleusercontent.com',
-    iosClientId: '987829177165-gdtpc6t4svr4dcvdbdh3f4924uhncnl7.apps.googleusercontent.com',
+    apiKey: 'AIzaSyBP5cPbipCkz7QPJN1yvmFMhmEQSCTP09U',
+    appId: '1:255760170840:ios:b1584960884b4faaad2f2d',
+    messagingSenderId: '255760170840',
+    projectId: 'weathershare-57c93',
+    storageBucket: 'weathershare-57c93.appspot.com',
+    iosClientId: '255760170840-730lhmfic5vfg0knj5pg1g3hfkrrr1kk.apps.googleusercontent.com',
     iosBundleId: 'com.example.weathershare',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyAUyoPTVDb_ylvEOVJ67PNjg3dS-PK5VqE',
-    appId: '1:987829177165:web:4a260af1eaa38d0546c504',
-    messagingSenderId: '987829177165',
-    projectId: 'weathershare-a93a0',
-    authDomain: 'weathershare-a93a0.firebaseapp.com',
-    storageBucket: 'weathershare-a93a0.appspot.com',
-    measurementId: 'G-02P40YFJRQ',
+    apiKey: 'AIzaSyA_UGI0LRHwNtuaai3cjOJvP0NIvmqbhik',
+    appId: '1:255760170840:web:63e7c2ae8fd3569bad2f2d',
+    messagingSenderId: '255760170840',
+    projectId: 'weathershare-57c93',
+    authDomain: 'weathershare-57c93.firebaseapp.com',
+    storageBucket: 'weathershare-57c93.appspot.com',
+    measurementId: 'G-CZFX1GZ6GX',
   );
 
 }
