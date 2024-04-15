@@ -58,5 +58,6 @@ flutter:
     - assets/images/welcome_images/
     - assets/images/login_images/
     - assets/images/signup_images/
+    - assets/images/profile/
 
     - assets/logo/
