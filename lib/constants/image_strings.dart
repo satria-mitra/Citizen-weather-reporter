@@ -16,3 +16,6 @@ const String googleLogo = "assets/logo/google.png";
 
 //sign up images
 const String signUpImage = "assets/images/signup_images/signup.png";
+
+//user profile image
+const String userProfilePicture = "assets/images/profile/userprofile.jpg";
