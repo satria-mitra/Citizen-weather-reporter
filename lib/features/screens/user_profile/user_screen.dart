@@ -27,6 +27,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
         child: Container(
           padding: const EdgeInsets.all(defaultSize),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
                 width: 120,
@@ -35,7 +36,19 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                   borderRadius: BorderRadius.circular(100),
                   child: const Image(image: AssetImage(userProfilePicture)),
                 ),
-              )
+              ),
+              const SizedBox(height: 16),
+              Text(
+                userProfile,
+                style: Theme.of(context).textTheme.headlineLarge,
+              ),
+              Text(
+                "user email",
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+              const SizedBox(
+                height: 16,
+              ),
             ],
           ),
         ),
