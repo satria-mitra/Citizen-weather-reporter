@@ -55,3 +55,6 @@ const String resendEmail = "Resend Email";
 const String otpTitle = "Code Verification";
 const String otpSubTitle = "Enter the verification code sent to your mail ";
 const String next = "Next ";
+
+//user profile screen
+const String userProfile = "Profile";
