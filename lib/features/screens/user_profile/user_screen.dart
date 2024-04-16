@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:weathershare/constants/colors.dart';
 import 'package:weathershare/constants/image_strings.dart';
 import 'package:weathershare/constants/sizes.dart';
@@ -41,12 +43,22 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                 CrossAxisAlignment.center, // Center horizontally
 
             children: [
-              SizedBox(
-                width: 120,
-                height: 120,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(100),
-                  child: const Image(image: AssetImage(userProfilePicture)),
+              Obx(
+                () => SizedBox(
+                  width: 120,
+                  height: 120,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(100),
+                    child: controller.user.value.profilePicture.isNotEmpty
+                        ? Image.network(
+                            controller.user.value.profilePicture,
+                            fit: BoxFit.cover,
+                            errorBuilder: (context, error, stackTrace) =>
+                                const Icon(Icons.account_circle, size: 120),
+                          )
+                        : const Icon(Icons.account_circle,
+                            size: 120), // Fallback icon
+                  ),
                 ),
               ),
               const SizedBox(height: 16),
@@ -56,9 +68,11 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                   style: Theme.of(context).textTheme.headlineLarge,
                 ),
               ),
-              Text(
-                controller.user.value.email,
-                style: Theme.of(context).textTheme.bodyLarge,
+              Obx(
+                () => Text(
+                  controller.user.value.email,
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
               ),
               const SizedBox(
                 height: 32,
