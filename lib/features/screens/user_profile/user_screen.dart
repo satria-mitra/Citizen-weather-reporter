@@ -57,7 +57,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                 ),
               ),
               Text(
-                "user email",
+                controller.user.value.email,
                 style: Theme.of(context).textTheme.bodyLarge,
               ),
               const SizedBox(
