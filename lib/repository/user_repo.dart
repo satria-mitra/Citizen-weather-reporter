@@ -6,7 +6,6 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:weathershare/features/models/user_model.dart';
 import 'package:weathershare/repository/auth_repo.dart';
-//import 'package:weathershare/repository/auth_repo.dart';
 
 class UserRepository extends GetxController {
   static UserRepository get instance => Get.find();
