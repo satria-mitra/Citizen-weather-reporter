@@ -42,17 +42,17 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions web = FirebaseOptions(
     apiKey: 'AIzaSyA_UGI0LRHwNtuaai3cjOJvP0NIvmqbhik',
-    appId: '1:255760170840:web:52f00393c28aaf85ad2f2d',
+    appId: '1:255760170840:web:540f09609a78a022ad2f2d',
     messagingSenderId: '255760170840',
     projectId: 'weathershare-57c93',
     authDomain: 'weathershare-57c93.firebaseapp.com',
     storageBucket: 'weathershare-57c93.appspot.com',
-    measurementId: 'G-RQ0EENDKSS',
+    measurementId: 'G-QVSVF19690',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyChCajViq9GhmqkNrZYU0pnrok5gl2yyrQ',
-    appId: '1:255760170840:android:93fa516e4f05e3b4ad2f2d',
+    appId: '1:255760170840:android:d15f1d659d83b4a6ad2f2d',
     messagingSenderId: '255760170840',
     projectId: 'weathershare-57c93',
     storageBucket: 'weathershare-57c93.appspot.com',
@@ -64,6 +64,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '255760170840',
     projectId: 'weathershare-57c93',
     storageBucket: 'weathershare-57c93.appspot.com',
+    androidClientId: '255760170840-cvei8evjikae35347vfphcqho5pamokc.apps.googleusercontent.com',
     iosClientId: '255760170840-730lhmfic5vfg0knj5pg1g3hfkrrr1kk.apps.googleusercontent.com',
     iosBundleId: 'com.example.weathershare',
   );
@@ -74,18 +75,19 @@ class DefaultFirebaseOptions {
     messagingSenderId: '255760170840',
     projectId: 'weathershare-57c93',
     storageBucket: 'weathershare-57c93.appspot.com',
+    androidClientId: '255760170840-cvei8evjikae35347vfphcqho5pamokc.apps.googleusercontent.com',
     iosClientId: '255760170840-730lhmfic5vfg0knj5pg1g3hfkrrr1kk.apps.googleusercontent.com',
     iosBundleId: 'com.example.weathershare',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
     apiKey: 'AIzaSyA_UGI0LRHwNtuaai3cjOJvP0NIvmqbhik',
-    appId: '1:255760170840:web:63e7c2ae8fd3569bad2f2d',
+    appId: '1:255760170840:web:540f09609a78a022ad2f2d',
     messagingSenderId: '255760170840',
     projectId: 'weathershare-57c93',
     authDomain: 'weathershare-57c93.firebaseapp.com',
     storageBucket: 'weathershare-57c93.appspot.com',
-    measurementId: 'G-CZFX1GZ6GX',
+    measurementId: 'G-QVSVF19690',
   );
 
 }
