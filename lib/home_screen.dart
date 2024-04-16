@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:weathershare/features/screens/map_screen/map_screen.dart';
@@ -65,12 +67,13 @@ class HomeMenu extends StatelessWidget {
 }
 
 class NavigationController extends GetxController {
+  static NavigationController get instance => Get.find();
   final Rx<int> selectedMenu = 0.obs;
   final screens = [
     const MapScreen(),
     Container(color: Colors.blue),
     Container(color: Colors.black),
     Container(color: Colors.red),
-    UserProfileScreen(),
+    const UserProfileScreen(),
   ];
 }
