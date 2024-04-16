@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "255760170840-cvei8evjikae35347vfphcqho5pamokc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.weathershare",
+            "certificate_hash": "976a4437d9fd1a4a2eb8c8b6f0097a9387afbea1"
+          }
+        },
+        {
           "client_id": "255760170840-nj51ketk4m7obii5jear7cb0ifa9kio9.apps.googleusercontent.com",
           "client_type": 3
         }
