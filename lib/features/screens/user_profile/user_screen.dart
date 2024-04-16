@@ -18,6 +18,9 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    //print("name is ");
+    //print(controller.user.value.firstname);
+
     var isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
     return Scaffold(
       backgroundColor: isDark ? secondaryColor : primaryColor,
@@ -36,6 +39,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
             mainAxisAlignment: MainAxisAlignment.center, // Center vertically
             crossAxisAlignment:
                 CrossAxisAlignment.center, // Center horizontally
+
             children: [
               SizedBox(
                 width: 120,
@@ -46,9 +50,11 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                 ),
               ),
               const SizedBox(height: 16),
-              Text(
-                userProfile,
-                style: Theme.of(context).textTheme.headlineLarge,
+              Obx(
+                () => Text(
+                  controller.user.value.firstname,
+                  style: Theme.of(context).textTheme.headlineLarge,
+                ),
               ),
               Text(
                 "user email",
