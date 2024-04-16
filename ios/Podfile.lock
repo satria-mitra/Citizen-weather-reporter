@@ -922,10 +922,10 @@ PODS:
     - Flutter
     - FlutterMacOS
     - GoogleSignIn (~> 7.0.0)
-  - GoogleMaps (6.2.1):
-    - GoogleMaps/Maps (= 6.2.1)
-  - GoogleMaps/Base (6.2.1)
-  - GoogleMaps/Maps (6.2.1):
+  - GoogleMaps (8.4.0):
+    - GoogleMaps/Maps (= 8.4.0)
+  - GoogleMaps/Base (8.4.0)
+  - GoogleMaps/Maps (8.4.0):
     - GoogleMaps/Base
   - GoogleSignIn (7.0.0):
     - AppAuth (~> 1.5)
@@ -953,10 +953,10 @@ PODS:
   - GoogleUtilities/Reachability (7.13.0):
     - GoogleUtilities/Logger
     - GoogleUtilities/Privacy
-  - "gRPC-C++ (1.62.1)":
-    - "gRPC-C++/Implementation (= 1.62.1)"
-    - "gRPC-C++/Interface (= 1.62.1)"
-  - "gRPC-C++/Implementation (1.62.1)":
+  - "gRPC-C++ (1.62.4)":
+    - "gRPC-C++/Implementation (= 1.62.4)"
+    - "gRPC-C++/Interface (= 1.62.4)"
+  - "gRPC-C++/Implementation (1.62.4)":
     - abseil/algorithm/container (= 1.20240116.1)
     - abseil/base/base (= 1.20240116.1)
     - abseil/base/config (= 1.20240116.1)
@@ -987,15 +987,15 @@ PODS:
     - abseil/types/span (= 1.20240116.1)
     - abseil/types/variant (= 1.20240116.1)
     - abseil/utility/utility (= 1.20240116.1)
-    - "gRPC-C++/Interface (= 1.62.1)"
-    - "gRPC-C++/Privacy (= 1.62.1)"
-    - gRPC-Core (= 1.62.1)
-  - "gRPC-C++/Interface (1.62.1)"
-  - "gRPC-C++/Privacy (1.62.1)"
-  - gRPC-Core (1.62.1):
-    - gRPC-Core/Implementation (= 1.62.1)
-    - gRPC-Core/Interface (= 1.62.1)
-  - gRPC-Core/Implementation (1.62.1):
+    - "gRPC-C++/Interface (= 1.62.4)"
+    - "gRPC-C++/Privacy (= 1.62.4)"
+    - gRPC-Core (= 1.62.4)
+  - "gRPC-C++/Interface (1.62.4)"
+  - "gRPC-C++/Privacy (1.62.4)"
+  - gRPC-Core (1.62.4):
+    - gRPC-Core/Implementation (= 1.62.4)
+    - gRPC-Core/Interface (= 1.62.4)
+  - gRPC-Core/Implementation (1.62.4):
     - abseil/algorithm/container (= 1.20240116.1)
     - abseil/base/base (= 1.20240116.1)
     - abseil/base/config (= 1.20240116.1)
@@ -1027,10 +1027,10 @@ PODS:
     - abseil/types/variant (= 1.20240116.1)
     - abseil/utility/utility (= 1.20240116.1)
     - BoringSSL-GRPC (= 0.0.32)
-    - gRPC-Core/Interface (= 1.62.1)
-    - gRPC-Core/Privacy (= 1.62.1)
-  - gRPC-Core/Interface (1.62.1)
-  - gRPC-Core/Privacy (1.62.1)
+    - gRPC-Core/Interface (= 1.62.4)
+    - gRPC-Core/Privacy (= 1.62.4)
+  - gRPC-Core/Interface (1.62.4)
+  - gRPC-Core/Privacy (1.62.4)
   - GTMAppAuth (2.0.0):
     - AppAuth/Core (~> 1.6)
     - GTMSessionFetcher/Core (< 4.0, >= 1.5)
@@ -1145,11 +1145,11 @@ SPEC CHECKSUMS:
   fluttertoast: 31b00dabfa7fb7bacd9e7dbee580d7a2ff4bf265
   google_maps_flutter_ios: f135b968a67c05679e0a53538e900b5c174b0d99
   google_sign_in_ios: 7c205d44fdc266640375c6ac33d96ba3983dbe02
-  GoogleMaps: 20d7b12be49a14287f797e88e0e31bc4156aaeb4
+  GoogleMaps: 8939898920281c649150e0af74aa291c60f2e77d
   GoogleSignIn: b232380cf495a429b8095d3178a8d5855b42e842
   GoogleUtilities: d053d902a8edaa9904e1bd00c37535385b8ed152
-  "gRPC-C++": 12f33a422dcab88dcd0c53e52cd549a929f0f244
-  gRPC-Core: 6ec9002832e1e22c5bb8c54994b050b0ee4205c6
+  "gRPC-C++": 5e63d6ceeaf267ad146ee122cf53be8dec480044
+  gRPC-Core: 84db85fef75956d15b1f0ec289d4e41ac1604174
   GTMAppAuth: 99fb010047ba3973b7026e45393f51f27ab965ae
   GTMSessionFetcher: 0e876eea9782ec6462e91ab872711c357322c94f
   leveldb-library: e8eadf9008a61f9e1dde3978c086d2b6d9b9dc28
