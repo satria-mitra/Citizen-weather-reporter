@@ -6,7 +6,6 @@ import 'package:weathershare/constants/image_strings.dart';
 import 'package:get/get.dart';
 import 'package:weathershare/features/screens/forget_password/forget_password.dart';
 import 'package:weathershare/features/screens/signup/signup_screen.dart';
-import 'package:weathershare/home_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -110,7 +109,7 @@ class LoginForm extends StatelessWidget {
         SizedBox(
           width: double.infinity,
           child: ElevatedButton(
-            onPressed: () => Get.to(() => const HomeMenu()),
+            onPressed: () => controller.emailAndPasswordSignIn(),
             child: Text(login.toUpperCase()),
           ),
         ),
