@@ -1,6 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:weathershare/features/bindings/initial_bindings.dart';
+import 'package:weathershare/features/controllers/user_controller.dart';
 import 'package:weathershare/features/screens/on_boarding/on_boarding_view.dart';
+import 'package:weathershare/features/screens/user_profile/user_screen.dart';
 import 'package:weathershare/repository/auth_repo.dart';
 import 'firebase_options.dart';
 import 'package:flutter/material.dart';
@@ -36,10 +39,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      initialBinding: InitialBindings(),
       theme: TAppTheme.lightTheme,
       darkTheme: TAppTheme.darkTheme,
       themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
+      getPages: [
+        GetPage(
+          name: '/user-profile',
+          page: () => const UserProfileScreen(),
+        )
+      ],
       home: const OnBoardingView(),
     );
   }
