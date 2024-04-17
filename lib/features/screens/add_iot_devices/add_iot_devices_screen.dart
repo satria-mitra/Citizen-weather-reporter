@@ -5,6 +5,7 @@ import 'package:weathershare/constants/colors.dart';
 import 'package:weathershare/constants/image_strings.dart';
 import 'package:weathershare/constants/sizes.dart';
 import 'package:weathershare/constants/text_string.dart';
+import 'package:weathershare/features/controllers/add_iot_devices_controller.dart';
 
 class AddIoTDevicesScreen extends StatefulWidget {
   const AddIoTDevicesScreen({Key? key}) : super(key: key);
@@ -23,6 +24,8 @@ class _AddIoTDevicesScreenState extends State<AddIoTDevicesScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(IoTDevicesController());
+
     var isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
     return Scaffold(
       backgroundColor: isDark ? secondaryColor : primaryColor,
@@ -36,6 +39,7 @@ class _AddIoTDevicesScreenState extends State<AddIoTDevicesScreen> {
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(defaultSize),
         child: Column(
+          key: controller.iotDeviceFormKey,
           children: [
             Text(
               "Add MQTT Broker Details",
@@ -43,7 +47,7 @@ class _AddIoTDevicesScreenState extends State<AddIoTDevicesScreen> {
             ),
             const SizedBox(height: 8),
             TextFormField(
-              controller: urlController,
+              controller: controller.mqttHost,
               decoration: InputDecoration(
                 labelText: "MQTT Broker Host",
                 hintText: "mqtt.broker.org",
@@ -52,7 +56,7 @@ class _AddIoTDevicesScreenState extends State<AddIoTDevicesScreen> {
             ),
             SizedBox(height: 8),
             TextFormField(
-              controller: deviceNameController,
+              controller: controller.mqttPort,
               decoration: const InputDecoration(
                 labelText: "Port",
                 hintText: "1883 / 1884",
@@ -61,18 +65,28 @@ class _AddIoTDevicesScreenState extends State<AddIoTDevicesScreen> {
             ),
             SizedBox(height: 8),
             TextFormField(
-              controller: topicController,
+              controller: controller.mqttUsername,
               decoration: InputDecoration(
                 labelText: "Username",
                 prefixIcon: Icon(Icons.account_tree_outlined),
               ),
             ),
             SizedBox(height: 8),
-            TextFormField(
-              controller: topicController,
-              decoration: InputDecoration(
-                labelText: "Password",
-                prefixIcon: Icon(Icons.password_outlined),
+            Obx(
+              () => TextFormField(
+                obscureText: controller.hidePassword.value,
+                controller: controller.mqttPassword,
+                decoration: InputDecoration(
+                  prefixIcon: const Icon(Icons.fingerprint),
+                  labelText: password,
+                  hintText: password,
+                  border: const OutlineInputBorder(),
+                  suffixIcon: IconButton(
+                    onPressed: () => controller.hidePassword.value =
+                        !controller.hidePassword.value,
+                    icon: const Icon(Icons.remove_red_eye_sharp),
+                  ),
+                ),
               ),
             ),
             SizedBox(height: 8),
@@ -96,7 +110,7 @@ class _AddIoTDevicesScreenState extends State<AddIoTDevicesScreen> {
             ),
             SizedBox(height: 8),
             TextFormField(
-              controller: topicController,
+              controller: controller.mqttTopic,
               decoration: InputDecoration(
                 labelText: "Topic",
                 hintText: "Topic to parameter",
@@ -110,7 +124,7 @@ class _AddIoTDevicesScreenState extends State<AddIoTDevicesScreen> {
             ),
             SizedBox(height: 8),
             TextFormField(
-              controller: topicController,
+              controller: controller.deviceName,
               decoration: InputDecoration(
                 labelText: "Device Name",
                 prefixIcon: Icon(Icons.badge_outlined),
@@ -122,6 +136,7 @@ class _AddIoTDevicesScreenState extends State<AddIoTDevicesScreen> {
               children: <Widget>[
                 new Flexible(
                   child: new TextField(
+                    controller: controller.deviceLat,
                     decoration: InputDecoration(
                       labelText: "Latitude",
                       hintText: "Like 51.5388345",
@@ -134,6 +149,7 @@ class _AddIoTDevicesScreenState extends State<AddIoTDevicesScreen> {
                 ),
                 new Flexible(
                   child: new TextField(
+                    controller: controller.deviceLong,
                     decoration: InputDecoration(
                       labelText: "Longitude",
                       hintText: "Like -0.0106886",
