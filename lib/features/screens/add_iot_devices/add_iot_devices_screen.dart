@@ -1,31 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:weathershare/common_widgets/form_header_widget.dart';
 import 'package:weathershare/constants/colors.dart';
-import 'package:weathershare/constants/image_strings.dart';
 import 'package:weathershare/constants/sizes.dart';
 import 'package:weathershare/constants/text_string.dart';
 import 'package:weathershare/features/controllers/add_iot_devices_controller.dart';
 
 class AddIoTDevicesScreen extends StatefulWidget {
-  const AddIoTDevicesScreen({Key? key}) : super(key: key);
+  const AddIoTDevicesScreen({super.key});
 
   @override
-  _AddIoTDevicesScreenState createState() => _AddIoTDevicesScreenState();
+  State<AddIoTDevicesScreen> createState() => _AddIoTDevicesScreenState();
 }
 
 class _AddIoTDevicesScreenState extends State<AddIoTDevicesScreen> {
-  final TextEditingController deviceNameController = TextEditingController();
-  final TextEditingController topicController = TextEditingController();
-  final TextEditingController urlController = TextEditingController();
-  final TextEditingController keyController = TextEditingController();
-
-  String _selectedParameter = 'Temperature'; // Default value
-
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(IoTDevicesController());
-
     var isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
     return Scaffold(
       backgroundColor: isDark ? secondaryColor : primaryColor,
@@ -48,13 +38,13 @@ class _AddIoTDevicesScreenState extends State<AddIoTDevicesScreen> {
             const SizedBox(height: 8),
             TextFormField(
               controller: controller.mqttHost,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: "MQTT Broker Host",
                 hintText: "mqtt.broker.org",
                 prefixIcon: Icon(Icons.link),
               ),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             TextFormField(
               controller: controller.mqttPort,
               decoration: const InputDecoration(
@@ -63,15 +53,15 @@ class _AddIoTDevicesScreenState extends State<AddIoTDevicesScreen> {
                 prefixIcon: Icon(Icons.devices),
               ),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             TextFormField(
               controller: controller.mqttUsername,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: "Username",
                 prefixIcon: Icon(Icons.account_tree_outlined),
               ),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Obx(
               () => TextFormField(
                 obscureText: controller.hidePassword.value,
@@ -89,68 +79,57 @@ class _AddIoTDevicesScreenState extends State<AddIoTDevicesScreen> {
                 ),
               ),
             ),
-            SizedBox(height: 8),
-            DropdownButtonFormField<String>(
-              value: _selectedParameter,
-              decoration: InputDecoration(
-                labelText: "Select Parameter",
-                prefixIcon: Icon(Icons.filter_alt_outlined),
-              ),
-              items: <String>['Temperature', 'Humidity'].map((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
-              onChanged: (newValue) {
-                setState(() {
-                  _selectedParameter = newValue!;
-                });
-              },
-            ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             TextFormField(
               controller: controller.mqttTopic,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: "Topic",
                 hintText: "Topic to parameter",
                 prefixIcon: Icon(Icons.topic),
               ),
             ),
-            SizedBox(height: 24),
+            const SizedBox(height: 24),
             Text(
               "Add Devices Metadata",
               style: Theme.of(context).textTheme.titleMedium,
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             TextFormField(
               controller: controller.deviceName,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: "Device Name",
                 prefixIcon: Icon(Icons.badge_outlined),
               ),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
+            TextFormField(
+              controller: controller.deviceId,
+              decoration: const InputDecoration(
+                labelText: "Device ID",
+                prefixIcon: Icon(Icons.perm_identity_outlined),
+              ),
+            ),
+            const SizedBox(height: 8),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                new Flexible(
-                  child: new TextField(
+                Flexible(
+                  child: TextField(
                     controller: controller.deviceLat,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: "Latitude",
                       hintText: "Like 51.5388345",
                       prefixIcon: Icon(Icons.location_on_outlined),
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 10.0,
                 ),
-                new Flexible(
-                  child: new TextField(
+                Flexible(
+                  child: TextField(
                     controller: controller.deviceLong,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: "Longitude",
                       hintText: "Like -0.0106886",
                       prefixIcon: Icon(Icons.location_on_outlined),
@@ -159,13 +138,11 @@ class _AddIoTDevicesScreenState extends State<AddIoTDevicesScreen> {
                 ),
               ],
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {
-                  print("Device added with topic: ${topicController.text}");
-                },
+                onPressed: () => controller.addBrokerDetails(),
                 child: Text("Add Device".toUpperCase()),
               ),
             ),
