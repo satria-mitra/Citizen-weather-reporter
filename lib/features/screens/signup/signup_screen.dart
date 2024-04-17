@@ -4,13 +4,17 @@ import 'package:weathershare/common_widgets/form_header_widget.dart';
 import 'package:weathershare/constants/sizes.dart';
 import 'package:weathershare/constants/image_strings.dart';
 import 'package:weathershare/constants/text_string.dart';
+import 'package:weathershare/features/controllers/login_controller.dart';
 import 'package:weathershare/features/controllers/signup_controller.dart';
+import 'package:weathershare/features/screens/login/login_screen.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(LoginController());
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
@@ -33,7 +37,7 @@ class SignUpScreen extends StatelessWidget {
                   SizedBox(
                     width: double.infinity,
                     child: OutlinedButton.icon(
-                        onPressed: () {},
+                        onPressed: () => controller.googleSignIn(),
                         icon: const Image(
                           image: AssetImage(googleLogo),
                           width: 16,
@@ -41,7 +45,7 @@ class SignUpScreen extends StatelessWidget {
                         label: const Text(signInWithGoogle)),
                   ),
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () => Get.to(() => const LoginScreen()),
                       child: Text.rich(TextSpan(children: [
                         TextSpan(
                             text: alreadyHaveAnAccount,
