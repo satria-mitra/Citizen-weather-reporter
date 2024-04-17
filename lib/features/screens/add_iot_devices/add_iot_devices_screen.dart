@@ -93,6 +93,28 @@ class _AddIoTDevicesScreenState extends State<AddIoTDevicesScreen> {
                 prefixIcon: Icon(Icons.file_copy_outlined),
               ),
             ),
+            SizedBox(height: 8),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                new Flexible(
+                  child: new TextField(
+                      decoration: InputDecoration(
+                          labelText: "Longitude",
+                          prefixIcon: Icon(Icons.file_copy_outlined))),
+                ),
+                SizedBox(
+                  width: 20.0,
+                ),
+                new Flexible(
+                  child: new TextField(
+                      decoration: InputDecoration(
+                          labelText: "Longitude",
+                          prefixIcon: Icon(Icons.file_copy_outlined))),
+                ),
+              ],
+            ),
+            SizedBox(height: 16),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
