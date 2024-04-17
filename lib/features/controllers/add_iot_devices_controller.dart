@@ -13,31 +13,25 @@ class IoTDevicesController extends GetxController {
   final mqttPassword = TextEditingController();
   final mqttTopic = TextEditingController();
   final deviceName = TextEditingController();
+  final deviceId = TextEditingController();
   final deviceLong = TextEditingController();
   final deviceLat = TextEditingController();
   GlobalKey<FormState> iotDeviceFormKey = GlobalKey<FormState>();
 
-  Future<void> addBrokerDetails(
-      String host,
-      String port,
-      String username,
-      String password,
-      String parameter,
-      String topic,
-      String deviceName,
-      double latitude,
-      double longitude) async {
+  Future<void> addBrokerDetails() async {
     try {
       await _db.collection('mqttBrokers').add({
-        'host': host,
-        'port': port,
-        'username': username,
-        'password': password,
-        'parameter': parameter,
-        'topic': topic,
-        'deviceName': deviceName,
-        'location': {'latitude': latitude, 'longitude': longitude},
-        'createdAt': FieldValue.serverTimestamp(), // Adds server-side timestamp
+        'host': mqttHost.text,
+        'port': mqttPort.text,
+        'username': mqttUsername.text,
+        'password': mqttPassword.text,
+        'topic': mqttTopic.text,
+        'deviceName': deviceName.text,
+        'deviceID': deviceId.text,
+        'location': {
+          'latitude': double.tryParse(deviceLat.text) ?? 0.0,
+          'longitude': double.tryParse(deviceLong.text) ?? 0.0
+        },
       });
       Get.snackbar('Success', 'Broker details added successfully!',
           backgroundColor: Colors.green, snackPosition: SnackPosition.BOTTOM);
@@ -46,5 +40,67 @@ class IoTDevicesController extends GetxController {
           backgroundColor: Colors.red, snackPosition: SnackPosition.BOTTOM);
       print(e.toString());
     }
+  }
+}
+
+class MqttDevices {
+  String brokerMQTT;
+  String userMQTT;
+  String portMQTT;
+  String passMQTT;
+  String devicesName;
+  String devicesID;
+  String devicesLong;
+  String devicesLatt;
+
+  MqttDevices({
+    required this.brokerMQTT,
+    required this.userMQTT,
+    required this.portMQTT,
+    required this.passMQTT,
+    required this.devicesName,
+    required this.devicesID,
+    required this.devicesLong,
+    required this.devicesLatt,
+  });
+
+  //function to create empty user model
+  static MqttDevices empty() => MqttDevices(
+      brokerMQTT: '',
+      userMQTT: '',
+      portMQTT: '',
+      passMQTT: '',
+      devicesName: '',
+      devicesID: '',
+      devicesLong: '',
+      devicesLatt: '');
+
+  //convert model to json structure
+  Map<String, dynamic> toJson() {
+    return {
+      'BrokerMQTT': brokerMQTT,
+      'UserMQTT': userMQTT,
+      'PassMQTT': passMQTT,
+      'PortMQTT': portMQTT,
+      'DevicesName': devicesName,
+      'DevicesID': devicesID,
+      'DevicesLong': devicesLong,
+      'DevicesLatt': devicesLatt,
+    };
+  }
+
+  //method to create a UserModel from a Firebase document snapshot.
+  factory MqttDevices.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> doc) {
+    var data = doc.data() ?? {};
+    return MqttDevices(
+      devicesID: data['DevicesID'] ?? '',
+      brokerMQTT: data['BrokerMQTT'] ?? '',
+      userMQTT: data['UserMQTT'] ?? '',
+      passMQTT: data['PassMQTT'] ?? '',
+      portMQTT: data['PortMQTT'] ?? '',
+      devicesName: data['DevicesName'] ?? '',
+      devicesLong: data['DevicesLong'] ?? '',
+      devicesLatt: data['DevicesLatt'] ?? '',
+    );
   }
 }
