@@ -18,7 +18,7 @@ class IoTDevicesController extends GetxController {
   final deviceLat = TextEditingController();
   GlobalKey<FormState> iotDeviceFormKey = GlobalKey<FormState>();
 
-  Future<void> addBrokerDetails() async {
+  Future<void> createNewBrokerDetails() async {
     try {
       await _db.collection('mqttBrokers').add({
         'host': mqttHost.text,
@@ -35,10 +35,11 @@ class IoTDevicesController extends GetxController {
       });
       Get.snackbar('Success', 'Broker details added successfully!',
           backgroundColor: Colors.green, snackPosition: SnackPosition.BOTTOM);
-    } catch (e) {
+    } catch (e, stackTrace) {
+      print('Error adding broker details: $e');
+      print('Stack trace: $stackTrace');
       Get.snackbar('Error', 'Failed to add broker details: $e',
           backgroundColor: Colors.red, snackPosition: SnackPosition.BOTTOM);
-      print(e.toString());
     }
   }
 }
@@ -64,18 +65,17 @@ class MqttDevices {
     required this.devicesLatt,
   });
 
-  //function to create empty user model
   static MqttDevices empty() => MqttDevices(
-      brokerMQTT: '',
-      userMQTT: '',
-      portMQTT: '',
-      passMQTT: '',
-      devicesName: '',
-      devicesID: '',
-      devicesLong: '',
-      devicesLatt: '');
+        brokerMQTT: '',
+        userMQTT: '',
+        portMQTT: '',
+        passMQTT: '',
+        devicesName: '',
+        devicesID: '',
+        devicesLong: '',
+        devicesLatt: '',
+      );
 
-  //convert model to json structure
   Map<String, dynamic> toJson() {
     return {
       'BrokerMQTT': brokerMQTT,
@@ -89,16 +89,15 @@ class MqttDevices {
     };
   }
 
-  //method to create a UserModel from a Firebase document snapshot.
   factory MqttDevices.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> doc) {
     var data = doc.data() ?? {};
     return MqttDevices(
-      devicesID: data['DevicesID'] ?? '',
       brokerMQTT: data['BrokerMQTT'] ?? '',
       userMQTT: data['UserMQTT'] ?? '',
-      passMQTT: data['PassMQTT'] ?? '',
       portMQTT: data['PortMQTT'] ?? '',
+      passMQTT: data['PassMQTT'] ?? '',
       devicesName: data['DevicesName'] ?? '',
+      devicesID: data['DevicesID'] ?? '',
       devicesLong: data['DevicesLong'] ?? '',
       devicesLatt: data['DevicesLatt'] ?? '',
     );
