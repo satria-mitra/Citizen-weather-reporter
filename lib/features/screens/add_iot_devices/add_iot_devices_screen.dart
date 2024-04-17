@@ -142,7 +142,7 @@ class _AddIoTDevicesScreenState extends State<AddIoTDevicesScreen> {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () => controller.addBrokerDetails(),
+                onPressed: () => controller.createNewBrokerDetails(),
                 child: Text("Add Device".toUpperCase()),
               ),
             ),
