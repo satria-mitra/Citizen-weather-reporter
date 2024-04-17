@@ -45,6 +45,7 @@ class _AddIoTDevicesScreenState extends State<AddIoTDevicesScreen> {
               controller: urlController,
               decoration: InputDecoration(
                 labelText: "MQTT Broker Host",
+                hintText: "mqtt.broker.org",
                 prefixIcon: Icon(Icons.link),
               ),
             ),
@@ -53,6 +54,7 @@ class _AddIoTDevicesScreenState extends State<AddIoTDevicesScreen> {
               controller: deviceNameController,
               decoration: const InputDecoration(
                 labelText: "Port",
+                hintText: "1883 / 1884",
                 prefixIcon: Icon(Icons.devices),
               ),
             ),
@@ -66,10 +68,17 @@ class _AddIoTDevicesScreenState extends State<AddIoTDevicesScreen> {
             ),
             SizedBox(height: 8),
             TextFormField(
-              controller: keyController,
+              //obscureText: controller.hidePassword.value,
+              //controller: controller.password,
               decoration: InputDecoration(
-                labelText: "Password",
-                prefixIcon: Icon(Icons.vpn_key),
+                prefixIcon: const Icon(Icons.fingerprint),
+                labelText: password,
+                hintText: password,
+                border: const OutlineInputBorder(),
+                suffixIcon: IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.remove_red_eye_sharp),
+                ),
               ),
             ),
             SizedBox(height: 8),
@@ -90,7 +99,7 @@ class _AddIoTDevicesScreenState extends State<AddIoTDevicesScreen> {
               controller: topicController,
               decoration: InputDecoration(
                 labelText: "Device Name",
-                prefixIcon: Icon(Icons.file_copy_outlined),
+                prefixIcon: Icon(Icons.badge_outlined),
               ),
             ),
             SizedBox(height: 8),
@@ -100,17 +109,19 @@ class _AddIoTDevicesScreenState extends State<AddIoTDevicesScreen> {
                 new Flexible(
                   child: new TextField(
                       decoration: InputDecoration(
-                          labelText: "Longitude",
-                          prefixIcon: Icon(Icons.file_copy_outlined))),
+                          labelText: "Latitude",
+                          hintText: "Like 51.5388345",
+                          prefixIcon: Icon(Icons.location_on_outlined))),
                 ),
                 SizedBox(
-                  width: 20.0,
+                  width: 10.0,
                 ),
                 new Flexible(
                   child: new TextField(
                       decoration: InputDecoration(
                           labelText: "Longitude",
-                          prefixIcon: Icon(Icons.file_copy_outlined))),
+                          hintText: "Like -0.0106886",
+                          prefixIcon: Icon(Icons.location_on_outlined))),
                 ),
               ],
             ),
@@ -119,7 +130,7 @@ class _AddIoTDevicesScreenState extends State<AddIoTDevicesScreen> {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {},
-                child: Text(login.toUpperCase()),
+                child: Text("Add Device".toUpperCase()),
               ),
             ),
           ],
