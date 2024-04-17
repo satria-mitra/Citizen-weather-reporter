@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:weathershare/common_widgets/form_header_widget.dart';
+import 'package:weathershare/common_widgets/form_header_widget.dart'; // Assuming this is correctly implemented
 import 'package:weathershare/constants/colors.dart';
 import 'package:weathershare/constants/image_strings.dart';
 import 'package:weathershare/constants/sizes.dart';
@@ -14,94 +14,92 @@ class AddIoTDevicesScreen extends StatefulWidget {
 }
 
 class _AddIoTDevicesScreenState extends State<AddIoTDevicesScreen> {
+  final TextEditingController deviceNameController = TextEditingController();
+  final TextEditingController topicController = TextEditingController();
+  final TextEditingController urlController = TextEditingController();
+  final TextEditingController keyController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    var isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.all(defaultSize),
-          child: Column(
-            children: [
-              const FormHeaderWidget(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                image: signUpImage, // Assuming you have a relevant image
-                title: "Add MQTT Device",
-                subTitle: "Configure your IoT devices",
-              ),
-              _AddIoTDevicesForm(),
-            ],
-          ),
+      backgroundColor: isDark ? secondaryColor : primaryColor,
+      appBar: AppBar(
+        automaticallyImplyLeading: false, // No back button
+        title: Text(
+          "Add IoT Device", // Ensure 'userProfile' is defined in your constants or replace it with a string
+          style: Theme.of(context).textTheme.headlineMedium,
         ),
       ),
-    );
-  }
-}
-
-class _AddIoTDevicesForm extends StatelessWidget {
-  _AddIoTDevicesForm({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final deviceNameController = TextEditingController();
-    final topicController = TextEditingController();
-    final urlController = TextEditingController();
-    final keyController = TextEditingController();
-
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: formHeight),
-      child: Form(
+      body: SingleChildScrollView(
+        // Changed from child to body and wrapped content in SingleChildScrollView
+        padding: const EdgeInsets.all(defaultSize),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            TextFormField(
-              controller: deviceNameController,
-              decoration: const InputDecoration(
-                label: Text("Device Name"),
-                prefixIcon: Icon(Icons.devices),
-              ),
+            Text(
+              "Add MQTT Broker Details",
+              style: Theme.of(context).textTheme.titleMedium,
             ),
-            const SizedBox(height: formHeight),
-            TextFormField(
-              controller: topicController,
-              decoration: const InputDecoration(
-                label: Text("MQTT Topic"),
-                prefixIcon: Icon(Icons.topic),
-              ),
-            ),
-            const SizedBox(height: formHeight),
+            const SizedBox(height: 8),
             TextFormField(
               controller: urlController,
-              decoration: const InputDecoration(
-                label: Text("Broker URL"),
+              decoration: InputDecoration(
+                labelText: "MQTT Broker Host",
                 prefixIcon: Icon(Icons.link),
               ),
             ),
-            const SizedBox(height: formHeight),
+            SizedBox(height: 8),
+            TextFormField(
+              controller: deviceNameController,
+              decoration: const InputDecoration(
+                labelText: "Port",
+                prefixIcon: Icon(Icons.devices),
+              ),
+            ),
+            SizedBox(height: 8),
+            TextFormField(
+              controller: topicController,
+              decoration: InputDecoration(
+                labelText: "Username",
+                prefixIcon: Icon(Icons.account_box_outlined),
+              ),
+            ),
+            SizedBox(height: 8),
             TextFormField(
               controller: keyController,
-              decoration: const InputDecoration(
-                label: Text("Device Key"),
+              decoration: InputDecoration(
+                labelText: "Password",
                 prefixIcon: Icon(Icons.vpn_key),
               ),
             ),
-            const SizedBox(height: formHeight),
+            SizedBox(height: 8),
+            TextFormField(
+              controller: topicController,
+              decoration: InputDecoration(
+                labelText: "Topic",
+                prefixIcon: Icon(Icons.topic),
+              ),
+            ),
+            SizedBox(height: 24),
+            Text(
+              "Add Devices Metadata",
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+            SizedBox(height: 8),
+            TextFormField(
+              controller: topicController,
+              decoration: InputDecoration(
+                labelText: "Device Name",
+                prefixIcon: Icon(Icons.file_copy_outlined),
+              ),
+            ),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {
-                  // Logic to handle adding the device
-                  print("Device added!");
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor:
-                      primaryColor, // you might want to adjust colors
-                  textStyle: const TextStyle(fontSize: 16),
-                  padding: const EdgeInsets.symmetric(vertical: 20),
-                ),
-                child: const Text("ADD DEVICE",
-                    style: TextStyle(color: Colors.white)),
+                onPressed: () {},
+                child: Text(login.toUpperCase()),
               ),
-            )
+            ),
           ],
         ),
       ),
