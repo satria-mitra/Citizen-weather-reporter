@@ -19,6 +19,18 @@ class IoTDevicesController extends GetxController {
   GlobalKey<FormState> iotDeviceFormKey = GlobalKey<FormState>();
 
   Future<void> createNewBrokerDetails() async {
+    QuerySnapshot existingBroker = await _db
+        .collection('mqttBrokers')
+        .where('deviceID', isEqualTo: deviceId.text)
+        .get();
+
+    if (existingBroker.docs.isNotEmpty) {
+      // If there is an existing broker with the same deviceID, show a snackbar and return
+      Get.snackbar(
+          'Broker Already Added', 'This broker has already been added.',
+          backgroundColor: Colors.amber, snackPosition: SnackPosition.BOTTOM);
+      return; // Stop the function here if broker already exists
+    }
     try {
       await _db.collection('mqttBrokers').add({
         'host': mqttHost.text,
