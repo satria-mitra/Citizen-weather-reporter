@@ -106,9 +106,7 @@ class _AddIoTBrokersScreenState extends State<AddIoTBrokersScreen> {
                 ),
                 const SizedBox(height: 16),
                 ElevatedButton(
-                  onPressed: () {
-                    // Implement saving logic here
-                  },
+                  onPressed: () => controller.saveBrokerDetails(),
                   child: const Text("SAVE NEW BROKER"),
                 ),
               ]
