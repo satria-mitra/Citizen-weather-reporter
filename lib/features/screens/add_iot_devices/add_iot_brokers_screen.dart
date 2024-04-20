@@ -71,6 +71,15 @@ class _AddIoTBrokersScreenState extends State<AddIoTBrokersScreen> {
               const SizedBox(height: 16),
               if (selectedBroker == "Add New MQTT Broker") ...[
                 TextFormField(
+                  controller: controller.mqttPort,
+                  decoration: const InputDecoration(
+                    labelText: "MQTT Broker Name",
+                    hintText: "e.g., CE MQTT",
+                    prefixIcon: Icon(Icons.perm_identity_outlined),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                TextFormField(
                   controller: controller.mqttHost,
                   decoration: const InputDecoration(
                     labelText: "MQTT Broker Host",
