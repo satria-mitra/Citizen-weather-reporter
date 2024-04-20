@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:weathershare/constants/colors.dart';
 import 'package:weathershare/constants/sizes.dart';
-import 'package:weathershare/constants/text_string.dart';
-import 'package:weathershare/features/controllers/add_broker_controller.dart';
+import 'package:weathershare/features/controllers/add_iot_devices_controller.dart';
+import 'package:weathershare/features/screens/add_iot_devices/add_iot_devices_screen.dart';
 
 class AddIoTBrokersScreen extends StatefulWidget {
   const AddIoTBrokersScreen({super.key});
@@ -13,9 +13,14 @@ class AddIoTBrokersScreen extends StatefulWidget {
 }
 
 class _AddIoTBrokersScreenState extends State<AddIoTBrokersScreen> {
-  final controller = Get.put(AddBrokersController());
-  String? selectedBroker; // Start with null to show a blank option
-  List<String> brokers = [];
+  final controller = Get.put(IoTDevicesController());
+  String?
+      selectedBroker; // Nullable type to handle initial null condition properly
+
+  List<String> brokers = [
+    "",
+    "Add New MQTT Broker"
+  ]; // Include an empty string for a blank option
 
   @override
   void initState() {
@@ -38,15 +43,13 @@ class _AddIoTBrokersScreenState extends State<AddIoTBrokersScreen> {
       backgroundColor: isDark ? secondaryColor : primaryColor,
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text(
-          "Add MQTT Broker",
-          style: Theme.of(context).textTheme.headlineMedium,
-        ),
+        title: Text("Add MQTT Broker",
+            style: Theme.of(context).textTheme.headlineMedium),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(defaultSize),
         child: Form(
-          key: controller.brokersFormKey,
+          key: controller.iotDeviceFormKey,
           child: Column(
             children: [
               DropdownButtonFormField<String>(
@@ -65,21 +68,12 @@ class _AddIoTBrokersScreenState extends State<AddIoTBrokersScreen> {
                 }).toList(),
                 onChanged: (String? newValue) {
                   setState(() {
-                    selectedBroker = newValue;
+                    selectedBroker = newValue ?? "";
                   });
                 },
               ),
               const SizedBox(height: 16),
               if (selectedBroker == "Add New MQTT Broker") ...[
-                TextFormField(
-                  controller: controller.mqttName,
-                  decoration: const InputDecoration(
-                    labelText: "MQTT Broker Name",
-                    hintText: "e.g., CE MQTT",
-                    prefixIcon: Icon(Icons.perm_identity_outlined),
-                  ),
-                ),
-                const SizedBox(height: 16),
                 TextFormField(
                   controller: controller.mqttHost,
                   decoration: const InputDecoration(
@@ -88,7 +82,6 @@ class _AddIoTBrokersScreenState extends State<AddIoTBrokersScreen> {
                     prefixIcon: Icon(Icons.link),
                   ),
                 ),
-                const SizedBox(height: 16),
                 TextFormField(
                   controller: controller.mqttPort,
                   decoration: const InputDecoration(
@@ -97,7 +90,6 @@ class _AddIoTBrokersScreenState extends State<AddIoTBrokersScreen> {
                     prefixIcon: Icon(Icons.settings_input_component),
                   ),
                 ),
-                const SizedBox(height: 16),
                 TextFormField(
                   controller: controller.mqttUsername,
                   decoration: const InputDecoration(
@@ -105,29 +97,35 @@ class _AddIoTBrokersScreenState extends State<AddIoTBrokersScreen> {
                     prefixIcon: Icon(Icons.person),
                   ),
                 ),
-                const SizedBox(height: 16),
-                Obx(
-                  () => TextFormField(
-                    controller: controller.mqttPassword,
-                    obscureText: controller.hidePassword.value,
-                    decoration: InputDecoration(
-                      label: const Text(password),
-                      prefixIcon: const Icon(Icons.fingerprint),
-                      suffixIcon: IconButton(
-                        onPressed: () => controller.hidePassword.value =
-                            !controller.hidePassword.value,
-                        icon: const Icon(Icons.visibility_outlined),
-                      ),
-                      // Add more FormFields or widgets here as needed
-                    ),
+                TextFormField(
+                  controller: controller.mqttPassword,
+                  obscureText: true,
+                  decoration: const InputDecoration(
+                    labelText: "Password",
+                    prefixIcon: Icon(Icons.lock),
                   ),
                 ),
-                const SizedBox(height: 16),
                 ElevatedButton(
-                  onPressed: () => controller.saveBrokerDetails(),
+                  onPressed: () {
+                    controller.saveBrokerDetails();
+                    // Optionally navigate to the next page if needed here
+                  },
                   child: const Text("SAVE NEW BROKER"),
                 ),
-              ]
+              ],
+              if (selectedBroker?.isNotEmpty == true &&
+                  selectedBroker != "Add New MQTT Broker")
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AddIoTDevicesScreen(
+                              initialBroker: selectedBroker!)),
+                    );
+                  },
+                  child: const Text("NEXT"),
+                ),
             ],
           ),
         ),
