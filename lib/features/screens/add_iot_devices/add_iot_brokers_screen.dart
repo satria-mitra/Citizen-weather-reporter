@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:weathershare/constants/colors.dart';
 import 'package:weathershare/constants/sizes.dart';
+import 'package:weathershare/constants/text_string.dart';
 import 'package:weathershare/features/controllers/add_broker_controller.dart';
 
 class AddIoTBrokersScreen extends StatefulWidget {
@@ -71,7 +72,7 @@ class _AddIoTBrokersScreenState extends State<AddIoTBrokersScreen> {
               const SizedBox(height: 16),
               if (selectedBroker == "Add New MQTT Broker") ...[
                 TextFormField(
-                  controller: controller.mqttPort,
+                  controller: controller.mqttName,
                   decoration: const InputDecoration(
                     labelText: "MQTT Broker Name",
                     hintText: "e.g., CE MQTT",
@@ -105,12 +106,20 @@ class _AddIoTBrokersScreenState extends State<AddIoTBrokersScreen> {
                   ),
                 ),
                 const SizedBox(height: 16),
-                TextFormField(
-                  controller: controller.mqttPassword,
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                    labelText: "Password",
-                    prefixIcon: Icon(Icons.lock),
+                Obx(
+                  () => TextFormField(
+                    controller: controller.mqttPassword,
+                    obscureText: controller.hidePassword.value,
+                    decoration: InputDecoration(
+                      label: const Text(password),
+                      prefixIcon: const Icon(Icons.fingerprint),
+                      suffixIcon: IconButton(
+                        onPressed: () => controller.hidePassword.value =
+                            !controller.hidePassword.value,
+                        icon: const Icon(Icons.visibility_outlined),
+                      ),
+                      // Add more FormFields or widgets here as needed
+                    ),
                   ),
                 ),
                 const SizedBox(height: 16),
