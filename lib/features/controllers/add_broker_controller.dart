@@ -31,9 +31,49 @@ class AddBrokersController extends GetxController {
     }
   }
 
+  // Clear all text fields
+  void clearFields() {
+    mqttName.clear();
+    mqttHost.clear();
+    mqttPort.clear();
+    mqttUsername.clear();
+    mqttPassword.clear();
+  }
+
+  // Load broker details into the text fields for editing
+  Future<void> loadBrokerDetails(String brokerId) async {
+    DocumentSnapshot brokerDoc =
+        await _db.collection('brokers').doc(brokerId).get();
+    if (brokerDoc.exists) {
+      Map<String, dynamic>? data = brokerDoc.data() as Map<String, dynamic>?;
+      if (data != null) {
+        mqttName.text = data['mqttname'] ?? '';
+        mqttHost.text = data['host'] ?? '';
+        mqttPort.text = data['port'] ?? '';
+        mqttUsername.text = data['username'] ?? '';
+        mqttPassword.text = data['password'] ?? '';
+      }
+    }
+  }
+
   // Saves new broker details to Firestore
   Future<void> saveBrokerDetails() async {
     if (brokersFormKey.currentState?.validate() ?? false) {
+      var existingBrokers = await _db
+          .collection('brokers')
+          .where('name', isEqualTo: mqttName.text.trim())
+          .where('host', isEqualTo: mqttHost.text.trim())
+          .where('port', isEqualTo: mqttPort.text.trim())
+          .get();
+
+      if (existingBrokers.docs.isNotEmpty) {
+        // Broker already exists
+        Get.snackbar(
+            'Broker Exists', 'A broker with similar details already exists.',
+            backgroundColor: Colors.amber, snackPosition: SnackPosition.BOTTOM);
+        return; // Stop execution if broker exists
+      }
+
       String brokerId = mqttName.text
           .trim()
           .replaceAll(' ', '_'); // Replace spaces with underscores
