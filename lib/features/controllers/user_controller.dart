@@ -42,7 +42,6 @@ class UserController extends GetxController {
   Future<void> saveUserRecord(
       {UserModel? user, UserCredential? userCredentials}) async {
     try {
-      // First UPDATE Rx User and then check if user data is already stored. If not store new data
       await fetchUserRecord();
 
       // If no record already stored.
