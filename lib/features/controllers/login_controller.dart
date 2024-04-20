@@ -9,14 +9,11 @@ class LoginController extends GetxController {
 
   // Variables
   final hidePassword = true.obs;
-  final rememberMe = false.obs;
-  final localStorage = GetStorage();
   final email = TextEditingController();
   final password = TextEditingController();
   final userController = Get.put(UserController());
   GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
 
-  @override
   //Sign in with email and password
   Future<void> emailAndPasswordSignIn() async {
     final userCredentials = await AuthenticationRepo.instance
