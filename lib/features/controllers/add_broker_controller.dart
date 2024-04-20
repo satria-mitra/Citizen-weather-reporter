@@ -6,7 +6,9 @@ class AddBrokersController extends GetxController {
   static AddBrokersController get instance => Get.find();
 
   final FirebaseFirestore _db = FirebaseFirestore.instance;
+  final hidePassword = true.obs;
 
+  final mqttName = TextEditingController();
   final mqttHost = TextEditingController();
   final mqttPort = TextEditingController();
   final mqttUsername = TextEditingController();
@@ -14,46 +16,36 @@ class AddBrokersController extends GetxController {
 
   GlobalKey<FormState> brokersFormKey = GlobalKey<FormState>();
 
-  // Existing methods...
-
   // Method to fetch broker names from Firestore
   Future<List<String>> fetchBrokerNames() async {
     try {
-      QuerySnapshot snapshot = await _db.collection('mqttBrokers').get();
-      List<String> brokerNames = snapshot.docs.map((doc) {
-        var data =
-            doc.data() as Map<String, dynamic>?; // Cast to a nullable Map
-        if (data != null && data.containsKey('name')) {
-          return data['name'] as String; // Safely return the name if available
-        } else {
-          return 'Unnamed Broker'; // Default name if 'name' key is missing or data is null
-        }
-      }).toList();
+      QuerySnapshot snapshot = await _db.collection('brokers').get();
+      List<String> brokerNames = snapshot.docs.map((doc) => doc.id).toList();
       if (brokerNames.isEmpty) {
-        return [
-          'No Brokers Found'
-        ]; // Return this if no brokers are available at all
+        brokerNames.add('No Brokers Found');
       }
-      return brokerNames; // Return the list of names
+      return brokerNames;
     } catch (e) {
       print("Failed to fetch broker names: $e");
-      return ['Fetch Failed']; // Return this in case of any exceptions
+      return ['Fetch Failed'];
     }
   }
 
   // Saves new broker details to Firestore
   Future<void> saveBrokerDetails() async {
     if (brokersFormKey.currentState?.validate() ?? false) {
-      // Ensures form is valid
+      String brokerId = mqttName.text
+          .trim()
+          .replaceAll(' ', '_'); // Replace spaces with underscores
       try {
-        await _db.collection('brokers').add({
-          'host': mqttHost.text
-              .trim(), // Using trim to remove any leading/trailing whitespace
+        await _db.collection('brokers').doc(brokerId).set({
+          'mqttname': mqttName.text.trim(),
+          'host': mqttHost.text.trim(),
           'port': mqttPort.text.trim(),
           'username': mqttUsername.text.trim(),
           'password': mqttPassword.text.trim(),
         });
-        Get.snackbar('Success', 'Broker saved successfully!',
+        Get.snackbar('Success', 'Broker saved successfully',
             backgroundColor: Colors.green, snackPosition: SnackPosition.BOTTOM);
       } catch (e) {
         Get.snackbar('Error', 'Failed to save broker: $e',
