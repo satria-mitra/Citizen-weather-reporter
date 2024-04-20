@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:weathershare/constants/colors.dart';
 import 'package:weathershare/constants/sizes.dart';
-import 'package:weathershare/features/controllers/add_iot_devices_controller.dart';
+import 'package:weathershare/features/controllers/add_broker_controller.dart';
 import 'package:weathershare/features/screens/add_iot_devices/add_iot_devices_screen.dart';
 
 class AddIoTBrokersScreen extends StatefulWidget {
@@ -13,7 +13,7 @@ class AddIoTBrokersScreen extends StatefulWidget {
 }
 
 class _AddIoTBrokersScreenState extends State<AddIoTBrokersScreen> {
-  final controller = Get.put(IoTDevicesController());
+  final controller = Get.put(AddBrokersController());
   String?
       selectedBroker; // Nullable type to handle initial null condition properly
 
@@ -49,7 +49,7 @@ class _AddIoTBrokersScreenState extends State<AddIoTBrokersScreen> {
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(defaultSize),
         child: Form(
-          key: controller.iotDeviceFormKey,
+          key: controller.brokersFormKey,
           child: Column(
             children: [
               DropdownButtonFormField<String>(
@@ -72,8 +72,17 @@ class _AddIoTBrokersScreenState extends State<AddIoTBrokersScreen> {
                   });
                 },
               ),
-              const SizedBox(height: 16),
               if (selectedBroker == "Add New MQTT Broker") ...[
+                const SizedBox(height: 16),
+                TextFormField(
+                  controller: controller.mqttName,
+                  decoration: const InputDecoration(
+                    labelText: "MQTT Name",
+                    hintText: "e.g AWS",
+                    prefixIcon: Icon(Icons.perm_identity_outlined),
+                  ),
+                ),
+                const SizedBox(height: 16),
                 TextFormField(
                   controller: controller.mqttHost,
                   decoration: const InputDecoration(
@@ -82,6 +91,7 @@ class _AddIoTBrokersScreenState extends State<AddIoTBrokersScreen> {
                     prefixIcon: Icon(Icons.link),
                   ),
                 ),
+                const SizedBox(height: 16),
                 TextFormField(
                   controller: controller.mqttPort,
                   decoration: const InputDecoration(
@@ -90,6 +100,7 @@ class _AddIoTBrokersScreenState extends State<AddIoTBrokersScreen> {
                     prefixIcon: Icon(Icons.settings_input_component),
                   ),
                 ),
+                const SizedBox(height: 16),
                 TextFormField(
                   controller: controller.mqttUsername,
                   decoration: const InputDecoration(
@@ -97,14 +108,23 @@ class _AddIoTBrokersScreenState extends State<AddIoTBrokersScreen> {
                     prefixIcon: Icon(Icons.person),
                   ),
                 ),
-                TextFormField(
-                  controller: controller.mqttPassword,
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                    labelText: "Password",
-                    prefixIcon: Icon(Icons.lock),
+                const SizedBox(height: 16),
+                Obx(
+                  () => TextFormField(
+                    controller: controller.mqttPassword,
+                    obscureText: controller.hidePassword.value,
+                    decoration: InputDecoration(
+                      labelText: "Password",
+                      prefixIcon: const Icon(Icons.fingerprint),
+                      suffixIcon: IconButton(
+                        onPressed: () => controller.hidePassword.value =
+                            !controller.hidePassword.value,
+                        icon: const Icon(Icons.visibility_outlined),
+                      ),
+                    ),
                   ),
                 ),
+                const SizedBox(height: 16),
                 ElevatedButton(
                   onPressed: () {
                     controller.saveBrokerDetails();
