@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class MapScreen extends StatefulWidget {
   const MapScreen({super.key});
@@ -10,7 +11,8 @@ class MapScreen extends StatefulWidget {
 
 class _MapScreenState extends State<MapScreen> {
   late GoogleMapController mapController; // Controller for Google Map
-  final LatLng _center = const LatLng(51.540992, -0.015719); // Initial location
+  final LatLng _center =
+      const LatLng(-6.3121994, 106.4245901); // Initial location
 
   // Marker Set
   final Set<Marker> _markers = {};
@@ -18,33 +20,39 @@ class _MapScreenState extends State<MapScreen> {
   @override
   void initState() {
     super.initState();
-    // Initialize markers
-    _markers.add(
-      Marker(
-        markerId: MarkerId('mainMarker'),
-        position: _center, // Marker position
-        infoWindow: InfoWindow(
-          // Popup info
-          title: 'Marker in London',
-          snippet: 'This is a snippet',
-        ),
-        icon: BitmapDescriptor.defaultMarker, // Default icon (red)
-      ),
-    );
+    _loadMarkers();
+  }
 
-    // Add another marker with a different color
-    _markers.add(
-      Marker(
-        markerId: MarkerId('secondMarker'),
-        position: LatLng(51.540288, -0.015204), // Slightly different location
-        infoWindow: InfoWindow(
-          title: 'Second Marker',
-          snippet: 'Different color marker',
-        ),
-        icon: BitmapDescriptor.defaultMarkerWithHue(
-            BitmapDescriptor.hueBlue), // Blue color marker
-      ),
-    );
+  void _loadMarkers() async {
+    FirebaseFirestore.instance
+        .collection('devices')
+        .get()
+        .then((querySnapshot) {
+      print(
+          "Total devices: ${querySnapshot.docs.length}"); // Debug: Number of documents fetched
+      querySnapshot.docs.forEach((result) {
+        double latitude = double.parse(result.data()['latt'].toString());
+        double longitude = double.parse(result.data()['long'].toString());
+
+        print(
+            "Device ID: ${result.data()['deviceID']} at ($latitude, $longitude)"); // Debug: Print each device's location
+
+        setState(() {
+          _markers.add(Marker(
+            markerId: MarkerId(result.data()['deviceID']),
+            position: LatLng(latitude, longitude),
+            infoWindow: InfoWindow(
+              title: result.data()['deviceName'],
+              snippet: 'ID: ${result.data()['deviceID']}',
+            ),
+            icon: BitmapDescriptor.defaultMarker,
+          ));
+        });
+      });
+    }).catchError((error) {
+      print(
+          "Error fetching data: $error"); // Debug: Print error if data fetch fails
+    });
   }
 
   void _onMapCreated(GoogleMapController controller) {
@@ -55,22 +63,22 @@ class _MapScreenState extends State<MapScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("IoT Map"), // Title for the single tab
+        title: Text("IoT Map"),
       ),
       body: Column(
         children: [
           SizedBox(
-            height: 450, // Define the height of the map area
+            height: 450,
             child: GoogleMap(
               onMapCreated: _onMapCreated,
               initialCameraPosition: CameraPosition(
                 target: _center,
-                zoom: 15.0,
+                zoom: 9.0,
               ),
               mapType: MapType.normal,
               zoomGesturesEnabled: true,
               scrollGesturesEnabled: true,
-              markers: _markers, // Assign marker set to the GoogleMap widget
+              markers: _markers,
             ),
           ),
         ],
