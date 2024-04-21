@@ -14,6 +14,12 @@ class AddBrokersController extends GetxController {
   final mqttUsername = TextEditingController();
   final mqttPassword = TextEditingController();
 
+  final deviceName = TextEditingController();
+  final deviceTopic = TextEditingController();
+  final deviceID = TextEditingController();
+  final deviceLong = TextEditingController();
+  final deviceLat = TextEditingController();
+
   GlobalKey<FormState> brokersFormKey = GlobalKey<FormState>();
 
   // Method to fetch broker names from Firestore
@@ -31,13 +37,36 @@ class AddBrokersController extends GetxController {
     }
   }
 
+  // Method to fetch devices names from Firestore
+  Future<List<String>> fetchDeviceNames() async {
+    try {
+      QuerySnapshot snapshot = await _db.collection('devices').get();
+      List<String> deviceNames = snapshot.docs.map((doc) => doc.id).toList();
+      if (deviceNames.isEmpty) {
+        deviceNames.add('No Devices Found');
+      }
+      return deviceNames;
+    } catch (e) {
+      print("Failed to fetch device names: $e");
+      return ['Fetch Failed'];
+    }
+  }
+
   // Clear all text fields
-  void clearFields() {
+  void clearBrokerFields() {
     mqttName.clear();
     mqttHost.clear();
     mqttPort.clear();
     mqttUsername.clear();
     mqttPassword.clear();
+  }
+
+  void clearDeviceFields() {
+    deviceName.clear();
+    deviceTopic.clear();
+    deviceID.clear();
+    deviceLong.clear();
+    deviceLat.clear();
   }
 
   // Load broker details into the text fields for editing
@@ -52,6 +81,22 @@ class AddBrokersController extends GetxController {
         mqttPort.text = data['port'] ?? '';
         mqttUsername.text = data['username'] ?? '';
         mqttPassword.text = data['password'] ?? '';
+      }
+    }
+  }
+
+  // Load device details into the text fields for editing
+  Future<void> loadDeviceDetails(String deviceId) async {
+    DocumentSnapshot brokerDoc =
+        await _db.collection('devices').doc(deviceId).get();
+    if (brokerDoc.exists) {
+      Map<String, dynamic>? data = brokerDoc.data() as Map<String, dynamic>?;
+      if (data != null) {
+        deviceName.text = data['deviceName'] ?? '';
+        deviceTopic.text = data['topic'] ?? '';
+        deviceID.text = data['deviceID'] ?? '';
+        deviceLong.text = data['long'] ?? '';
+        deviceLat.text = data['latt'] ?? '';
       }
     }
   }
@@ -89,6 +134,46 @@ class AddBrokersController extends GetxController {
             backgroundColor: Colors.green, snackPosition: SnackPosition.BOTTOM);
       } catch (e) {
         Get.snackbar('Error', 'Failed to save broker: $e',
+            backgroundColor: Colors.red, snackPosition: SnackPosition.BOTTOM);
+        print("Failed to save broker details: $e");
+      }
+    }
+  }
+
+  // Saves new device details to Firestore
+  Future<void> saveDeviceDetails() async {
+    if (brokersFormKey.currentState?.validate() ?? false) {
+      var existingDevices = await _db
+          .collection('devices')
+          .where('deviceName', isEqualTo: deviceName.text.trim())
+          .where('deviceID', isEqualTo: deviceID.text.trim())
+          .where('topic', isEqualTo: deviceTopic.text.trim())
+          .get();
+
+      if (existingDevices.docs.isNotEmpty) {
+        // Broker already exists
+        Get.snackbar(
+            'Device Exists', 'A Device with similar details already exists.',
+            backgroundColor: Colors.amber, snackPosition: SnackPosition.BOTTOM);
+        return; // Stop execution if broker exists
+      }
+      DocumentReference brokerRef = _db
+          .collection('brokers')
+          .doc(mqttName.text.trim().replaceAll(' ', '_'));
+
+      try {
+        await _db.collection('devices').doc(deviceID.text).set({
+          'deviceName': deviceName.text.trim(),
+          'deviceID': deviceID.text.trim(),
+          'topic': deviceTopic.text.trim(),
+          'latt': deviceLat.text.trim(),
+          'long': deviceLong.text.trim(),
+          'brokerRef': brokerRef // Storing the reference to the broker
+        });
+        Get.snackbar('Success', 'Device saved successfully',
+            backgroundColor: Colors.green, snackPosition: SnackPosition.BOTTOM);
+      } catch (e) {
+        Get.snackbar('Error', 'Failed to save Device: $e',
             backgroundColor: Colors.red, snackPosition: SnackPosition.BOTTOM);
         print("Failed to save broker details: $e");
       }
