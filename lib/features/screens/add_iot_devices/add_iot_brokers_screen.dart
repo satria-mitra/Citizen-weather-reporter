@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:weathershare/constants/colors.dart';
 import 'package:weathershare/constants/sizes.dart';
 import 'package:weathershare/features/controllers/add_broker_controller.dart';
-import 'package:weathershare/features/screens/add_iot_devices/add_iot_devices_screen.dart';
 
 class AddIoTBrokersScreen extends StatefulWidget {
   const AddIoTBrokersScreen({super.key});
@@ -13,27 +12,43 @@ class AddIoTBrokersScreen extends StatefulWidget {
 }
 
 class _AddIoTBrokersScreenState extends State<AddIoTBrokersScreen> {
-  final controller = Get.put(AddBrokersController());
+  final AddBrokersController controller = Get.put(AddBrokersController());
   String? selectedBroker;
+  String? selectedDevice;
 
-  List<String> brokers = [
-    "Add New MQTT Broker"
-  ]; // Initial list with only the 'Add New MQTT Broker' option
+  List<String> brokers = ["Add New MQTT Broker"];
+  List<String> devices = ["Add New IoT Device"];
+
+  bool isLoading = false;
 
   @override
   void initState() {
     super.initState();
     loadBrokers();
+    loadDevices();
   }
 
   void loadBrokers() async {
+    setLoading(true);
     var fetchedBrokers = await controller.fetchBrokerNames();
+    setLoading(false);
     setState(() {
-      // Ensures 'Add New MQTT Broker' is always the first item and it adds fetched brokers next
-      brokers = ["Add New MQTT Broker"] +
-          fetchedBrokers
-              .where((broker) => broker != "No Brokers Found")
-              .toList();
+      brokers = ["Add New MQTT Broker"] + fetchedBrokers;
+    });
+  }
+
+  void loadDevices() async {
+    setLoading(true);
+    var fetchedDevices = await controller.fetchDeviceNames();
+    setLoading(false);
+    setState(() {
+      devices = ["Add New IoT Device"] + fetchedDevices;
+    });
+  }
+
+  void setLoading(bool value) {
+    setState(() {
+      isLoading = value;
     });
   }
 
@@ -43,141 +58,124 @@ class _AddIoTBrokersScreenState extends State<AddIoTBrokersScreen> {
     return Scaffold(
       backgroundColor: isDark ? secondaryColor : primaryColor,
       appBar: AppBar(
-        title: Text("Add MQTT Broker",
-            style: Theme.of(context).textTheme.headlineMedium),
+        title: Text("Add MQTT Brokers & Devices"),
         automaticallyImplyLeading: false,
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(defaultSize),
-        child: Form(
-          key: controller.brokersFormKey,
-          child: Column(
-            children: [
-              DropdownButtonFormField<String>(
-                value: selectedBroker,
-                decoration: const InputDecoration(
-                    labelText: "Select Broker",
-                    enabledBorder: OutlineInputBorder()),
-                items: brokers.map((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
-                onChanged: (String? newValue) {
-                  setState(() {
-                    selectedBroker = newValue;
-                  });
-                  if (newValue == "Add New MQTT Broker") {
-                    controller.clearFields();
-                  } else {
-                    controller.loadBrokerDetails(
-                        newValue!); // Load details for editing
-                  }
-                },
+      body: isLoading
+          ? Center(child: CircularProgressIndicator())
+          : SingleChildScrollView(
+              padding: const EdgeInsets.all(defaultSize),
+              child: Form(
+                key: controller.brokersFormKey,
+                child: Column(
+                  children: [
+                    buildDropdown("Select Broker", brokers, selectedBroker,
+                        (val) {
+                      setState(() {
+                        selectedBroker = val;
+                      });
+                      controller
+                          .clearBrokerFields(); // Clear fields when changing selection
+                      if (val != "Add New MQTT Broker") {
+                        controller.loadBrokerDetails(val!);
+                      }
+                    }),
+                    if (selectedBroker == "Add New MQTT Broker") ...[
+                      buildTextField("MQTT Name", controller.mqttName),
+                      buildTextField("MQTT Broker Host", controller.mqttHost),
+                      buildTextField("Port", controller.mqttPort),
+                      buildTextField("Username", controller.mqttUsername),
+                      buildPasswordField(controller),
+                      buildSaveButton("Save Broker", () async {
+                        await controller.saveBrokerDetails();
+                      }),
+                    ],
+                    SizedBox(height: 30),
+                    buildDropdown("Select Device", devices, selectedDevice,
+                        (val) {
+                      setState(() {
+                        selectedDevice = val;
+                      });
+                      controller
+                          .clearDeviceFields(); // Clear fields when changing selection
+                      if (val != "Add New IoT Device") {
+                        controller.loadDeviceDetails(val!);
+                      }
+                    }),
+                    if (selectedDevice == "Add New IoT Device") ...[
+                      buildTextField("Device Name", controller.deviceName),
+                      buildTextField("Device ID", controller.deviceID),
+                      buildTextField("Topic", controller.deviceTopic),
+                      buildTextField("Latitude", controller.deviceLat),
+                      buildTextField("Longitude", controller.deviceLong),
+                      buildSaveButton("Save Device", () async {
+                        await controller.saveDeviceDetails();
+                      }),
+                    ],
+                  ],
+                ),
               ),
-              if (selectedBroker == "Add New MQTT Broker") ...[
-                const SizedBox(height: 16),
-                buildTextField("MQTT Name", controller.mqttName),
-                const SizedBox(height: 16),
-                buildTextField("MQTT Broker Host", controller.mqttHost),
-                const SizedBox(height: 16),
-                buildTextField("Port", controller.mqttPort),
-                const SizedBox(height: 16),
-                buildTextField("Username", controller.mqttUsername),
-                const SizedBox(height: 16),
-                buildPasswordField(),
-                const SizedBox(height: 16),
-                buildSaveButton(context),
-              ],
-              if (selectedBroker != null &&
-                  selectedBroker != "Add New MQTT Broker") ...[
-                const SizedBox(height: 16),
-                buildBrokerDetails(),
-                const SizedBox(height: 16),
-                buildNextButton(context)
-              ],
-            ],
-          ),
+            ),
+    );
+  }
+
+  Widget buildDropdown(String label, List<String> items, String? currentValue,
+      Function(String?) onChanged) {
+    return DropdownButtonFormField<String>(
+      value: currentValue,
+      decoration: InputDecoration(
+        labelText: label,
+        border: OutlineInputBorder(),
+      ),
+      items: items.map((String value) {
+        return DropdownMenuItem<String>(
+          value: value,
+          child: Text(value),
+        );
+      }).toList(),
+      onChanged: (value) => onChanged(value),
+    );
+  }
+
+  Widget buildTextField(String label, TextEditingController controller) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      child: TextFormField(
+        controller: controller,
+        decoration: InputDecoration(
+          labelText: label,
+          border: OutlineInputBorder(),
+          prefixIcon: Icon(Icons.edit),
         ),
       ),
     );
   }
 
-  Widget buildTextField(String label, TextEditingController controller) {
-    return TextFormField(
-      controller: controller,
-      decoration: InputDecoration(
-        labelText: label,
-        border: const OutlineInputBorder(),
-        prefixIcon: Icon(Icons.edit),
-      ),
-    );
-  }
-
-  Widget buildPasswordField() {
+  Widget buildPasswordField(AddBrokersController controller) {
     return Obx(() => TextFormField(
           controller: controller.mqttPassword,
           obscureText: controller.hidePassword.value,
           decoration: InputDecoration(
             labelText: "Password",
-            prefixIcon: const Icon(Icons.lock),
+            prefixIcon: Icon(Icons.lock),
             suffixIcon: IconButton(
               icon: Icon(controller.hidePassword.value
                   ? Icons.visibility
                   : Icons.visibility_off),
               onPressed: () => controller.hidePassword.toggle(),
             ),
-            border: const OutlineInputBorder(),
+            border: OutlineInputBorder(),
           ),
         ));
   }
 
-  Widget buildSaveButton(BuildContext context) {
-    return ElevatedButton(
-      child: const Text("SAVE NEW BROKER"),
-      onPressed: () async {
-        await controller.saveBrokerDetails();
-        if (controller.brokersFormKey.currentState!.validate()) {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => AddIoTDevicesScreen(
-                      initialBroker: controller.mqttName.text)));
-        }
-      },
-    );
-  }
-
-  Widget buildBrokerDetails() {
-    return Column(
-      children: [
-        buildTextField("MQTT Name", controller.mqttName),
-        const SizedBox(height: 16),
-        buildTextField("MQTT Broker Host", controller.mqttHost),
-        const SizedBox(height: 16),
-        buildTextField("Port", controller.mqttPort),
-        const SizedBox(height: 16),
-        buildTextField("Username", controller.mqttUsername),
-        const SizedBox(height: 16),
-        buildPasswordField(),
-      ],
-    );
-  }
-
-  Widget buildNextButton(BuildContext context) {
-    return ElevatedButton(
-      child: const Text("NEXT"),
-      onPressed: () async {
-        await controller.saveBrokerDetails();
-        if (controller.brokersFormKey.currentState!.validate()) {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => AddIoTDevicesScreen(
-                      initialBroker: controller.mqttName.text)));
-        }
-      },
+  Widget buildSaveButton(String text, Function() onPressed) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 20),
+      child: ElevatedButton(
+        onPressed: onPressed,
+        child: Text(text),
+      ),
     );
   }
 }
