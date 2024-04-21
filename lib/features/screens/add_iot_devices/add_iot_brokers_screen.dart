@@ -168,12 +168,15 @@ class _AddIoTBrokersScreenState extends State<AddIoTBrokersScreen> {
   Widget buildNextButton(BuildContext context) {
     return ElevatedButton(
       child: const Text("NEXT"),
-      onPressed: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) =>
-                    AddIoTDevicesScreen(initialBroker: selectedBroker!)));
+      onPressed: () async {
+        await controller.saveBrokerDetails();
+        if (controller.brokersFormKey.currentState!.validate()) {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => AddIoTDevicesScreen(
+                      initialBroker: controller.mqttName.text)));
+        }
       },
     );
   }
