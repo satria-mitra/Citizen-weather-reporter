@@ -1,7 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:weathershare/features/bindings/initial_bindings.dart';
-import 'package:weathershare/features/controllers/user_controller.dart';
 import 'package:weathershare/features/screens/on_boarding/on_boarding_view.dart';
 import 'package:weathershare/features/screens/user_profile/user_screen.dart';
 import 'package:weathershare/repository/auth_repo.dart';
