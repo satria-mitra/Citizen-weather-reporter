@@ -53,49 +53,27 @@ class _MapScreenState extends State<MapScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: false, // No back button
-          flexibleSpace: const Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              TabBar(
-                tabs: [
-                  Tab(text: "BLE Map"),
-                  Tab(text: "IoT Map"),
-                ],
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("IoT Map"), // Title for the single tab
+      ),
+      body: Column(
+        children: [
+          SizedBox(
+            height: 450, // Define the height of the map area
+            child: GoogleMap(
+              onMapCreated: _onMapCreated,
+              initialCameraPosition: CameraPosition(
+                target: _center,
+                zoom: 15.0,
               ),
-            ],
-          ),
-        ),
-        body: TabBarView(
-          children: [
-            Center(
-              child: Text("Content for BLE Map"), // Placeholder for BLE Map tab
+              mapType: MapType.normal,
+              zoomGesturesEnabled: true,
+              scrollGesturesEnabled: true,
+              markers: _markers, // Assign marker set to the GoogleMap widget
             ),
-            Column(
-              children: [
-                SizedBox(
-                  height: 450, // Define the height of the map area
-                  child: GoogleMap(
-                    onMapCreated: _onMapCreated,
-                    initialCameraPosition: CameraPosition(
-                      target: _center,
-                      zoom: 15.0,
-                    ),
-                    mapType: MapType.normal,
-                    zoomGesturesEnabled: true,
-                    scrollGesturesEnabled: true,
-                    markers:
-                        _markers, // Assign marker set to the GoogleMap widget
-                  ),
-                ),
-              ],
-            )
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
