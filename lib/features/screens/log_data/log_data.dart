@@ -19,6 +19,17 @@ class DeviceDataSource extends DataTableSource {
 
   DeviceDataSource(this.data, this.context);
 
+  void sortData() {
+    data.sort((a, b) {
+      return compareTime(a.time, b.time) * (sortAscending ? 1 : -1);
+    });
+    notifyListeners();
+  }
+
+  static int compareTime(String a, String b) {
+    return a.compareTo(b);
+  }
+
   @override
   DataRow getRow(int index) {
     final device = data[index];
@@ -132,6 +143,7 @@ class _LogDataScreenState extends State<LogDataScreen> {
             rhAvg: timeData['rh_avg'].toString()));
       });
       updateData(newData);
+      dataSource.sortData(); // Sort the data by time after fetching
     } else {
       print("No data available for this device on the selected date.");
       updateData([]); // Update with empty data if no data is found
@@ -190,7 +202,12 @@ class _LogDataScreenState extends State<LogDataScreen> {
             // Check if dataSource is initialized
             PaginatedDataTable(
               columns: [
-                DataColumn(label: Text('Time')),
+                DataColumn(
+                    label: Text('Time'),
+                    onSort: (columnIndex, ascending) {
+                      dataSource.sortAscending = ascending;
+                      dataSource.sortData();
+                    }),
                 DataColumn(label: Text('Temp Avg')),
                 DataColumn(label: Text('RH Avg')),
               ],
