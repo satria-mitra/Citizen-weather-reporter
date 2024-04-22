@@ -48,6 +48,9 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: 'main'
+          
+      - name: Clean Flutter Build
+        run: flutter clean
 
       - name: Get Flutter dependencies      # Get the Libraries and Dependencies
         run: flutter pub get
