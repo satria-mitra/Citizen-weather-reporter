@@ -13,10 +13,14 @@ class MapScreen extends StatefulWidget {
 }
 
 class _MapScreenState extends State<MapScreen> {
-  late GoogleMapController mapController; // Controller for Google Map
-  final LatLng _center =
-      const LatLng(-6.3121994, 106.4245901); // Initial location
-  String _deviceData = "Select a marker to show data"; // Default text
+  late GoogleMapController mapController;
+  final LatLng _center = const LatLng(-6.3121994, 106.4245901);
+  String _deviceData = "Select a marker to show data";
+  String _deviceName = "";
+  String _date = "";
+  String _time = "";
+  String _temperature = "";
+  String _humidity = "";
   final FirebaseDatabase database = FirebaseDatabase.instance;
 
   // Marker Set
@@ -71,12 +75,13 @@ class _MapScreenState extends State<MapScreen> {
         .child('devices')
         .child(deviceId)
         .orderByKey()
-        .limitToLast(1) // Fetches the most recent date entry
+        .limitToLast(1)
         .once()
         .then((DatabaseEvent event) {
       if (event.snapshot.exists && event.snapshot.value != null) {
-        var dates = Map<String, dynamic>.from(event.snapshot.value as Map);
-        String latestDate = dates.keys.last; // Safely get the most recent date
+        Map<String, dynamic> dates =
+            Map<String, dynamic>.from(event.snapshot.value as Map);
+        String latestDate = dates.keys.last;
 
         database
             .ref()
@@ -84,34 +89,25 @@ class _MapScreenState extends State<MapScreen> {
             .child(deviceId)
             .child(latestDate)
             .orderByKey()
-            .limitToLast(1) // Fetches the most recent time entry
+            .limitToLast(1)
             .once()
             .then((DatabaseEvent timeEvent) {
           if (timeEvent.snapshot.exists && timeEvent.snapshot.value != null) {
-            var times =
+            Map<String, dynamic> times =
                 Map<String, dynamic>.from(timeEvent.snapshot.value as Map);
-            String latestTime =
-                times.keys.last; // Safely get the most recent time
-            var data = Map<String, dynamic>.from(times[latestTime] as Map);
-
-            // Safely access temperature and humidity with null checks
-            String temp =
-                data['temp_avg'] != null ? "${data['temp_avg']}°C" : "N/A";
-            String rh = data['rh_avg'] != null ? "${data['RH_avg']}%" : "N/A";
+            String latestTime = times.keys.last;
+            Map<String, dynamic> data =
+                Map<String, dynamic>.from(times[latestTime] as Map);
 
             setState(() {
-              _deviceData =
-                  "Date: $latestDate\nTime: $latestTime\nTemp: $temp, RH: $rh";
-            });
-          } else {
-            setState(() {
-              _deviceData = "No time data available for this date";
+              _deviceName =
+                  deviceId; // Assuming deviceID is used as a part of device name
+              _date = latestDate;
+              _time = latestTime;
+              _temperature = data['temp_avg']?.toString() ?? "N/A";
+              _humidity = data['rh_avg']?.toString() ?? "N/A";
             });
           }
-        });
-      } else {
-        setState(() {
-          _deviceData = "No date data available for this device";
         });
       }
     }).catchError((error) {
@@ -147,29 +143,28 @@ class _MapScreenState extends State<MapScreen> {
           ),
           Expanded(
               child: Padding(
-                  // This Padding widget adds padding around the Card
-                  padding: const EdgeInsets.all(defaultSize),
+                  padding: const EdgeInsets.all(16),
                   child: Card(
                     child: Column(
                       children: <Widget>[
-                        const ListTile(
-                          title: Text('Device Name - Device ID'),
-                          subtitle: Text('Date - Time.'),
+                        ListTile(
+                          title: Text('Device Name: $_deviceName'),
+                          subtitle: Text('Date: $_date - Time: $_time'),
                         ),
-                        const ListTile(
-                          title: Text('Temperature : '),
+                        ListTile(
+                          title: Text('Temperature: $_temperature °C'),
                           leading: Icon(Icons.device_thermostat_outlined),
                         ),
-                        const ListTile(
-                          title: Text('Humidity : '),
+                        ListTile(
+                          title: Text('Humidity: $_humidity %'),
                           leading: Icon(Icons.waterfall_chart_outlined),
                         ),
-                        TextButton(
-                          child: const Text(
-                            'LISTEN',
-                            textAlign: TextAlign.right,
+                        Align(
+                          alignment: Alignment.center,
+                          child: TextButton(
+                            child: const Text('VIEW MORE DATA'),
+                            onPressed: () {/* ... */},
                           ),
-                          onPressed: () {/* ... */},
                         ),
                       ],
                     ),
