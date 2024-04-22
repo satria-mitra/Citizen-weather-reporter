@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:weathershare/common_widgets/form_header_widget.dart';
-import 'package:weathershare/constants/sizes.dart';
 import 'package:weathershare/constants/image_strings.dart';
 import 'package:weathershare/constants/text_string.dart';
 import 'package:weathershare/features/controllers/login_controller.dart';
@@ -18,7 +16,7 @@ class SignUpScreen extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          padding: const EdgeInsets.all(defaultSize),
+          padding: const EdgeInsets.all(30),
           child: Column(
             children: [
               const FormHeaderWidget(
@@ -33,7 +31,7 @@ class SignUpScreen extends StatelessWidget {
               Column(
                 children: [
                   const Text("OR"),
-                  const SizedBox(height: formHeight - 16),
+                  const SizedBox(height: 16),
                   SizedBox(
                     width: double.infinity,
                     child: OutlinedButton.icon(
@@ -72,7 +70,7 @@ class SignUpFormWidget extends StatelessWidget {
     final controller = Get.put(SignUpController());
 
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: formHeight - 16),
+      padding: const EdgeInsets.symmetric(vertical: 16),
       child: Form(
         key: controller.signupFormKey,
         child: Column(
@@ -86,7 +84,7 @@ class SignUpFormWidget extends StatelessWidget {
               ),
               // Add more FormFields or widgets here as needed
             ),
-            const SizedBox(height: formHeight - 24),
+            const SizedBox(height: 8),
             TextFormField(
               controller: controller.lastName,
               decoration: const InputDecoration(
@@ -95,7 +93,7 @@ class SignUpFormWidget extends StatelessWidget {
               ),
               // Add more FormFields or widgets here as needed
             ),
-            const SizedBox(height: formHeight - 24),
+            const SizedBox(height: 8),
             TextFormField(
               controller: controller.email,
               decoration: const InputDecoration(
@@ -104,7 +102,7 @@ class SignUpFormWidget extends StatelessWidget {
               ),
               // Add more FormFields or widgets here as needed
             ),
-            const SizedBox(height: formHeight - 24),
+            const SizedBox(height: 8),
             Obx(
               () => TextFormField(
                 controller: controller.password,
@@ -121,7 +119,7 @@ class SignUpFormWidget extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: formHeight - 16),
+            const SizedBox(height: 16),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
@@ -132,6 +130,50 @@ class SignUpFormWidget extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class FormHeaderWidget extends StatelessWidget {
+  const FormHeaderWidget({
+    super.key,
+    required this.image,
+    required this.title,
+    required this.subTitle,
+    this.imageHeight = 0.3,
+    this.textAlign,
+    this.crossAxisAlignment = CrossAxisAlignment.start,
+  });
+
+  final double imageHeight;
+  final String image, title, subTitle;
+  final CrossAxisAlignment crossAxisAlignment;
+  final TextAlign? textAlign;
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    return Column(
+      crossAxisAlignment: crossAxisAlignment,
+      children: [
+        const SizedBox(height: 32),
+        Image(
+          image: AssetImage(image),
+          height: size.height * imageHeight,
+        ),
+        const SizedBox(height: 8),
+        Text(
+          title,
+          style: Theme.of(context).textTheme.headlineMedium,
+          textAlign: textAlign,
+        ),
+        const SizedBox(height: 8),
+        Text(
+          subTitle,
+          style: Theme.of(context).textTheme.titleSmall,
+          textAlign: textAlign,
+        ),
+      ],
     );
   }
 }

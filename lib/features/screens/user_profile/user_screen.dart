@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:weathershare/constants/colors.dart';
-import 'package:weathershare/constants/sizes.dart';
 import 'package:weathershare/constants/text_string.dart';
 import 'package:weathershare/features/controllers/user_controller.dart';
 
@@ -22,7 +20,8 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
 
     var isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
     return Scaffold(
-      backgroundColor: isDark ? secondaryColor : primaryColor,
+      backgroundColor:
+          isDark ? const Color(0xFF272727) : const Color(0xffffffff),
       appBar: AppBar(
         automaticallyImplyLeading: false, // No back button
 
@@ -34,7 +33,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
       ),
       body: Center(
         child: Container(
-          padding: const EdgeInsets.all(defaultSize),
+          padding: const EdgeInsets.all(30),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center, // Center vertically
             crossAxisAlignment:
@@ -75,24 +74,20 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
               const SizedBox(
                 height: 32,
               ),
-              Text(
-                "Manage xx IoT Devices",
-                style: Theme.of(context).textTheme.headlineMedium,
-              ),
               const SizedBox(
-                height: 80,
+                height: 250,
               ),
               SizedBox(
                 width: 200,
                 child: ElevatedButton(
                   onPressed: () => controller.logout(),
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: primaryColor,
+                      backgroundColor: const Color(0xffffffff),
                       side: BorderSide.none,
                       shape: const StadiumBorder()),
                   child: const Text(
                     logOutText,
-                    style: TextStyle(color: darkColor),
+                    style: TextStyle(color: Color(0xFF000000)),
                   ),
                 ),
               )

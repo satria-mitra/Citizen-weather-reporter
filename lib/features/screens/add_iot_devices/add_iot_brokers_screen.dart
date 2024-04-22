@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:weathershare/constants/colors.dart';
-import 'package:weathershare/constants/sizes.dart';
 import 'package:weathershare/features/controllers/add_broker_controller.dart';
 
 class AddIoTBrokersScreen extends StatefulWidget {
@@ -56,7 +54,8 @@ class _AddIoTBrokersScreenState extends State<AddIoTBrokersScreen> {
   Widget build(BuildContext context) {
     var isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
     return Scaffold(
-      backgroundColor: isDark ? secondaryColor : primaryColor,
+      backgroundColor:
+          isDark ? const Color(0xFF272727) : const Color(0xffffffff),
       appBar: AppBar(
         title: const Text("Add MQTT Brokers & Devices"),
         automaticallyImplyLeading: false,
@@ -64,7 +63,7 @@ class _AddIoTBrokersScreenState extends State<AddIoTBrokersScreen> {
       body: isLoading
           ? const Center(child: CircularProgressIndicator())
           : SingleChildScrollView(
-              padding: const EdgeInsets.all(defaultSize),
+              padding: const EdgeInsets.all(30),
               child: Form(
                 key: controller.brokersFormKey,
                 child: Column(

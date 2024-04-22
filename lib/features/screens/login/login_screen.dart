@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:weathershare/constants/sizes.dart';
 import 'package:weathershare/features/controllers/login_controller.dart';
 import 'package:weathershare/constants/text_string.dart';
 import 'package:weathershare/constants/image_strings.dart';
@@ -15,7 +14,7 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          padding: const EdgeInsets.all(defaultSize),
+          padding: const EdgeInsets.all(30),
           child: const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [LoginHeaderWidget(), LoginForm(), LoginFooterWidget()],
@@ -43,13 +42,13 @@ class LoginHeaderWidget extends StatelessWidget {
             height: size.height * 0.3,
           ),
         ),
-        const SizedBox(height: formHeight - 16),
+        const SizedBox(height: 16),
 
         Text(
           loginTitle,
           style: Theme.of(context).textTheme.headlineMedium,
         ),
-        const SizedBox(height: formHeight - 16),
+        const SizedBox(height: 16),
 
         // Text(
         //   loginSubTitle,
@@ -80,7 +79,7 @@ class LoginForm extends StatelessWidget {
               hintText: email,
               border: OutlineInputBorder()),
         ),
-        const SizedBox(height: formHeight - 10),
+        const SizedBox(height: 22),
         Obx(
           () => TextFormField(
             obscureText: controller.hidePassword.value,
@@ -98,7 +97,7 @@ class LoginForm extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(height: formHeight - 16),
+        const SizedBox(height: 16),
         Align(
           alignment: Alignment.centerRight,
           child: TextButton(
@@ -113,7 +112,7 @@ class LoginForm extends StatelessWidget {
             child: Text(login.toUpperCase()),
           ),
         ),
-        const SizedBox(height: formHeight - 16),
+        const SizedBox(height: 16),
       ],
     ));
   }
@@ -131,7 +130,7 @@ class LoginFooterWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         const Text("OR"),
-        const SizedBox(height: formHeight - 16),
+        const SizedBox(height: 16),
         SizedBox(
           width: double.infinity,
           child: OutlinedButton.icon(
@@ -143,7 +142,7 @@ class LoginFooterWidget extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(height: formHeight - 16),
+        const SizedBox(height: 16),
         TextButton(
           onPressed: () => Get.to(() => const SignUpScreen()),
           child: Text.rich(

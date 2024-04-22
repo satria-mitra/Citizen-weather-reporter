@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:weathershare/constants/colors.dart';
 
 class TElevatedButtonTheme {
   TElevatedButtonTheme._();
@@ -7,18 +6,18 @@ class TElevatedButtonTheme {
   static final lightElevatedButtonTheme = ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       minimumSize: const Size(150, 50),
-      foregroundColor: whiteColor,
-      backgroundColor: secondaryColor,
-      side: const BorderSide(color: secondaryColor),
+      foregroundColor: Colors.white,
+      backgroundColor: const Color(0xFF272727),
+      side: const BorderSide(color: Color(0xFF272727)),
     ),
   );
 
   static final darkElevatedButtonTheme = ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       minimumSize: const Size(150, 50),
-      foregroundColor: whiteColor,
-      backgroundColor: secondaryColor,
-      side: const BorderSide(color: secondaryColor),
+      foregroundColor: Colors.white,
+      backgroundColor: const Color(0xFF272727),
+      side: const BorderSide(color: Color(0xFF272727)),
     ),
   );
 }

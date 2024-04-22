@@ -13,7 +13,7 @@ class MapScreen extends StatefulWidget {
 class _MapScreenState extends State<MapScreen> {
   late GoogleMapController mapController;
   final LatLng _center = const LatLng(-6.3121994, 106.4245901);
-  String _deviceData = "Select a marker to show data";
+  String _deviceData = "";
   String _deviceName = "";
   String _date = "";
   String _time = "";
@@ -59,7 +59,7 @@ class _MapScreenState extends State<MapScreen> {
         });
       });
     }).catchError((error) {
-      print("Error fetching data: $error");
+      //print("Error fetching data: $error");
     });
   }
 
@@ -109,7 +109,7 @@ class _MapScreenState extends State<MapScreen> {
         });
       }
     }).catchError((error) {
-      print("Error in fetching data: $error");
+      //print("Error in fetching data: $error");
     });
   }
 
@@ -117,7 +117,8 @@ class _MapScreenState extends State<MapScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("IoT Map"),
+        title: const Text("IoT Map"),
+        centerTitle: true,
       ),
       body: Column(
         children: [
@@ -151,11 +152,11 @@ class _MapScreenState extends State<MapScreen> {
                         ),
                         ListTile(
                           title: Text('Temperature: $_temperature °C'),
-                          leading: Icon(Icons.device_thermostat_outlined),
+                          leading: const Icon(Icons.device_thermostat_outlined),
                         ),
                         ListTile(
                           title: Text('Humidity: $_humidity %'),
-                          leading: Icon(Icons.waterfall_chart_outlined),
+                          leading: const Icon(Icons.waterfall_chart_outlined),
                         ),
                         Align(
                           alignment: Alignment.center,

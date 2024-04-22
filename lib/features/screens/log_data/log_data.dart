@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:weathershare/constants/colors.dart'; // Make sure these constants are correctly defined
-import 'package:weathershare/constants/sizes.dart'; // Make sure these constants are correctly defined
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:weathershare/features/models/data_model.dart';
 import 'package:firebase_database/firebase_database.dart' as rtdb;
@@ -155,13 +153,14 @@ class _LogDataScreenState extends State<LogDataScreen> {
     var isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
 
     return Scaffold(
-      backgroundColor: isDark ? secondaryColor : primaryColor,
+      backgroundColor:
+          isDark ? const Color(0xFF272727) : const Color(0xffffffff),
       appBar: AppBar(
         title: const Text("Data Log"),
         automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(defaultSize),
+        padding: const EdgeInsets.all(30),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[

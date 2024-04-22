@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:weathershare/constants/colors.dart';
 import 'package:weathershare/constants/image_strings.dart';
 import 'package:weathershare/constants/text_string.dart';
 import 'package:weathershare/features/screens/login/login_screen.dart';
@@ -17,7 +16,8 @@ class WelcomeScreen extends StatelessWidget {
     final isDarkMode = brightness == Brightness.dark;
 
     return Scaffold(
-      backgroundColor: isDarkMode ? secondaryColor : primaryColor,
+      backgroundColor:
+          isDarkMode ? const Color(0xFF272727) : const Color(0xffffffff),
       body: Container(
         margin: const EdgeInsets.symmetric(horizontal: 40),
         child: Column(
@@ -44,8 +44,8 @@ class WelcomeScreen extends StatelessWidget {
       bottomSheet: SafeArea(
         child: Container(
           color: isDarkMode
-              ? secondaryColor
-              : primaryColor, // Adjusted based on isDarkMode
+              ? const Color(0xFF272727)
+              : const Color(0xffffffff), // Adjusted based on isDarkMode
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 90.0, horizontal: 20),
             child: Row(

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:weathershare/constants/colors.dart';
 
 class TextFormFieldTheme {
   TextFormFieldTheme._();
@@ -7,18 +6,18 @@ class TextFormFieldTheme {
   static InputDecorationTheme lightInputDecorationTheme =
       const InputDecorationTheme(
           border: OutlineInputBorder(),
-          prefixIconColor: secondaryColor,
-          floatingLabelStyle: TextStyle(color: secondaryColor),
+          prefixIconColor: Color(0xFF272727),
+          floatingLabelStyle: TextStyle(color: Color(0xFF272727)),
           focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(width: 2, color: secondaryColor),
+            borderSide: BorderSide(width: 2, color: Color(0xFF272727)),
           ));
 
   static InputDecorationTheme darkInputDecorationTheme =
       const InputDecorationTheme(
           border: OutlineInputBorder(),
-          prefixIconColor: primaryColor,
-          floatingLabelStyle: TextStyle(color: primaryColor),
+          prefixIconColor: Color(0xffffffff),
+          floatingLabelStyle: TextStyle(color: Color(0xffffffff)),
           focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(width: 2, color: primaryColor),
+            borderSide: BorderSide(width: 2, color: Color(0xffffffff)),
           ));
 }
