@@ -64,38 +64,42 @@ class _MapScreenState extends State<MapScreen> {
   }
 
   void _onMarkerTapped(String deviceId) {
-    // First, fetch the latest date entry
     database
         .ref()
         .child('devices')
         .child(deviceId)
         .orderByKey()
-        .limitToLast(1)
+        .limitToLast(1) // Fetches the most recent date entry
         .once()
         .then((DatabaseEvent event) {
-      if (event.snapshot.exists) {
-        String latestDate =
-            event.snapshot.value.keys.first; // The most recent date
+      if (event.snapshot.exists && event.snapshot.value != null) {
+        var dates = Map<String, dynamic>.from(event.snapshot.value as Map);
+        String latestDate = dates.keys.last; // Safely get the most recent date
 
-        // Then fetch the latest time entry for that date
         database
             .ref()
             .child('devices')
             .child(deviceId)
             .child(latestDate)
             .orderByKey()
-            .limitToLast(1)
+            .limitToLast(1) // Fetches the most recent time entry
             .once()
             .then((DatabaseEvent timeEvent) {
-          if (timeEvent.snapshot.exists) {
+          if (timeEvent.snapshot.exists && timeEvent.snapshot.value != null) {
+            var times =
+                Map<String, dynamic>.from(timeEvent.snapshot.value as Map);
             String latestTime =
-                timeEvent.snapshot.value.keys.first; // The most recent time
-            Map<String, dynamic> data = Map<String, dynamic>.from(
-                timeEvent.snapshot.value[latestTime] as Map);
+                times.keys.last; // Safely get the most recent time
+            var data = Map<String, dynamic>.from(times[latestTime] as Map);
+
+            // Safely access temperature and humidity with null checks
+            String temp =
+                data['temp_avg'] != null ? "${data['temp_avg']}°C" : "N/A";
+            String rh = data['rh_avg'] != null ? "${data['rh_avg']}%" : "N/A";
 
             setState(() {
               _deviceData =
-                  "Date: $latestDate\nTime: $latestTime\nTemp: ${data['Temp_avg']}°C, RH: ${data['RH_avg']}%";
+                  "Date: $latestDate\nTime: $latestTime\nTemp: $temp, RH: $rh";
             });
           } else {
             setState(() {
@@ -145,17 +149,10 @@ class _MapScreenState extends State<MapScreen> {
               margin: EdgeInsets.all(10),
               child: Padding(
                 padding: EdgeInsets.all(16),
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: Text(
-                        _deviceData,
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ],
+                child: Text(
+                  _deviceData, // Display the data string updated with null checks
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.center,
                 ),
               ),
             ),
