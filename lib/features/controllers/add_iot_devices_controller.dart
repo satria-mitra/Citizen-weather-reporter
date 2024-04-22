@@ -33,7 +33,7 @@ class IoTDevicesController extends GetxController {
       }
       return brokerNames;
     } catch (e) {
-      print("Failed to fetch broker names: $e");
+      //("Failed to fetch broker names: $e");
       return ['Fetch Failed'];
     }
   }
@@ -58,7 +58,7 @@ class IoTDevicesController extends GetxController {
       } catch (e) {
         Get.snackbar('Error', 'Failed to save broker: $e',
             backgroundColor: Colors.red, snackPosition: SnackPosition.BOTTOM);
-        print("Failed to save broker details: $e");
+        //print("Failed to save broker details: $e");
       }
     }
   }
@@ -84,8 +84,8 @@ class IoTDevicesController extends GetxController {
         Get.snackbar('Success', 'Device details added successfully!',
             backgroundColor: Colors.green, snackPosition: SnackPosition.BOTTOM);
       } catch (e, stackTrace) {
-        print('Error adding device details: $e');
-        print('Stack trace: $stackTrace');
+        //print('Error adding device details: $e');
+        //print('Stack trace: $stackTrace');
         Get.snackbar('Error', 'Failed to add device details: $e',
             backgroundColor: Colors.red, snackPosition: SnackPosition.BOTTOM);
       }

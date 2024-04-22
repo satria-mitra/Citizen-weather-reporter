@@ -34,7 +34,7 @@ class AuthenticationRepo extends GetxController {
     _firebaseUser.bindStream(_auth.userChanges());
     FlutterNativeSplash.remove();
     deviceStorage.writeIfNull('IsFirstTime', true);
-    var isFirstTime = deviceStorage.read('IsFirstTime');
+    //var isFirstTime = deviceStorage.read('IsFirstTime');
     // print(
     //     'is it first time ? $isFirstTime'); // Optional: for debugging purposes
 
