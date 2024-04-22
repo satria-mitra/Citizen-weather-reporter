@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:weathershare/constants/colors.dart'; // Make sure these constants are correctly defined
 import 'package:weathershare/constants/sizes.dart'; // Make sure these constants are correctly defined
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:weathershare/features/models/data_model.dart';
 
 class LogDataScreen extends StatefulWidget {
   const LogDataScreen({super.key});
@@ -10,15 +11,54 @@ class LogDataScreen extends StatefulWidget {
   State<LogDataScreen> createState() => _LogDataScreenState();
 }
 
+class DeviceDataSource extends DataTableSource {
+  final List<DeviceData> data;
+  BuildContext context;
+
+  DeviceDataSource(this.data, this.context);
+
+  @override
+  DataRow getRow(int index) {
+    final device = data[index];
+    return DataRow.byIndex(
+      index: index,
+      cells: <DataCell>[
+        DataCell(Text(device.time)), // Example field
+        DataCell(Text('${device.tempAvg}')), // Example field
+        DataCell(Text('${device.rhAvg}')), // Example field
+      ],
+    );
+  }
+
+  @override
+  int get rowCount => data.length;
+
+  @override
+  bool get isRowCountApproximate => false;
+
+  @override
+  int get selectedRowCount => 0;
+}
+
 class _LogDataScreenState extends State<LogDataScreen> {
   String? selectedDevice;
   List<String> devices = [];
   DateTime? selectedDate; // To store the selected date
+  List<DeviceData> tableData = []; // Your data list
+  late DeviceDataSource dataSource;
 
   @override
   void initState() {
     super.initState();
+    dataSource = DeviceDataSource([], context); // Initialize with empty data
     fetchDeviceNames();
+  }
+
+  void updateData(List<DeviceData> newData) {
+    setState(() {
+      tableData = newData;
+      dataSource = DeviceDataSource(tableData, context);
+    });
   }
 
   Future<void> fetchDeviceNames() async {
@@ -26,6 +66,8 @@ class _LogDataScreenState extends State<LogDataScreen> {
       List<String> fetchedDevices = [];
       for (var doc in snapshot.docs) {
         var deviceName = doc.data()['deviceName']
+            as String; // Assuming 'deviceName' is the field
+        var deviceID = doc.data()['deviceID']
             as String; // Assuming 'deviceName' is the field
         if (deviceName != null) {
           fetchedDevices.add(deviceName);
@@ -61,12 +103,12 @@ class _LogDataScreenState extends State<LogDataScreen> {
         title: Text("Data Log"),
         automaticallyImplyLeading: false,
       ),
-      body: Column(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(defaultSize),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(defaultSize),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Row(
               children: <Widget>[
                 Expanded(
                   child: DropdownButton<String>(
@@ -87,9 +129,7 @@ class _LogDataScreenState extends State<LogDataScreen> {
                     isExpanded: true,
                   ),
                 ),
-                SizedBox(
-                    width:
-                        20), // Spacing between the dropdown and the date picker
+                SizedBox(width: 20), // Spacing
                 OutlinedButton(
                   onPressed: () => _selectDate(context),
                   child: Text(selectedDate == null
@@ -98,24 +138,20 @@ class _LogDataScreenState extends State<LogDataScreen> {
                 ),
               ],
             ),
-          ),
-          if (selectedDevice != null)
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text('You selected: $selectedDevice'),
-            )
-          else
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text('Please select a device.'),
-            ),
-          if (selectedDate != null)
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                  'Selected Date: ${selectedDate!.toIso8601String().substring(0, 10)}'),
-            ),
-        ],
+            // Check if dataSource is initialized
+            dataSource == null
+                ? CircularProgressIndicator()
+                : PaginatedDataTable(
+                    header: Text('Device Data'),
+                    columns: [
+                      DataColumn(label: Text('Time')),
+                      DataColumn(label: Text('Temp Avg')),
+                      DataColumn(label: Text('RH Avg')),
+                    ],
+                    source: dataSource,
+                  ),
+          ],
+        ),
       ),
     );
   }
