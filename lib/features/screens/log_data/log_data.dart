@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:weathershare/constants/colors.dart'; // Make sure these constants are correctly defined
 import 'package:weathershare/constants/sizes.dart'; // Make sure these constants are correctly defined
-import 'package:firebase_database/firebase_database.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class LogDataScreen extends StatefulWidget {
   const LogDataScreen({super.key});
@@ -11,13 +11,30 @@ class LogDataScreen extends StatefulWidget {
 }
 
 class _LogDataScreenState extends State<LogDataScreen> {
-  final TextEditingController controller = TextEditingController();
   String? selectedDevice;
-  List<String> devices = [
-    "Device 1",
-    "Device 2",
-    "Device 3"
-  ]; // Example list of devices
+  List<String> devices = [];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchDeviceNames();
+  }
+
+  Future<void> fetchDeviceNames() async {
+    FirebaseFirestore.instance.collection('devices').get().then((snapshot) {
+      List<String> fetchedDevices = [];
+      for (var doc in snapshot.docs) {
+        var deviceName = doc.data()['deviceName']
+            as String; // Assuming 'deviceName' is the field
+        if (deviceName != null) {
+          fetchedDevices.add(deviceName);
+        }
+      }
+      setState(() {
+        devices = fetchedDevices;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
