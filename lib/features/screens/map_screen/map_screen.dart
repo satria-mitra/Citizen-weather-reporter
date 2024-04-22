@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:weathershare/constants/colors.dart';
-import 'package:weathershare/constants/sizes.dart';
 
 class MapScreen extends StatefulWidget {
   const MapScreen({super.key});
