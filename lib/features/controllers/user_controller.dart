@@ -50,8 +50,6 @@ class UserController extends GetxController {
           // Convert Name to First and Last Name
           final nameParts =
               UserModel.nameParts(userCredentials.user!.displayName ?? '');
-          final customUsername = UserModel.generateUsername(
-              userCredentials.user!.displayName ?? '');
 
           // Map data
           final newUser = UserModel(
