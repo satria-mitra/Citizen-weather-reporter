@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:weathershare/features/screens/add_iot_devices/add_iot_brokers_screen.dart';
+import 'package:weathershare/features/screens/log_data/log_data.dart';
 import 'package:weathershare/features/screens/map_screen/map_screen.dart';
 import 'package:weathershare/features/screens/user_profile/user_screen.dart';
 
@@ -72,7 +73,7 @@ class NavigationController extends GetxController {
   final Rx<int> selectedMenu = 0.obs;
   final screens = [
     const MapScreen(),
-    Container(color: Colors.blue),
+    const LogDataScreen(),
     const AddIoTBrokersScreen(),
     Container(color: Colors.red),
     const UserProfileScreen(),
