@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:weathershare/constants/colors.dart';
 import 'package:weathershare/constants/sizes.dart';
-import 'package:weathershare/constants/text_string.dart';
-import 'package:weathershare/features/controllers/user_controller.dart';
+import 'package:dropdown_search/dropdown_search.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 class LogDataScreen extends StatefulWidget {
   const LogDataScreen({super.key});
@@ -13,29 +12,27 @@ class LogDataScreen extends StatefulWidget {
 }
 
 class _LogDataScreenState extends State<LogDataScreen> {
+  final TextEditingController controller = TextEditingController();
+  String? selectedDevice;
+  List<String> devices = [
+    "Device 1",
+    "Device 2",
+    "Device 3"
+  ]; // Example list of devices
+
   @override
   Widget build(BuildContext context) {
     var isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
+
     return Scaffold(
-      backgroundColor: isDark ? secondaryColor : primaryColor,
-      appBar: AppBar(
-        automaticallyImplyLeading: false, // No back button
-        title: Text(
-          "Log Data",
-          style: Theme.of(context).textTheme.headlineMedium,
-          textAlign: TextAlign.justify,
+        backgroundColor: isDark ? secondaryColor : primaryColor,
+        appBar: AppBar(
+          title: Text("Data Log"),
+          automaticallyImplyLeading: false,
         ),
-      ),
-      body: Center(
-        child: Container(
-          padding: const EdgeInsets.all(defaultSize),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center, // Center vertically
-            crossAxisAlignment:
-                CrossAxisAlignment.center, // Center horizontally
-          ),
-        ),
-      ),
-    );
+        body: Padding(
+          padding: const EdgeInsets.all(16),
+          child: DropdownSearch<String>(),
+        ));
   }
 }
