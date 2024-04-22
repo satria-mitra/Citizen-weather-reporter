@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:weathershare/constants/colors.dart';
-import 'package:weathershare/constants/image_strings.dart';
 import 'package:weathershare/constants/sizes.dart';
 import 'package:weathershare/constants/text_string.dart';
 import 'package:weathershare/features/controllers/user_controller.dart';
@@ -32,6 +29,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
         title: Text(
           userProfile,
           style: Theme.of(context).textTheme.headlineMedium,
+          textAlign: TextAlign.justify,
         ),
       ),
       body: Center(
