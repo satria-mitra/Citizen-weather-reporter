@@ -3,6 +3,7 @@ import 'package:weathershare/constants/colors.dart'; // Make sure these constant
 import 'package:weathershare/constants/sizes.dart'; // Make sure these constants are correctly defined
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:weathershare/features/models/data_model.dart';
+import 'package:firebase_database/firebase_database.dart' as rtdb;
 
 class LogDataScreen extends StatefulWidget {
   const LogDataScreen({super.key});
@@ -14,6 +15,7 @@ class LogDataScreen extends StatefulWidget {
 class DeviceDataSource extends DataTableSource {
   final List<DeviceData> data;
   BuildContext context;
+  bool sortAscending = true;
 
   DeviceDataSource(this.data, this.context);
 
@@ -23,19 +25,17 @@ class DeviceDataSource extends DataTableSource {
     return DataRow.byIndex(
       index: index,
       cells: <DataCell>[
-        DataCell(Text(device.time)), // Example field
-        DataCell(Text('${device.tempAvg}')), // Example field
-        DataCell(Text('${device.rhAvg}')), // Example field
+        DataCell(Text(device.time)),
+        DataCell(Text(device.tempAvg)),
+        DataCell(Text(device.rhAvg)),
       ],
     );
   }
 
   @override
   int get rowCount => data.length;
-
   @override
   bool get isRowCountApproximate => false;
-
   @override
   int get selectedRowCount => 0;
 }
@@ -44,6 +44,7 @@ class _LogDataScreenState extends State<LogDataScreen> {
   String? selectedDevice;
   List<String> devices = [];
   DateTime? selectedDate; // To store the selected date
+  DateTime? selectedTime; // To store the selected date
   List<DeviceData> tableData = []; // Your data list
   late DeviceDataSource dataSource;
 
@@ -70,7 +71,7 @@ class _LogDataScreenState extends State<LogDataScreen> {
         var deviceID = doc.data()['deviceID']
             as String; // Assuming 'deviceName' is the field
         if (deviceName != null) {
-          fetchedDevices.add(deviceName);
+          fetchedDevices.add(deviceID);
         }
       }
       setState(() {
@@ -90,6 +91,50 @@ class _LogDataScreenState extends State<LogDataScreen> {
       setState(() {
         selectedDate = picked;
       });
+    }
+  }
+
+  Future<void> fetchData() async {
+    if (selectedDevice == null || selectedDate == null) {
+      print("Please select both a device and a date.");
+      return;
+    }
+
+    // Convert selectedDate to the required format (yyyy-mm-dd)
+    String formattedDate =
+        "${selectedDate!.year}-${selectedDate!.month.toString().padLeft(2, '0')}-${selectedDate!.day.toString().padLeft(2, '0')}";
+
+    // Fetch data from Firebase using the selected device ID and formatted date
+    String deviceId = devices.firstWhere((name) => name == selectedDevice,
+        orElse: () => "No Device Found" // Providing a default non-null String
+        );
+    if (deviceId == null) {
+      print("Selected device ID not found in the list.");
+      return;
+    }
+    print('Querying RTDB at: devices/$deviceId/$formattedDate');
+    var ref =
+        rtdb.FirebaseDatabase.instance.ref('devices/$deviceId/$formattedDate');
+
+    var snapshot = await ref.once();
+    print('Data fetched: ${snapshot.snapshot.value}');
+
+    var data = snapshot.snapshot.value;
+
+    if (data != null) {
+      List<DeviceData> newData = [];
+      (data as Map).forEach((key, value) {
+        // Assuming value is a Map with ta_avg and rh_avg keys
+        var timeData = Map<String, dynamic>.from(value);
+        newData.add(DeviceData(
+            time: key, // hh-mm-ss
+            tempAvg: timeData['temp_avg'].toString(),
+            rhAvg: timeData['rh_avg'].toString()));
+      });
+      updateData(newData);
+    } else {
+      print("No data available for this device on the selected date.");
+      updateData([]); // Update with empty data if no data is found
     }
   }
 
@@ -138,18 +183,20 @@ class _LogDataScreenState extends State<LogDataScreen> {
                 ),
               ],
             ),
+            ElevatedButton(
+              onPressed: fetchData,
+              child: Text('Load Data'),
+            ),
             // Check if dataSource is initialized
-            dataSource == null
-                ? CircularProgressIndicator()
-                : PaginatedDataTable(
-                    header: Text('Device Data'),
-                    columns: [
-                      DataColumn(label: Text('Time')),
-                      DataColumn(label: Text('Temp Avg')),
-                      DataColumn(label: Text('RH Avg')),
-                    ],
-                    source: dataSource,
-                  ),
+            PaginatedDataTable(
+              columns: [
+                DataColumn(label: Text('Time')),
+                DataColumn(label: Text('Temp Avg')),
+                DataColumn(label: Text('RH Avg')),
+              ],
+              source: dataSource,
+              // other properties as needed
+            ),
           ],
         ),
       ),
