@@ -25,7 +25,7 @@ class _AddIoTBrokersScreenState extends State<AddIoTBrokersScreen> {
   void initState() {
     super.initState();
     loadBrokers();
-    loadDevices();
+    //loadDevices();
   }
 
   void loadBrokers() async {
@@ -37,14 +37,14 @@ class _AddIoTBrokersScreenState extends State<AddIoTBrokersScreen> {
     });
   }
 
-  void loadDevices() async {
-    setLoading(true);
-    var fetchedDevices = await controller.fetchDeviceNames();
-    setLoading(false);
-    setState(() {
-      devices = ["Add New IoT Device"] + fetchedDevices;
-    });
-  }
+  // void loadDevices() async {
+  //   setLoading(true);
+  //   var fetchedDevices = await controller.fetchDeviceNames();
+  //   setLoading(false);
+  //   setState(() {
+  //     devices = ["Add New IoT Device"] + fetchedDevices;
+  //   });
+  // }
 
   void setLoading(bool value) {
     setState(() {
