@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -11,7 +10,7 @@ class UserRepository extends GetxController {
   static UserRepository get instance => Get.find();
 
   final FirebaseFirestore _db = FirebaseFirestore.instance;
-  final _firebaseStorage = FirebaseStorage.instance;
+  //final _firebaseStorage = FirebaseStorage.instance;
 
   //Function to save user data to firestore
   Future<void> saveUserRecord(UserModel user) async {
