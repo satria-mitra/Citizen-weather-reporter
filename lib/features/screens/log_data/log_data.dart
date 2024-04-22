@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:weathershare/constants/colors.dart';
-import 'package:weathershare/constants/sizes.dart';
-import 'package:dropdown_search/dropdown_search.dart';
+import 'package:weathershare/constants/colors.dart'; // Make sure these constants are correctly defined
+import 'package:weathershare/constants/sizes.dart'; // Make sure these constants are correctly defined
 import 'package:firebase_database/firebase_database.dart';
 
 class LogDataScreen extends StatefulWidget {
@@ -25,14 +24,52 @@ class _LogDataScreenState extends State<LogDataScreen> {
     var isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
 
     return Scaffold(
-        backgroundColor: isDark ? secondaryColor : primaryColor,
-        appBar: AppBar(
-          title: Text("Data Log"),
-          automaticallyImplyLeading: false,
-        ),
-        body: Padding(
-          padding: const EdgeInsets.all(16),
-          child: DropdownSearch<String>(),
-        ));
+      backgroundColor: isDark ? secondaryColor : primaryColor,
+      appBar: AppBar(
+        title: Text("Data Log"),
+        automaticallyImplyLeading: false,
+      ),
+      body: Column(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(defaultSize),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Expanded(
+                  child: DropdownButton<String>(
+                    value: selectedDevice,
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        selectedDevice = newValue;
+                      });
+                    },
+                    items:
+                        devices.map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                    hint: Text('Select a Device'),
+                    isExpanded: true,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          if (selectedDevice != null)
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text('You selected: $selectedDevice'),
+            )
+          else
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: const Text('Please select a device.'),
+            )
+        ],
+      ),
+    );
   }
 }
