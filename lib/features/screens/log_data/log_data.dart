@@ -107,7 +107,7 @@ class _LogDataScreenState extends State<LogDataScreen> {
 
   Future<void> fetchData() async {
     if (selectedDevice == null || selectedDate == null) {
-      print("Please select both a device and a date.");
+      //print("Please select both a device and a date.");
       return;
     }
 
@@ -120,15 +120,15 @@ class _LogDataScreenState extends State<LogDataScreen> {
         orElse: () => "No Device Found" // Providing a default non-null String
         );
     if (deviceId == null) {
-      print("Selected device ID not found in the list.");
+      //("Selected device ID not found in the list.");
       return;
     }
-    print('Querying RTDB at: devices/$deviceId/$formattedDate');
+    //print('Querying RTDB at: devices/$deviceId/$formattedDate');
     var ref =
         rtdb.FirebaseDatabase.instance.ref('devices/$deviceId/$formattedDate');
 
     var snapshot = await ref.once();
-    print('Data fetched: ${snapshot.snapshot.value}');
+    //print('Data fetched: ${snapshot.snapshot.value}');
 
     var data = snapshot.snapshot.value;
 
@@ -145,7 +145,7 @@ class _LogDataScreenState extends State<LogDataScreen> {
       updateData(newData);
       dataSource.sortData(); // Sort the data by time after fetching
     } else {
-      print("No data available for this device on the selected date.");
+      //print("No data available for this device on the selected date.");
       updateData([]); // Update with empty data if no data is found
     }
   }
@@ -157,7 +157,7 @@ class _LogDataScreenState extends State<LogDataScreen> {
     return Scaffold(
       backgroundColor: isDark ? secondaryColor : primaryColor,
       appBar: AppBar(
-        title: Text("Data Log"),
+        title: const Text("Data Log"),
         automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
@@ -182,11 +182,11 @@ class _LogDataScreenState extends State<LogDataScreen> {
                         child: Text(value),
                       );
                     }).toList(),
-                    hint: Text('Select a Device'),
+                    hint: const Text('Select a Device'),
                     isExpanded: true,
                   ),
                 ),
-                SizedBox(width: 20), // Spacing
+                const SizedBox(width: 20), // Spacing
                 OutlinedButton(
                   onPressed: () => _selectDate(context),
                   child: Text(selectedDate == null
@@ -197,19 +197,19 @@ class _LogDataScreenState extends State<LogDataScreen> {
             ),
             ElevatedButton(
               onPressed: fetchData,
-              child: Text('Load Data'),
+              child: const Text('Load Data'),
             ),
             // Check if dataSource is initialized
             PaginatedDataTable(
               columns: [
                 DataColumn(
-                    label: Text('Time'),
+                    label: const Text('Time'),
                     onSort: (columnIndex, ascending) {
                       dataSource.sortAscending = ascending;
                       dataSource.sortData();
                     }),
-                DataColumn(label: Text('Temp Avg')),
-                DataColumn(label: Text('RH Avg')),
+                const DataColumn(label: Text('Temp Avg')),
+                const DataColumn(label: Text('RH Avg')),
               ],
               source: dataSource,
               // other properties as needed
