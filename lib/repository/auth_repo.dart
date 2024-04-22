@@ -35,8 +35,8 @@ class AuthenticationRepo extends GetxController {
     FlutterNativeSplash.remove();
     deviceStorage.writeIfNull('IsFirstTime', true);
     var isFirstTime = deviceStorage.read('IsFirstTime');
-    print(
-        'is it first time ? $isFirstTime'); // Optional: for debugging purposes
+    // print(
+    //     'is it first time ? $isFirstTime'); // Optional: for debugging purposes
 
     if (deviceStorage.read('isFirstTime') != true) {
       Get.offAll(() => const LoginScreen());

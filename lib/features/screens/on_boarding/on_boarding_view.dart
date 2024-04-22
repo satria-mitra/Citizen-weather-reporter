@@ -130,7 +130,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
             print("--- get storage ---");
           }
           storage.write('IsFirstTime', false);
-          print(storage.read('IsFirstTime'));
+          //print(storage.read('IsFirstTime'));
 
           //print("Setting onboarding to true"); // Debug line
 

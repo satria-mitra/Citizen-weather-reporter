@@ -58,11 +58,11 @@ class _AddIoTBrokersScreenState extends State<AddIoTBrokersScreen> {
     return Scaffold(
       backgroundColor: isDark ? secondaryColor : primaryColor,
       appBar: AppBar(
-        title: Text("Add MQTT Brokers & Devices"),
+        title: const Text("Add MQTT Brokers & Devices"),
         automaticallyImplyLeading: false,
       ),
       body: isLoading
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : SingleChildScrollView(
               padding: const EdgeInsets.all(defaultSize),
               child: Form(
@@ -90,7 +90,7 @@ class _AddIoTBrokersScreenState extends State<AddIoTBrokersScreen> {
                         await controller.saveBrokerDetails();
                       }),
                     ],
-                    SizedBox(height: 30),
+                    const SizedBox(height: 30),
                     buildDropdown("Select Device", devices, selectedDevice,
                         (val) {
                       setState(() {
@@ -125,7 +125,7 @@ class _AddIoTBrokersScreenState extends State<AddIoTBrokersScreen> {
       value: currentValue,
       decoration: InputDecoration(
         labelText: label,
-        border: OutlineInputBorder(),
+        border: const OutlineInputBorder(),
       ),
       items: items.map((String value) {
         return DropdownMenuItem<String>(
@@ -144,8 +144,8 @@ class _AddIoTBrokersScreenState extends State<AddIoTBrokersScreen> {
         controller: controller,
         decoration: InputDecoration(
           labelText: label,
-          border: OutlineInputBorder(),
-          prefixIcon: Icon(Icons.edit),
+          border: const OutlineInputBorder(),
+          prefixIcon: const Icon(Icons.edit),
         ),
       ),
     );
@@ -157,14 +157,14 @@ class _AddIoTBrokersScreenState extends State<AddIoTBrokersScreen> {
           obscureText: controller.hidePassword.value,
           decoration: InputDecoration(
             labelText: "Password",
-            prefixIcon: Icon(Icons.lock),
+            prefixIcon: const Icon(Icons.lock),
             suffixIcon: IconButton(
               icon: Icon(controller.hidePassword.value
                   ? Icons.visibility
                   : Icons.visibility_off),
               onPressed: () => controller.hidePassword.toggle(),
             ),
-            border: OutlineInputBorder(),
+            border: const OutlineInputBorder(),
           ),
         ));
   }

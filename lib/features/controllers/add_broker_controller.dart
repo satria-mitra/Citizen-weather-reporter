@@ -32,7 +32,7 @@ class AddBrokersController extends GetxController {
       }
       return brokerNames;
     } catch (e) {
-      print("Failed to fetch broker names: $e");
+      //print("Failed to fetch broker names: $e");
       return ['Fetch Failed'];
     }
   }
@@ -47,7 +47,7 @@ class AddBrokersController extends GetxController {
       }
       return deviceNames;
     } catch (e) {
-      print("Failed to fetch device names: $e");
+      //print("Failed to fetch device names: $e");
       return ['Fetch Failed'];
     }
   }
@@ -135,7 +135,7 @@ class AddBrokersController extends GetxController {
       } catch (e) {
         Get.snackbar('Error', 'Failed to save broker: $e',
             backgroundColor: Colors.red, snackPosition: SnackPosition.BOTTOM);
-        print("Failed to save broker details: $e");
+        //print("Failed to save broker details: $e");
       }
     }
   }
@@ -175,7 +175,7 @@ class AddBrokersController extends GetxController {
       } catch (e) {
         Get.snackbar('Error', 'Failed to save Device: $e',
             backgroundColor: Colors.red, snackPosition: SnackPosition.BOTTOM);
-        print("Failed to save broker details: $e");
+        //print("Failed to save broker details: $e");
       }
     }
   }
