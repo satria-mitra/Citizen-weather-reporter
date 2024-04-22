@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:weathershare/constants/colors.dart';
+import 'package:weathershare/constants/sizes.dart';
 
 class MapScreen extends StatefulWidget {
   const MapScreen({super.key});
@@ -95,7 +97,7 @@ class _MapScreenState extends State<MapScreen> {
             // Safely access temperature and humidity with null checks
             String temp =
                 data['temp_avg'] != null ? "${data['temp_avg']}°C" : "N/A";
-            String rh = data['rh_avg'] != null ? "${data['rh_avg']}%" : "N/A";
+            String rh = data['rh_avg'] != null ? "${data['RH_avg']}%" : "N/A";
 
             setState(() {
               _deviceData =
@@ -126,7 +128,7 @@ class _MapScreenState extends State<MapScreen> {
       body: Column(
         children: [
           SizedBox(
-            height: 450,
+            height: 400,
             child: GoogleMap(
                 onMapCreated: _onMapCreated,
                 initialCameraPosition: CameraPosition(
@@ -144,19 +146,34 @@ class _MapScreenState extends State<MapScreen> {
                 }),
           ),
           Expanded(
-            child: Card(
-              color: Colors.white,
-              margin: EdgeInsets.all(10),
               child: Padding(
-                padding: EdgeInsets.all(16),
-                child: Text(
-                  _deviceData, // Display the data string updated with null checks
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ),
-          )
+                  // This Padding widget adds padding around the Card
+                  padding: const EdgeInsets.all(defaultSize),
+                  child: Card(
+                    child: Column(
+                      children: <Widget>[
+                        const ListTile(
+                          title: Text('Device Name - Device ID'),
+                          subtitle: Text('Date - Time.'),
+                        ),
+                        const ListTile(
+                          title: Text('Temperature : '),
+                          leading: Icon(Icons.device_thermostat_outlined),
+                        ),
+                        const ListTile(
+                          title: Text('Humidity : '),
+                          leading: Icon(Icons.waterfall_chart_outlined),
+                        ),
+                        TextButton(
+                          child: const Text(
+                            'LISTEN',
+                            textAlign: TextAlign.right,
+                          ),
+                          onPressed: () {/* ... */},
+                        ),
+                      ],
+                    ),
+                  )))
         ],
       ),
     );
