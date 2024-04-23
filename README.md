@@ -1,5 +1,5 @@
 <p align="center"><img align="center" width="250" src="./Assets/Icons/splash-android.png"></p>
-<h1 align="center">Weathershare : Share the weather around you</h1>
+<h1 align="center"> Weathershare : Share the weather around you</h1>
 
 
 
