@@ -34,18 +34,53 @@ This is the mock-up design of each section of the page, visualising the user exp
 
 Designed on [mockup](https://getmockup.app/) app.
 
+## Screens
 
+<table>
+  <tr>
+    <!-- Image 1 -->
+    <td>
+      <p align="center" style="font-size: 16px; font-weight: bold;">Instant scan with minimum interaction</p>
+      <img src="github_assets\gif\savetodb.gif" alt="Instant scan with minimum interaction" width="300">
+      <br>
+    </td>
+    <!-- Image 2 -->
+    <td>
+      <p align="center" style="font-size: 16px; font-weight: bold;">Notification dialog for scan errors</p>
+      <img src="github_assets\gif\duplicate.gif" alt="Notification dialog for scan errors" width="300">
+      <br>
+    </td>
+    <!-- Image 3 -->
+    <td>
+      <p align="center" style="font-size: 16px; font-weight: bold;">Search scanned LFT based on label and ID</p>
+      <img src="github_assets\gif\search.gif" alt="Search scanned LFT based on label and ID" width="300">
+      <br>
+    </td>
+  </tr>
+</table>
 
- 
-
-
-
-## User Persona
-
-This user persona is designed using [Xtensio](https://xtensio.com/).
-
-![User Persona](./assets/OrdinaryUserPersona.png)
-
+<table>
+  <tr>
+    <!-- Image 1 -->
+    <td>
+      <p align="center" style="font-size: 16px; font-weight: bold;">Filter based on date or date range</p>
+      <img src="github_assets\gif\date.gif" alt="Instant scan with minimum interaction" width="300">
+      <br>
+    </td>
+    <!-- Image 2 -->
+    <td>
+      <p align="center" style="font-size: 16px; font-weight: bold;">Convert LFT results to CSV</p>
+      <img src="github_assets\gif\csv.gif" alt="Notification dialog for scan errors" width="300">
+      <br>
+    </td>
+    <!-- Image 3 -->
+    <td>
+      <p align="center" style="font-size: 16px; font-weight: bold;">Switch to Darkmode for better readability</p>
+      <img src="github_assets\gif\darkmode.gif" alt="Search scanned LFT based on label and ID" width="300">
+      <br>
+    </td>
+  </tr>
+</table>
 
 
 ## Technologies behind this app
@@ -85,14 +120,6 @@ Framework • revision 300451adae (4 weeks ago) • 2024-03-27 21:54:07 -0500
 Engine • revision e76c956498
 Tools • Dart 3.3.3 • DevTools 2.31.1
 ```
-
-### Android Emulator
-
-:white_check_mark: Google Pixel 6a
-
-:white_check_mark: API Version 34
-
-:white_check_mark: Harware Acceleration: **On**
 
 ## Installation
 
