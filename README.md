@@ -1,7 +1,6 @@
 <p align="center"><img align="center" width="250" src="./Assets/Icons/splash-android.png"></p>
 <h1 align="center"> Weathershare : Share the weather around you</h1>
-
-
+<h3 align="center">https://github.com/satria-mitra/weathershare</h3>
 
 <h3 align="center"><a href="https://weathershare.my.canva.site/">Download the app now</a></h3>
 
