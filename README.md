@@ -1,9 +1,9 @@
-<p align="center"><img align="center" width="300" src="./assets/icons/splash-android.png"></p>
+<p align="center"><img align="center" width="300" src="./Assets/Icons/splash-android.png"></p>
 <h1 align="center">Weathershare : Share the weather around you</h1>
 
 
 
-<h4 align="center">[Download the app now](https://weathershare.my.canva.site/)</h4>
+<h3 align="center"><a href="https://weathershare.my.canva.site/">Download the app now</a></h3>
 
 Weathershare is a crowdsourcing application that collects weather reports from many people to help verify weather forecasts. This application encourages the community to share weather conditions in their surrounding environment.
 
@@ -17,8 +17,7 @@ Weathershare is a crowdsourcing application that collects weather reports from m
 - Crowdsourcing can significantly increase the number of data points available for weather prediction
 - Crowdsourced data can offer real-time information on weather conditions, making it possible to track changes more quickly than with standard meteorological services. 
 
-<p align="center"><img align="center" width="300" src="./assets/Pictures/Mockup.png"></p>
-
+<p align="center"><img align="center" width="600" src="Assets/Pictures/Mockup.png"></p>
 
 
 
@@ -34,26 +33,26 @@ Weathershare is a crowdsourcing application that collects weather reports from m
 
 
 ## Screens
-<p align="center"><img align="center" width="300" src="assets/Pictures/screens.png"></p>
+<p align="center"><img align="center" width="500" src="Assets/Pictures/screens.png"></p>
 
 <table>
   <tr>
     <!-- Image 1 -->
     <td>
       <p align="center" style="font-size: 14px; font-weight: bold;">Google Sign Up</p>
-      <img src="assets/gif/google_signup.gif" alt="Google Sign Up" width="300">
+      <img src="Assets/gif/google_signup.gif" alt="Google Sign Up" width="300">
       <br>
     </td>
     <!-- Image 2 -->
     <td>
       <p align="center" style="font-size: 14px; font-weight: bold;">Onboarding screen</p>
-      <img src="assets/gif/onboarding.gif" alt="Google Maps with Marker" width="300">
+      <img src="Assets/gif/onboarding.gif" alt="Google Maps with Marker" width="300">
       <br>
     </td>
     <!-- Image 3 -->
     <td>
       <p align="center" style="font-size: 14px; font-weight: bold;">Google Maps with Marker</p>
-      <img src="assets/gif/google_marker.gif" alt="Google Maps with Marker" width="300">
+      <img src="Assets/gif/google_marker.gif" alt="Google Maps with Marker" width="300">
       <br>
     </td>
   </tr>
@@ -64,19 +63,19 @@ Weathershare is a crowdsourcing application that collects weather reports from m
     <!-- Image 1 -->
     <td>
       <p align="center" style="font-size: 14px; font-weight: bold;">Inspect weather station data</p>
-      <img src="assets/gif/inspect_data.gif" alt="Inspect weather station data" width="300">
+      <img src="Assets/gif/inspect_data.gif" alt="Inspect weather station data" width="300">
       <br>
     </td>
     <!-- Image 2 -->
     <td>
       <p align="center" style="font-size: 14px; font-weight: bold;">Add more Weather Station</p>
-      <img src="assets/gif/add_device.gif" alt="Add more Weather Station" width="300">
+      <img src="Assets/gif/add_device.gif" alt="Add more Weather Station" width="300">
       <br>
     </td>
     <!-- Image 3 -->
     <td>
       <p align="center" style="font-size: 14px; font-weight: bold;">Post an image</p>
-      <img src="assets/gif/post_image.gif" alt="Search scanned LFT based on label and ID" width="300">
+      <img src="Assets/gif/post_image.gif" alt="Search scanned LFT based on label and ID" width="300">
       <br>
     </td>
   </tr>
