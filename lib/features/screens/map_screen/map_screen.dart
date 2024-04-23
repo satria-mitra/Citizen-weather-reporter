@@ -31,36 +31,32 @@ class _MapScreenState extends State<MapScreen> {
   }
 
   void _loadMarkers() async {
-    FirebaseFirestore.instance
-        .collection('devices')
-        .get()
-        .then((querySnapshot) {
-      querySnapshot.docs.forEach((result) {
-        double latitude = double.parse(result.data()['latt'].toString());
-        double longitude = double.parse(result.data()['long'].toString());
+    var querySnapshot =
+        await FirebaseFirestore.instance.collection('devices').get();
 
-        // Create a new marker with an onTap event
-        Marker newMarker = Marker(
-          markerId: MarkerId(result.data()['deviceID']),
-          position: LatLng(latitude, longitude),
-          infoWindow: InfoWindow(
-            title: result.data()['deviceName'],
-            snippet: 'ID: ${result.data()['deviceID']}',
-          ),
-          icon: BitmapDescriptor.defaultMarker,
-          onTap: () {
-            _onMarkerTapped(result.data()[
-                'deviceID']); // Call the _onMarkerTapped function with the device ID
-          },
-        );
+    for (var result in querySnapshot.docs) {
+      double latitude = double.parse(result.data()['latt'].toString());
+      double longitude = double.parse(result.data()['long'].toString());
 
-        setState(() {
-          _markers.add(newMarker);
-        });
+      // Create a new marker with an onTap event
+      Marker newMarker = Marker(
+        markerId: MarkerId(result.data()['deviceID']),
+        position: LatLng(latitude, longitude),
+        infoWindow: InfoWindow(
+          title: result.data()['deviceName'],
+        ),
+        icon: BitmapDescriptor.defaultMarker,
+        onTap: () {
+          _onMarkerTapped(result.data()[
+              'deviceID']); // Call the _onMarkerTapped function with the device ID
+        },
+      );
+
+      setState(() {
+        _markers.add(newMarker);
       });
-    }).catchError((error) {
-      //print("Error fetching data: $error");
-    });
+      await Future.delayed(Duration(milliseconds: 10));
+    }
   }
 
   void _onMapCreated(GoogleMapController controller) {

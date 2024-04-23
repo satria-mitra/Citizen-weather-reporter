@@ -53,7 +53,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
             color: Theme.of(context).scaffoldBackgroundColor,
             child: Padding(
               padding:
-                  const EdgeInsets.symmetric(vertical: 90.0, horizontal: 10),
+                  const EdgeInsets.symmetric(vertical: 70.0, horizontal: 10),
               child: isLastPage
                   ? getStarted()
                   : Row(
@@ -136,7 +136,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
 
           if (!mounted) return;
           Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => const OnBoardingView()),
+            MaterialPageRoute(builder: (context) => const WelcomeScreen()),
           );
         },
         child: const Text(

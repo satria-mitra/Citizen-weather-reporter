@@ -8,14 +8,14 @@ const String appName = ".appable/";
 const String appTagLine = "Coba";
 
 //onboarding text
-const String onBoardingTitle1 = "Share your sensor data";
-const String onBoardingTitle3 = "Crowdsource your IoT device";
-const String onBoardingTitle2 = "See the heatmap";
+const String onBoardingTitle1 = "Post a Picture";
+const String onBoardingTitle2 = "Crowdsource your IoT device";
+const String onBoardingTitle3 = "See the data";
 
-const String onBoardingSubTitle1 = "Share your bluetooth-enabled IoT ";
-const String onBoardingSubTitle3 =
+const String onBoardingSubTitle1 = "Post a picture of the weather around you ";
+const String onBoardingSubTitle2 =
     "Own a weather station? Crowdsource it to the world";
-const String onBoardingSubTitle2 = "Create a heatmap based on your IoT data";
+const String onBoardingSubTitle3 = "Check your datalog on app";
 
 const String onBoardingCounter1 = "1/3";
 const String onBoardingCounter2 = "2/3";

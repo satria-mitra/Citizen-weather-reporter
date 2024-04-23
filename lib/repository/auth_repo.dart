@@ -33,13 +33,22 @@ class AuthenticationRepo extends GetxController {
     _firebaseUser = Rx<User?>(_auth.currentUser);
     _firebaseUser.bindStream(_auth.userChanges());
     FlutterNativeSplash.remove();
+    if (_firebaseUser.value != null) {
+      screenRedirect(_firebaseUser.value);
+    } else {
+      if (deviceStorage.read('IsFirstTime') == true) {
+        Get.offAll(() => const OnBoardingView());
+      } else {
+        Get.offAll(() => const LoginScreen());
+      }
+    }
     deviceStorage.writeIfNull('IsFirstTime', true);
     //var isFirstTime = deviceStorage.read('IsFirstTime');
     // print(
     //     'is it first time ? $isFirstTime'); // Optional: for debugging purposes
 
-    if (deviceStorage.read('isFirstTime') != true) {
-      Get.offAll(() => const LoginScreen());
+    if (deviceStorage.read('IsFirstTime') != true) {
+      Get.offAll(() => const OnBoardingView());
     } else {
       Get.offAll(() => const OnBoardingView());
     }
@@ -52,7 +61,7 @@ class AuthenticationRepo extends GetxController {
       await LocalStorage.init(user.uid);
       Get.offAll(() => const HomeMenu());
     } else {
-      Get.offAll(() => const WelcomeScreen());
+      Get.offAll(() => const OnBoardingView());
     }
 
     // User is not logged in or doesn't exist

@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:weathershare/utils/themes/theme.dart';
 import 'package:get/get.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 void main() async {
   final WidgetsBinding widgetsBinding =
