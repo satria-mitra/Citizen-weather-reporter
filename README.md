@@ -148,7 +148,12 @@ Pre-requirements:
 - Install Flutter and Dart
 - Install simulation device or
 - Have a phone plugged to the main machine
+- Git clone this function
+```
+git clone https://github.com/satria-mitra/mqtt-node-app.git  
+```
 
+Run this repo
 ```
 $ git clone https://github.com/satria-mitra/weathershare.git
 $ cd weathershare
