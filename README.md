@@ -162,3 +162,13 @@ $ flutter run
 <p>Satria Mitra Utama </p>
 <p>satriamitrautama@gmail.com </p>
 Currently a student at Master of Connected Environment UCL
+
+
+## Declaration of Authorship
+
+I, Satria Mitra Utama, confirm that the work presented in this assessment is my own. Where information has been derived from other sources, I confirm that this has been indicated in the work.
+
+
+Satria Mitra Utama
+
+23 / 04 / 2024
