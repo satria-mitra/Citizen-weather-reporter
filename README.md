@@ -1,21 +1,23 @@
-<p align="center"><img align="center" width="300" src="./assets/"></p>
-<h1 align="center"></h1>
+<p align="center"><img align="center" width="300" src="./assets/icons/splash-android.png"></p>
+<h1 align="center">Weathershare : Share the weather around you</h1>
 
 
 
-https://weathershare.my.canva.site/
+<h4 align="center">[Download the app now](https://weathershare.my.canva.site/)</h4>
+
+
 Weathershare is a crowdsourcing application that collects weather reports from many people to help verify weather forecasts. This application encourages the community to share weather conditions in their surrounding environment.
 
 ## Why bothers develop this app?
 
-- Most weather forecast is accurate, but the real condition might be differ on each location
-- Radar and satellite images are limited and cannot capture real condition on the ground within small scale
-- The limited number of weather stations makes weather forecast verification slow
+- Most weather forecast is accurate, but the real condition might be differ on the ground
+- Many weather stations stand alone without combining their data with one another
+- There is no solid platform to integrate chain of weather stations
 
 ## Benefits
 - Crowdsourcing can significantly increase the number of data points available for weather prediction
-- Crowdsourcing weather data encourages community participation and engagement
-- Crowdsourced data can offer real-time information on weather conditions, 
+- Crowdsourced data can offer real-time information on weather conditions, making it possible to track changes more quickly than with standard meteorological services. 
+
 
 
 ## User Persona
