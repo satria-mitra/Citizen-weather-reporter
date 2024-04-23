@@ -136,7 +136,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
 
           if (!mounted) return;
           Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => const WelcomeScreen()),
+            MaterialPageRoute(builder: (context) => const OnBoardingView()),
           );
         },
         child: const Text(
