@@ -59,6 +59,7 @@ class _AddIoTBrokersScreenState extends State<AddIoTBrokersScreen> {
       appBar: AppBar(
         title: const Text("Add MQTT Brokers & Devices"),
         automaticallyImplyLeading: false,
+        centerTitle: true,
       ),
       body: isLoading
           ? const Center(child: CircularProgressIndicator())

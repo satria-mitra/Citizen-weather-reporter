@@ -158,6 +158,7 @@ class _LogDataScreenState extends State<LogDataScreen> {
       appBar: AppBar(
         title: const Text("Data Log"),
         automaticallyImplyLeading: false,
+        centerTitle: true,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(30),

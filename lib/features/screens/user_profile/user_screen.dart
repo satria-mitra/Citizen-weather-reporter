@@ -25,11 +25,10 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
       appBar: AppBar(
         automaticallyImplyLeading: false, // No back button
 
-        title: Text(
+        title: const Text(
           userProfile,
-          style: Theme.of(context).textTheme.headlineMedium,
-          textAlign: TextAlign.justify,
         ),
+        centerTitle: true,
       ),
       body: Center(
         child: Container(
