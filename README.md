@@ -1,4 +1,4 @@
-<p align="center"><img align="center" width="300" src="./Assets/Icons/splash-android.png"></p>
+<p align="center"><img align="center" width="250" src="./Assets/Icons/splash-android.png"></p>
 <h1 align="center">Weathershare : Share the weather around you</h1>
 
 
@@ -123,6 +123,41 @@ Firestore Database
           |-- port: (String)
           |-- username:(String)
 ```
+```
+Firestore Database
+|
+|--- devices (Collection)
+     |
+     |--- Document (ID: deviceID, String)
+          |-- brokerRef: (reference)
+          |-- deviceID: (String)
+          |-- deviceName: (String)
+          |-- latt: (String)
+          |-- long:(String)
+```
+```
+Firestore Database
+|
+|--- users (Collection)
+     |
+     |--- Document (ID: randomid, String)
+          |-- Email: (reference)
+          |-- Firstname: (String)
+          |-- Lastname: (String)
+```
+2. Realtime Database Firebase
+```
+Realtime Database
+|
+|--- devices (Collection)
+     |
+     |--- Document (ID: deviceID, String)
+          |-- date: (reference)
+              |-- time: (String)
+                  |-- rh_avg: (String)
+                  |-- temp_avg: (String)
+
+```
 ## Dependencies
 
   1. camera: ^0.10.5+9
@@ -144,6 +179,9 @@ Firestore Database
   16. google_sign_in: ^6.2.1
   17. image_picker: ^1.1.0
   18. smooth_page_indicator: ^1.1.0
+      
+## Onboard Images
+Illustration on this application is completely using copyright-free images from https://www.freepikcompany.com/.
 
 ## Development Environment
 
@@ -175,6 +213,10 @@ $ flutter pub get
 $ flutter run
 ```
 
+## Future Works
+1. Add more brokers
+2. Add more content to User Profile Screen
+3. Implement heatmaps 
 
 ##  Contact Details
 
