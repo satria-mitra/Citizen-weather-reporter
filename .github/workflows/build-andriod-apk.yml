@@ -76,9 +76,27 @@ jobs:
           name: flutter-appbundle
           path: build/app/outputs/bundle/release/*.aab
 
-      - name: Create Github Release
+      - name: Check if Tag Exists
+        id: check_tag
+        run: |
+          if git rev-parse "v${{ steps.get_flutter_app_version.outputs.TAG_VERSION }}" >/dev/null 2>&1; then
+            echo "::set-output name=exists::true"
+          else
+            echo "::set-output name=exists::false"
+          fi
+
+      - name: Adjust Tag Version
+        if: steps.check_tag.outputs.exists == 'true'
+        run: |
+          # Example: Increment patch version if the tag already exists
+          PATCH_VERSION=$(echo ${{ steps.get_flutter_app_version.outputs.TAG_VERSION }} | awk -F '.' '{print $3+1}')
+          NEW_TAG_VERSION="${{ steps.get_flutter_app_version.outputs.TAG_VERSION }}.${PATCH_VERSION}"
+          echo "::set-output name=TAG_VERSION::$NEW_TAG_VERSION"
+        id: new_version
+
+      - name: Create Release
         uses: ncipollo/release-action@v1
         with:
+          tag: ${{ steps.new_version.outputs.TAG_VERSION }}
           artifacts: "build/app/outputs/bundle/release/*.aab,build/app/outputs/flutter-apk/*.apk"
-          tag: "v${{ steps.get_flutter_app_version.outputs.TAG_VERSION }}"
           # token: ${{ secrets.PERSONAL_RELEASE_TOKEN }}

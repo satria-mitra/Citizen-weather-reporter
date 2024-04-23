@@ -29,7 +29,7 @@ const String welcomeSubTitle = "Test";
 
 //login text
 const String loginTitle = "Welcome Back";
-const String loginSubTitle = "Share it";
+//const String loginSubTitle = "Share it";
 const String rememberMe = "Remember Me?";
 const String haveAccount = "Already Have an Account?";
 const String signInWithGoogle = "Sign In with Google";

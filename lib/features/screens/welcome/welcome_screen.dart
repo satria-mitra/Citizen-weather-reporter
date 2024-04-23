@@ -33,11 +33,11 @@ class WelcomeScreen extends StatelessWidget {
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             const SizedBox(height: 10),
-            Text(
-              loginSubTitle,
-              style: Theme.of(context).textTheme.titleSmall,
-              textAlign: TextAlign.center,
-            ),
+            // Text(
+            //   loginSubTitle,
+            //   style: Theme.of(context).textTheme.titleSmall,
+            //   textAlign: TextAlign.center,
+            // ),
           ],
         ),
       ),

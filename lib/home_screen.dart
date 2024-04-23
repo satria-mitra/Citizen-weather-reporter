@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:weathershare/features/screens/add_iot_devices/add_iot_brokers_screen.dart';
 import 'package:weathershare/features/screens/log_data/log_data.dart';
 import 'package:weathershare/features/screens/map_screen/map_screen.dart';
-import 'package:weathershare/features/screens/post_images/post_images_screen.dart';
 import 'package:weathershare/features/screens/user_profile/user_screen.dart';
 
 class HomeMenu extends StatelessWidget {
@@ -75,8 +74,8 @@ class NavigationController extends GetxController {
   final screens = [
     const MapScreen(),
     const LogDataScreen(),
-    const PostImagesScreen(),
     const AddIoTBrokersScreen(),
+    Container(color: Colors.red),
     const UserProfileScreen(),
   ];
 }
