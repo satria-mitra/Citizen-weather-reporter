@@ -127,7 +127,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
           final storage = GetStorage();
 
           if (kDebugMode) {
-            print("--- get storage ---");
+            //print("--- get storage ---");
           }
           storage.write('IsFirstTime', false);
           //print(storage.read('IsFirstTime'));
@@ -136,7 +136,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
 
           if (!mounted) return;
           Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => const WelcomeScreen()),
+            MaterialPageRoute(builder: (context) => const OnBoardingView()),
           );
         },
         child: const Text(
