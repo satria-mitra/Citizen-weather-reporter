@@ -1,10 +1,13 @@
 <p align="center"><img align="center" width="250" src="./Assets/Icons/splash-android.png"></p>
 <h1 align="center"> Weathershare : Share the weather around you</h1>
-<h3 align="center">https://github.com/satria-mitra/weathershare</h3>
 
 <h3 align="center"><a href="https://weathershare.my.canva.site/">Download the app now</a></h3>
 
-Weathershare is a crowdsourcing application that collects weather reports from many people to help verify weather forecasts. This application encourages the community to share weather conditions in their surrounding environment.
+Weathershare is a crowdsourcing application that integrate weather station with traditional weather reports from many people to help verify weather forecasts. This application encourages the community to share weather conditions in their surrounding environment.
+
+## Link to GitHub Repository
+
+Weathershare - [https://github.com/satria-mitra/weathershare](https://github.com/satria-mitra/weathershare)
 
 ## Why bothers develop this app?
 
