@@ -13,13 +13,16 @@ class _PostImagesScreenState extends State<PostImagesScreen> {
     var isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
 
     return Scaffold(
-      backgroundColor:
-          isDark ? const Color(0xFF272727) : const Color(0xffffffff),
-      appBar: AppBar(
-        title: const Text("New Post"),
-        automaticallyImplyLeading: false,
-        centerTitle: true,
-      ),
-    );
+        backgroundColor:
+            isDark ? const Color(0xFF272727) : const Color(0xffffffff),
+        appBar: AppBar(
+          title: const Text("New Post"),
+          automaticallyImplyLeading: false,
+          centerTitle: true,
+        ),
+        body: SingleChildScrollView(
+          padding: const EdgeInsets.all(30),
+          child: Container(),
+        ));
   }
 }
