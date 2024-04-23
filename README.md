@@ -109,6 +109,20 @@ Designed on [mockup](https://getmockup.app/) app.
  - ✅ Google Maps API
  - ✅ BMKG MQTT Weather Station
 
+## Databases
+1. Firestore database
+```
+Firestore Database
+|
+|--- brokers (Collection)
+     |
+     |--- Document (ID: mqttName, String)
+          |-- host: (String)
+          |-- mqttname: (String)
+          |-- password: (String)
+          |-- port: (String)
+          |-- username:(String)
+```
 ## Dependencies
 
   1. camera: ^0.10.5+9
